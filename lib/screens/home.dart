@@ -4,15 +4,16 @@ import 'package:loader_overlay/loader_overlay.dart';
 import 'package:onestore/helper/product_helper.dart';
 import 'package:onestore/models/product.dart';
 import 'package:onestore/providers/cart_provider.dart';
+import 'package:onestore/providers/inbox_message_provider.dart';
 import 'package:onestore/providers/product_provider.dart';
 import 'package:onestore/screens/favourite_screen.dart';
+import 'package:onestore/screens/inbox_screen.dart';
 import 'package:onestore/screens/product_overview.dart';
 import 'package:onestore/screens/profile_screen.dart';
 import 'package:provider/provider.dart';
 
 import 'cart_overview.dart';
 import 'order_overview.dart';
-import 'profile.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key, required this.title}) : super(key: key);
@@ -29,6 +30,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     final productProvider = Provider.of<ProductProvider>(context);
     final cartProvider = Provider.of<CartProvider>(context);
+    final inboxProvider = Provider.of<InboxMessageProvider>(context);
     List<Product> _loadProduct = productProvider.product;
     final PageController _pageController = PageController(
       initialPage: _selectedPage,
@@ -78,6 +80,7 @@ class _MyHomePageState extends State<MyHomePage> {
             const CartOverview(),
             const OrderOverviewScreen(),
             const FavouriteSreen(),
+            const InboxScreen(),
             const ProfileScreen(),
           ],
         ),
@@ -117,8 +120,27 @@ class _MyHomePageState extends State<MyHomePage> {
               size: 20,
               color: Colors.white,
             ),
+            Column(
+              children: [
+                CircleAvatar(
+                  radius: 20,
+                  child: CircleAvatar(
+                    radius: 19.7,
+                    backgroundColor: Colors.white,
+                    child: Text(
+                      inboxProvider.ureadMessage.toString(),
+                    ),
+                  ),
+                ),
+                const Icon(
+                  Icons.messenger_outline,
+                  size: 20,
+                  color: Colors.white,
+                ),
+              ],
+            ),
             const Icon(
-              Icons.people,
+              Icons.person,
               size: 20,
               color: Colors.white,
             ),

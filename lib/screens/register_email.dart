@@ -17,12 +17,12 @@ class RegistEmailScreen extends StatelessWidget {
         foregroundColor: Colors.black,
       ),
       body: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           borderRadius: BorderRadius.only(
             topLeft: Radius.circular(60),
             topRight: Radius.circular(60),
           ),
-          color: Colors.red,
+          color: Colors.cyan,
         ),
         // color: Colors.green,
         child: Center(
@@ -42,6 +42,10 @@ class RegistEmailScreen extends StatelessWidget {
                     label: Text(
                       'ເບີໂທລະສັບ ຫລື ອີເມວ',
                       style: Theme.of(context).textTheme.bodyText2,
+                      // style: TextStyle(
+                      //   fontFamily: 'Noto San Lao',
+                      // ),
+                      textAlign: TextAlign.right,
                     ),
                     hintText: '20 99999999',
                     hintStyle: Theme.of(context).textTheme.bodyText2,

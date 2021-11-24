@@ -14,6 +14,7 @@ class OrderItemDetail extends StatelessWidget {
         Provider.of<OrderProvider>(context).orderItemId(orderId);
     return Column(
       children: [
+        Divider(),
         Expanded(
           child: ListView.builder(
             itemBuilder: (ctx, id) => ListTile(
@@ -23,7 +24,13 @@ class OrderItemDetail extends StatelessWidget {
               ),
               subtitle: Text("${orderDetail[id].price}"),
               leading: CircleAvatar(
-                child: Text("x ${orderDetail[id].qty}"),
+                radius: 24,
+                backgroundColor: Colors.red,
+                child: CircleAvatar(
+                  radius: 23.5,
+                  backgroundColor: Colors.white,
+                  child: Text("x ${orderDetail[id].qty}"),
+                ),
               ),
             ),
             itemCount: orderDetail.length,

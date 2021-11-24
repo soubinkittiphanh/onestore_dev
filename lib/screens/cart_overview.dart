@@ -101,7 +101,7 @@ class _CartOverviewState extends State<CartOverview> {
               topLeft: Radius.circular(80),
               bottomRight: Radius.circular(90),
             ),
-            color: Colors.red),
+            color: Colors.white),
         // color: Colors.red,
         child: Column(
           children: [
@@ -125,10 +125,11 @@ class _CartOverviewState extends State<CartOverview> {
                     "ສັ່ງຊື້ເລີຍ",
                     // style: Theme.of(context).textTheme.bodyText2,
                     style: TextStyle(
-                        decoration: TextDecoration.underline,
-                        fontFamily: 'Noto San Lao',
-                        fontStyle: FontStyle.normal,
-                        color: Colors.white),
+                      decoration: TextDecoration.underline,
+                      fontFamily: 'Noto San Lao',
+                      fontStyle: FontStyle.normal,
+                      // color: Colors.white,
+                    ),
                   ),
                   onPressed: placeOrder,
                 ),

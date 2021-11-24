@@ -1,8 +1,10 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:onestore/providers/cart_provider.dart';
+import 'package:onestore/providers/inbox_message_provider.dart';
 import 'package:onestore/providers/order_provider.dart';
 import 'package:onestore/providers/product_provider.dart';
+import 'package:onestore/providers/user_credental_provider.dart';
 import 'package:onestore/screens/login_screen.dart';
 import 'package:onestore/screens/register_email.dart';
 import 'package:provider/provider.dart';
@@ -30,6 +32,12 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(
           create: (ctx) => OrderProvider(),
         ),
+        ChangeNotifierProvider(
+          create: (ctx) => userCredentailProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (ctx) => InboxMessageProvider(),
+        ),
       ],
       child: MaterialApp(
         title: "OneStore",
@@ -37,9 +45,9 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.red,
           textTheme: const TextTheme(
             caption: TextStyle(
-                fontSize: 16,
-                fontFamily: 'Noto San Lao',
-                color: Colors.yellowAccent),
+              fontSize: 16,
+              fontFamily: 'Noto San Lao',
+            ),
             headline1: TextStyle(
               fontSize: 72,
               fontFamily: 'Noto San Lao',
@@ -49,25 +57,25 @@ class MyApp extends StatelessWidget {
               fontSize: 24,
               fontFamily: 'Noto San Lao',
               fontStyle: FontStyle.normal,
-              color: Colors.white,
+              // color: Colors.white,
             ),
             headline6: TextStyle(
               fontSize: 20,
               fontFamily: 'Noto San Lao',
               fontStyle: FontStyle.normal,
-              color: Colors.white,
+              // color: Colors.white,
             ),
             bodyText2: TextStyle(
               fontSize: 14,
               fontFamily: 'Noto San Lao',
               fontStyle: FontStyle.normal,
-              color: Colors.white,
+              // color: Colors.white,
             ),
             bodyText1: TextStyle(
               fontSize: 24,
               fontFamily: 'Noto San Lao',
               fontStyle: FontStyle.normal,
-              color: Colors.white,
+              // color: Colors.white,
             ),
           ),
         ),

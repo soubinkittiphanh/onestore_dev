@@ -12,55 +12,66 @@ class CartItemComp extends StatelessWidget {
     final f = NumberFormat("#,###");
     final cartProvider = Provider.of<CartProvider>(context);
     final cartItem = cartProvider.cartItemId(product.proId);
-    return Dismissible(
-      key: Key(product.proId.toString()),
-      background: Container(
-        height: 20,
-        color: Colors.white,
-      ),
-      direction: DismissDirection.endToStart,
-      onDismissed: (direction) {
-        print("$direction");
-        cartProvider.removeCart(cartItem.proId);
-      },
-      child: ListTile(
-        leading: CircleAvatar(
-          child: Stack(children: [
-            FittedBox(
-              child: Text(
-                "x ${cartItem.qty}",
-              ),
+    return Card(
+      child: Dismissible(
+        key: Key(product.proId.toString()),
+        background: Container(
+          height: 20,
+          color: Colors.red,
+        ),
+        direction: DismissDirection.endToStart,
+        onDismissed: (direction) {
+          print("$direction");
+          cartProvider.removeCart(cartItem.proId);
+        },
+        child: ListTile(
+          leading: CircleAvatar(
+            radius: 24,
+            child: CircleAvatar(
+              radius: 23.5,
+              child: Stack(children: [
+                FittedBox(
+                  child: Text(
+                    "x ${cartItem.qty}",
+                  ),
+                ),
+              ]),
+              backgroundColor: Colors.white,
             ),
-          ]),
-        ),
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text("ຊື່ສິນຄ້າ: ${product.proName}",
-                style: Theme.of(context).textTheme.bodyText2),
-            Text("ລາຄາ: ${f.format(cartItem.price)}",
-                style: Theme.of(context).textTheme.bodyText2),
-          ],
-        ),
-        subtitle: Row(
-          children: [
-            Spacer(),
-            Text(
-              "${f.format(cartItem.priceTotal)} ກີບ",
-              style: const TextStyle(
-                decoration: TextDecoration.underline,
-                color: Colors.yellow,
+            backgroundColor: Colors.red,
+          ),
+          title: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text("ຊື່ສິນຄ້າ: ${product.proName}",
+                  style: Theme.of(context).textTheme.bodyText2),
+              Text("ລາຄາ: ${f.format(cartItem.price)}",
+                  style: Theme.of(context).textTheme.bodyText2),
+            ],
+          ),
+          subtitle: Row(
+            children: [
+              Spacer(),
+              Text(
+                "${f.format(cartItem.priceTotal)} ກີບ",
+                style: const TextStyle(
+                  decoration: TextDecoration.underline,
+                  color: Colors.black,
+                ),
               ),
+            ],
+          ),
+          isThreeLine: true,
+          trailing: IconButton(
+            // color: Colors.white,
+            icon: const Icon(
+              Icons.delete_forever,
+              color: Colors.red,
             ),
-          ],
-        ),
-        isThreeLine: true,
-        trailing: IconButton(
-          color: Colors.white,
-          icon: const Icon(Icons.delete_forever),
-          onPressed: () {
-            cartProvider.removeCart(cartItem.proId);
-          },
+            onPressed: () {
+              cartProvider.removeCart(cartItem.proId);
+            },
+          ),
         ),
       ),
     );

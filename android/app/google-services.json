@@ -1,39 +1,62 @@
 {
-    "project_info": {
-      "project_number": "725728703472",
-      "project_id": "onestore-61b1f",
-      "storage_bucket": "onestore-61b1f.appspot.com"
-    },
-    "client": [
-      {
-        "client_info": {
-          "mobilesdk_app_id": "1:725728703472:android:d20c2c85e9810e3be96335",
-          "android_client_info": {
-            "package_name": "com.example.onestore"
+  "project_info": {
+    "project_number": "725728703472",
+    "project_id": "onestore-61b1f",
+    "storage_bucket": "onestore-61b1f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:725728703472:android:d20c2c85e9810e3be96335",
+        "android_client_info": {
+          "package_name": "com.example.onestore"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "725728703472-c65vngkm14g0oss1inp4h8ev45d6if7s.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.onestore",
+            "certificate_hash": "e5d6f67d9f7b2ac4b3c819290ed8a42f61425571"
           }
         },
-        "oauth_client": [
-          {
-            "client_id": "725728703472-7f3re0cvt1pt8u1d2k13pnvpp95flpi6.apps.googleusercontent.com",
-            "client_type": 3
+        {
+          "client_id": "725728703472-ve9na1vluisr9bvsv6qemqcl95kmef34.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.onestore",
+            "certificate_hash": "12bedf06130796055aa71dd4687545f931f5f466"
           }
-        ],
-        "api_key": [
-          {
-            "current_key": "AIzaSyC9fHhy0t5v11SdCGcyJ0G9fWFOA8tTdkE"
-          }
-        ],
-        "services": {
-          "appinvite_service": {
-            "other_platform_oauth_client": [
-              {
-                "client_id": "725728703472-7f3re0cvt1pt8u1d2k13pnvpp95flpi6.apps.googleusercontent.com",
-                "client_type": 3
+        },
+        {
+          "client_id": "725728703472-7f3re0cvt1pt8u1d2k13pnvpp95flpi6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC9fHhy0t5v11SdCGcyJ0G9fWFOA8tTdkE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "725728703472-7f3re0cvt1pt8u1d2k13pnvpp95flpi6.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "725728703472-kangtnbc52ulfq94j1ot7bkk34acdghe.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.onestore"
               }
-            ]
-          }
+            }
+          ]
         }
       }
-    ],
-    "configuration_version": "1"
-  }
+    }
+  ],
+  "configuration_version": "1"
+}

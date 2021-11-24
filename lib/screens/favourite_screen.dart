@@ -6,7 +6,7 @@ class FavouriteSreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.blueAccent,
+      // color: Colors.blueAccent,
       child: Text("Favourite"),
     );
   }

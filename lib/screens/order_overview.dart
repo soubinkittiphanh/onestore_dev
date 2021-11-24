@@ -23,7 +23,7 @@ class OrderOverviewScreen extends StatelessWidget {
     }
 
     return Container(
-      color: Colors.red,
+      // color: Colors.red,
       child: Center(
         child: Column(
           children: [
@@ -50,7 +50,9 @@ class OrderOverviewScreen extends StatelessWidget {
             ),
             Flexible(
               child: ListView.builder(
-                itemBuilder: (ctx, id) => OrderItem(loadOrder: loadOrder[id]),
+                itemBuilder: (ctx, id) => Card(
+                  child: OrderItem(loadOrder: loadOrder[id]),
+                ),
                 itemCount: loadOrder.length,
               ),
             )

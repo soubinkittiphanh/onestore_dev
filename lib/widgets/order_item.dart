@@ -45,10 +45,6 @@ class _OrderItemState extends State<OrderItem> {
               Text(
                 "ລາຄາລວມ: ${orderProvider.orderTotalPriceById(widget.loadOrder.orderId)}",
               ),
-              Divider(
-                height: 1,
-                color: Colors.black,
-              )
             ],
           ),
           trailing: IconButton(
@@ -76,19 +72,6 @@ class _OrderItemState extends State<OrderItem> {
           crossFadeState:
               isexpand ? CrossFadeState.showFirst : CrossFadeState.showSecond,
         )
-        // if (isexpand)
-        //   AnimatedSwitcher(
-        //     duration: const Duration(
-        //       seconds: 20,
-        //     ),
-        //     child: Container(
-        //       child: OrderItemDetail(orderId: widget.loadOrder.orderId),
-        //       height: 160,
-        //       width: double.infinity,
-        //       color: Colors.white,
-        //     ),
-        //   )
-        // : null,
       ],
     );
   }
