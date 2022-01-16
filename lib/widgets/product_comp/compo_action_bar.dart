@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:onestore/getxcontroller/cart_controller.dart';
 import 'package:onestore/models/product.dart';
-import 'package:onestore/providers/cart_provider.dart';
-import 'package:provider/provider.dart';
 
 class CompoActionBar extends StatefulWidget {
   final Product product;
+
   const CompoActionBar({
     Key? key,
     required this.product,
@@ -15,10 +16,37 @@ class CompoActionBar extends StatefulWidget {
 }
 
 class _CompoActionBarState extends State<CompoActionBar> {
+  final cartProvider = Get.put(CartController());
   bool _isfavourite = false;
+  void _addToCard() {
+    ScaffoldMessenger.of(context).clearSnackBars();
+    cartProvider.addCart(widget.product, 1);
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        dismissDirection: DismissDirection.down,
+        backgroundColor: Colors.red,
+        content: const Text(
+          "ເພີ່ມໄປຍັງລາຍການແລ້ວ",
+          style: TextStyle(
+            fontFamily: 'noto san lao',
+          ),
+        ),
+        action: SnackBarAction(
+          label: "Cancel",
+          onPressed: () {
+            cartProvider.removeCart(widget.product.proId);
+          },
+          textColor: Colors.white,
+        ),
+        duration: const Duration(
+          seconds: 1,
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    final cartProvider = Provider.of<CartProvider>(context, listen: false);
     return Align(
       alignment: Alignment.bottomRight,
       child: ClipRRect(
@@ -32,36 +60,14 @@ class _CompoActionBarState extends State<CompoActionBar> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 IconButton(
-                  onPressed: () {
-                    ScaffoldMessenger.of(context).clearSnackBars();
-                    cartProvider.addCart(widget.product);
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                        dismissDirection: DismissDirection.down,
-                        backgroundColor: Colors.purple[600],
-                        content: Text(
-                          "ເພີ່ມໄປຍັງລາຍການແລ້ວ",
-                          style: Theme.of(context).textTheme.bodyText2,
-                        ),
-                        action: SnackBarAction(
-                          label: "Cancel",
-                          onPressed: () {
-                            cartProvider.removeCart(widget.product.proId);
-                          },
-                        ),
-                        duration: Duration(
-                          seconds: 1,
-                        ),
-                      ),
-                    );
-                  },
-                  icon: Icon(
+                  onPressed: _addToCard,
+                  icon: const Icon(
                     Icons.shopping_cart_outlined,
                     size: 40,
-                    color: Colors.white,
+                    color: Colors.red,
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 50,
                 ),
                 IconButton(

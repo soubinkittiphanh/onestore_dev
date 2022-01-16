@@ -5,14 +5,17 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:loader_overlay/loader_overlay.dart';
-import 'package:onestore/screens/home.dart';
-import 'package:email_auth/email_auth.dart';
+import 'package:onestore/screens/register_form_screen.dart';
+import 'package:onestore/screens/reset_password_form_screen.dart';
 import 'package:onestore/service/firbase_service.dart';
 
 class VerificationScreen extends StatefulWidget {
-  const VerificationScreen({Key? key, required this.phoneNumber})
+  const VerificationScreen(
+      {Key? key, required this.phoneNumberOrMail, this.method = 00})
       : super(key: key);
-  final String phoneNumber;
+  final String phoneNumberOrMail;
+  final int method;
+  //metho 00 = register; 01 = reset password
 
   @override
   State<VerificationScreen> createState() => _VerificationScreenState();
@@ -38,17 +41,17 @@ class _VerificationScreenState extends State<VerificationScreen> {
     log("=====> Runing ....");
     context.loaderOverlay.show();
     await fireAuth.verifyPhoneNumber(
-      phoneNumber: "+856${widget.phoneNumber}",
+      phoneNumber: "+856${widget.phoneNumberOrMail}",
       verificationCompleted: (phoneAuthCredential) {
         log("====>Completed");
-        print('${phoneAuthCredential}');
+        log('${phoneAuthCredential}');
         context.loaderOverlay.hide();
         // _loginUser();
       },
       verificationFailed: (FirebaseAuthException e) {
         context.loaderOverlay.hide();
         log("========> FAIIL");
-        print("${e.message}");
+        log("${e.message}");
         if (e.message
             .toString()
             .contains("Please enter the phone number in a format")) {
@@ -97,53 +100,57 @@ class _VerificationScreenState extends State<VerificationScreen> {
     // context.loaderOverlay.hide();
   }
 
+  Future<void> _loginUser(userOTP) async {
+    try {
+      //_firebaseOTPverification();
+      await fireAuth
+          .signInWithCredential(PhoneAuthProvider.credential(
+              verificationId: _secretOTP, smsCode: userOTP))
+          .then((value) async {
+        if (value.user != null) {
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+              builder: (ctx) => widget.method == 00
+                  ? RegisterFormScreen(
+                      phone: widget.phoneNumberOrMail,
+                    )
+                  : ResetPasswordFormScreen(
+                      phoneNumber: widget.phoneNumberOrMail,
+                    ),
+            ),
+          );
+        } else {
+          ScaffoldMessenger.of(context).clearSnackBars();
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text('invalid OTP'),
+            ),
+          );
+        }
+      });
+    } catch (e) {
+      FocusScope.of(context).unfocus();
+      log("=> error e " + e.toString());
+      // if(e)
+      ScaffoldMessenger.of(context).clearSnackBars();
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          elevation: 20,
+          content: Text(
+            "${e}",
+            style: TextStyle(fontFamily: "Noto San Lao"),
+          ),
+          duration: Duration(
+            seconds: 20,
+          ),
+        ),
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    Future<void> _loginUser(userOTP) async {
-      try {
-        // _firebaseOTPverification();
-        await fireAuth
-            .signInWithCredential(PhoneAuthProvider.credential(
-                verificationId: _secretOTP, smsCode: userOTP))
-            .then((value) async {
-          if (value.user != null) {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (ctx) => const MyHomePage(
-                  title: "OneStore",
-                ),
-              ),
-            );
-          } else {
-            ScaffoldMessenger.of(context).clearSnackBars();
-            ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(
-                content: Text('invalid OTP'),
-              ),
-            );
-          }
-        });
-      } catch (e) {
-        FocusScope.of(context).unfocus();
-        log("=> error e ");
-        // if(e)
-        ScaffoldMessenger.of(context).clearSnackBars();
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            elevation: 20,
-            content: Text(
-              "${e}",
-              style: TextStyle(fontFamily: "Noto San Lao"),
-            ),
-            duration: Duration(
-              seconds: 20,
-            ),
-          ),
-        );
-      }
-    }
-
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -153,114 +160,97 @@ class _VerificationScreenState extends State<VerificationScreen> {
         overlayOpacity: 0.5,
         child: Container(
             color: Colors.cyan,
-            child: Center(
-              child: Column(
-                children: [
-                  const Text("OTP Verification "),
-                  _secretOTP.isNotEmpty
-                      ? Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text("Enter OTP sent to: ${widget.phoneNumber}"),
-                            const Icon(
-                              Icons.check,
-                              color: Colors.green,
-                            ),
-                          ],
-                        )
-                      : errorMessage.isEmpty
-                          ? Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(
-                                  "ກຳລັງສົ່ງ OTP ....",
-                                  style: TextStyle(fontFamily: "Noto san lao"),
-                                ),
-                                Icon(
-                                  Icons.access_time_rounded,
-                                ),
-                              ],
-                            )
-                          : Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(
-                                  "ເກີດຂໍ້ຜິດພາດ",
-                                  style: TextStyle(fontFamily: "Noto san lao"),
-                                ),
-                                Icon(
-                                  Icons.close_outlined,
-                                  color: Colors.red,
-                                ),
-                              ],
-                            ),
-                  CupertinoTextField(
-                    textAlign: TextAlign.center,
-                    keyboardType: TextInputType.number,
-                    maxLength: 6,
-                    style: const TextStyle(
-                      // wordSpacing: 30,
-                      letterSpacing: 30,
-                      fontSize: 30,
+            child: Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Center(
+                child: Column(
+                  children: [
+                    const Text("OTP Verification "),
+                    _secretOTP.isNotEmpty
+                        ? Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                  "Enter OTP sent to: ${widget.phoneNumberOrMail}"),
+                              const Icon(
+                                Icons.check,
+                                color: Colors.green,
+                              ),
+                            ],
+                          )
+                        : errorMessage.isEmpty
+                            ? Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    "ກຳລັງສົ່ງ OTP ....",
+                                    style:
+                                        TextStyle(fontFamily: "Noto san lao"),
+                                  ),
+                                  Icon(
+                                    Icons.access_time_rounded,
+                                  ),
+                                ],
+                              )
+                            : Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    "ເກີດຂໍ້ຜິດພາດ",
+                                    style:
+                                        TextStyle(fontFamily: "Noto san lao"),
+                                  ),
+                                  Icon(
+                                    Icons.close_outlined,
+                                    color: Colors.red,
+                                  ),
+                                ],
+                              ),
+                    CupertinoTextField(
+                      textAlign: TextAlign.center,
+                      keyboardType: TextInputType.number,
+                      maxLength: 6,
+                      style: const TextStyle(
+                        // wordSpacing: 30,
+                        letterSpacing: 30,
+                        fontSize: 30,
+                      ),
+                      onChanged: (userOTP) async {
+                        if (userOTP.length == 6) {
+                          context.loaderOverlay.show();
+                          await _loginUser(userOTP);
+                          context.loaderOverlay.hide();
+                        }
+                      },
                     ),
-                    onChanged: (userOTP) async {
-                      if (userOTP.length == 6) {
-                        context.loaderOverlay.show();
-                        await _loginUser(userOTP);
-                      }
-                    },
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      TextButton(
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },
-                        child: const Text(
-                          "ປ່ຽນເບີໃຫມ່",
-                          style: TextStyle(
-                              decoration: TextDecoration.underline,
-                              fontFamily: "Noto San Lao"),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        TextButton(
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                          child: const Text(
+                            "ປ່ຽນເບີໃຫມ່",
+                            style: TextStyle(
+                                decoration: TextDecoration.underline,
+                                fontFamily: "Noto San Lao"),
+                          ),
                         ),
-                      ),
-                      TextButton(
-                        onPressed: _firebaseOTPverification,
-                        child: const Text(
-                          "ບໍ່ໄດ້ຮັບ OTP ສົ່ງລະຫັດໃຫມ່",
-                          style: TextStyle(
-                              decoration: TextDecoration.underline,
-                              fontFamily: "Noto San Lao"),
+                        TextButton(
+                          onPressed: _firebaseOTPverification,
+                          child: const Text(
+                            "ບໍ່ໄດ້ຮັບ OTP ສົ່ງລະຫັດໃຫມ່",
+                            style: TextStyle(
+                                decoration: TextDecoration.underline,
+                                fontFamily: "Noto San Lao"),
+                          ),
                         ),
-                      ),
-                      TextButton(
-                        onPressed: () async {
-                          await firebaseService.registerWithEmailAndPassword(
-                              "billboyslm@gmail.com", "admin1000333");
-                        },
-                        child: const Text(
-                          "REGISTER",
-                          style: TextStyle(
-                              decoration: TextDecoration.underline,
-                              fontFamily: "Noto San Lao"),
-                        ),
-                      ),
-                      TextButton(
-                        onPressed: () async {
-                          await firebaseService.loginWithEmail(
-                              "billboyslm@gmail.com", "admin1000333");
-                        },
-                        child: const Text(
-                          "Login",
-                          style: TextStyle(
-                              decoration: TextDecoration.underline,
-                              fontFamily: "Noto San Lao"),
-                        ),
-                      ),
-                    ],
-                  )
-                ],
-                mainAxisAlignment: MainAxisAlignment.center,
+                      ],
+                    )
+                  ],
+                  mainAxisAlignment: MainAxisAlignment.center,
+                ),
               ),
             )),
       ),

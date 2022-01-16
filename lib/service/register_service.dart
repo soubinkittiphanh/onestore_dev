@@ -1,12 +1,15 @@
 import 'dart:convert' as convert;
-import 'dart:developer';
-import 'dart:math';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:http/http.dart' as http;
 import 'package:onestore/config/host_con.dart';
 import 'package:onestore/models/register_data.dart';
 
+import 'firbase_service.dart';
+
 class RegisterService {
+  final fireService = FirebaseService();
+  final fireAuth = FirebaseAuth.instance;
   Future registerCustomer(RegisterData cus) async {
     final url = Uri.parse(Hostname + "register_i");
     final respones = await http.post(url,

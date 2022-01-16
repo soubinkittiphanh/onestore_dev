@@ -8,14 +8,14 @@ import 'dart:convert' as convert;
 
 class OrderHelper {
   static List<Order> _orderItem = [];
-  static Future<String> sendOrder(List<CartItem> cart) async {
+  static Future<String> sendOrder(List<CartItem> cart, userId) async {
     final url = Uri.parse(Hostname + "order_i");
     log("cart: ${cart}");
     var response = await http.post(
       url,
       body: json.encode({
         "cart_data": cart,
-        "user_id": "1000",
+        "user_id": userId,
       }),
       headers: {
         "accept": "application/json",
@@ -36,11 +36,11 @@ class OrderHelper {
     return response.body;
   }
 
-  static Future<List<Order>> get fetchOrder async {
+  static Future<List<Order>> fetchOrder(userId) async {
     var request = Uri.parse(Hostname + "order_f").resolveUri(
       Uri(
         queryParameters: {
-          "mem_id": "1000",
+          "mem_id": userId,
         },
       ),
     );

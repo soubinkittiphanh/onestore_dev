@@ -1,9 +1,10 @@
 import 'dart:developer';
-
-import 'package:flutter/material.dart';
+import 'package:get/get_state_manager/src/simple/get_controllers.dart';
+import 'package:intl/intl.dart';
 import 'package:onestore/models/order.dart';
 
-class OrderProvider extends ChangeNotifier {
+class OrderController extends GetxController {
+  final f = NumberFormat("#,###");
   List<Order> _orderItem = [];
   List<Order> get orderItem {
     return [..._orderItem];
@@ -19,7 +20,8 @@ class OrderProvider extends ChangeNotifier {
     for (var el in orderItemId(id)) {
       total += el.total;
     }
-    return total.toString();
+    // return total.toString();
+    return f.format(total);
   }
 
   double get orderTotalPrice {
@@ -35,25 +37,25 @@ class OrderProvider extends ChangeNotifier {
     var i = 0;
     for (var element in _orderItem) {
       i++;
-      log("message" + i.toString());
+      // log("message" + i.toString());
       if (_orderItemNotDuplicate
               .indexWhere((el) => el.orderId == element.orderId) >=
           0) {
-        log("remove");
+        // log("remove");
         log(_orderItemNotDuplicate
             .indexWhere((el) => el.orderId == element.orderId)
             .toString());
       } else {
-        log("add");
+        // log("add");
         _orderItemNotDuplicate.add(element);
       }
     }
-    log("not duplicate: " + _orderItemNotDuplicate.length.toString());
+    // log("not duplicate: " + _orderItemNotDuplicate.length.toString());
     return [..._orderItemNotDuplicate];
   }
 
   void setOrderItem(List<Order> order) {
     _orderItem = [...order];
-    notifyListeners();
+    update();
   }
 }

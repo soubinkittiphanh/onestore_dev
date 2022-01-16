@@ -1,27 +1,64 @@
+import 'dart:developer';
+
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:onestore/models/register_message.dart';
 
 class FirebaseService {
   final firebaseAuth = FirebaseAuth.instance;
-  Future registerWithEmailAndPassword(email, password) async {
+  Future registerWithEmailAndPassword(email, password, statusCode) async {
     try {
-      final result = await firebaseAuth.createUserWithEmailAndPassword(
-        email: email,
-        password: password,
-      );
-      final activateUser = await result.user!.sendEmailVerification();
-      final currentUser = firebaseAuth.currentUser;
-      print("Current user: " + currentUser!.uid.toString());
-      print("Check if current user's email is verified " +
-          result.user!.emailVerified.toString());
-      if (result.user!.emailVerified) {
-        print("Verified email");
-      } else {
-        print("Un verified email");
+      if (statusCode == 404 || statusCode == 0) {
+        // That mean resgister not succeed or not register yet so let register user
+        log("Register =>");
+
+        await firebaseAuth.createUserWithEmailAndPassword(
+          email: email,
+          password: password,
+        );
+        User? user = FirebaseAuth.instance.currentUser;
+        if (user != null && !user.emailVerified) {
+          log("Sent verification code");
+          await user.sendEmailVerification();
+        }
+        final result = RegisterMessage(
+            statusCode: 503,
+            message:
+                "Email is not verified: ກະລຸນາກົດ ລິ້ງຢືນຢັນຕົວຕົນ ໃນອີເມວຂອງທ່ານ ແລ້ວ ກົດດຳເນີນການຕໍ່");
+        return result;
+      } else if (statusCode == 503) {
+        // User? currentUser = FirebaseAuth.instance.currentUser;
+        log("=> Verify email");
+        //  currentUser = firebaseAuth.currentUser;
+        // Email not verify so check if email is verify ?
+        final userCredentail = await firebaseAuth.signInWithEmailAndPassword(
+            email: email, password: password);
+        log("User Credentail: " +
+            userCredentail.user!.emailVerified.toString());
+        log("Email: " + userCredentail.user!.email.toString());
+        // final isvalidEmail = currentUser.emailVerified;
+        // log("Isvalid: " + isvalidEmail.toString());
+        if (userCredentail.user!.emailVerified) {
+          print("Verified email " + userCredentail.user!.email.toString());
+          final result =
+              RegisterMessage(statusCode: 200, message: "Eamil is verified");
+          return result;
+        } else {
+          print("Un verified email");
+          final result = RegisterMessage(
+              statusCode: 503, message: "Eamil is not verified");
+          // print(result.)
+
+          return result;
+        }
       }
-      print("====> SUCCEED Registration: ");
-      print("====> " + result.toString());
     } catch (e) {
-      print(e.toString());
+      final result = RegisterMessage(
+        statusCode: 404,
+        message: e.toString().contains("already in use")
+            ? "Email ນີ້ ມີໃນລະບົບແລ້ວ ກະລຸນາໃຊ້ອີເມວອື່ນ"
+            : e.toString(),
+      );
+      return result;
     }
   }
 
@@ -30,6 +67,7 @@ class FirebaseService {
       final userCredential = await firebaseAuth.signInWithEmailAndPassword(
           email: email, password: password);
       // ignore: unnecessary_null_comparison
+      // firebaseAuth.verifyPasswordResetCode('code');
       if (userCredential.user!.uid != null) {
         print("Loin succeed with email: " +
             userCredential.user!.email.toString());

@@ -1,10 +1,9 @@
 import 'dart:developer';
-
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:loader_overlay/loader_overlay.dart';
-import 'package:onestore/providers/user_credental_provider.dart';
+import 'package:onestore/getxcontroller/user_info_controller.dart';
 import 'package:onestore/service/user_info_service.dart';
-import 'package:provider/provider.dart';
 
 enum SelectMeth {
   username,
@@ -24,7 +23,8 @@ class UpdateUserScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     var txtUserInputControlloer = TextEditingController();
     txtUserInputControlloer.text = defaultValue;
-    final userCreProvider = Provider.of<userCredentailProvider>(context);
+    // final userInfoController = Provider.of<UserCredentialProvider>(context);
+    final userInfoController = Get.put(UserInfoController());
     Future<void> _showInfoDialog(String info) async {
       return showDialog(
           context: context,
@@ -114,7 +114,7 @@ class UpdateUserScreen extends StatelessWidget {
                             log("method: => name");
                             selectMeth = SelectMeth.username;
                             respones = await UserInfService.username(
-                                userCreProvider.userId,
+                                userInfoController.userId,
                                 txtUserInputControlloer.text);
                           }
 
@@ -124,7 +124,7 @@ class UpdateUserScreen extends StatelessWidget {
                             log("method: => pass");
                             selectMeth = SelectMeth.userpass;
                             respones = await UserInfService.userpass(
-                                userCreProvider.userId,
+                                userInfoController.userId,
                                 txtUserInputControlloer.text);
                           }
 
@@ -134,7 +134,7 @@ class UpdateUserScreen extends StatelessWidget {
                             log("method: => tel");
                             selectMeth = SelectMeth.usertel;
                             respones = await UserInfService.usertel(
-                                userCreProvider.userId,
+                                userInfoController.userId,
                                 txtUserInputControlloer.text);
                           }
 
@@ -144,7 +144,7 @@ class UpdateUserScreen extends StatelessWidget {
                             log("method: => mail");
                             selectMeth = SelectMeth.usermail;
                             respones = await UserInfService.useremail(
-                                userCreProvider.userId,
+                                userInfoController.userId,
                                 txtUserInputControlloer.text);
                           }
 
@@ -160,34 +160,40 @@ class UpdateUserScreen extends StatelessWidget {
                         switch (selectMeth) {
                           case SelectMeth.username:
                             {
-                              userCreProvider.userinfo(
+                              userInfoController.setUserInfo(
                                 txtUserInputControlloer.text,
-                                userCreProvider.userToken,
-                                userCreProvider.userId,
-                                userCreProvider.userPhone,
-                                userCreProvider.userEmail,
+                                userInfoController.userToken,
+                                userInfoController.userId,
+                                userInfoController.userPhone,
+                                userInfoController.userEmail,
+                                userInfoController.userDebit,
+                                userInfoController.userCredit,
                               );
                             }
                             break;
                           case SelectMeth.usertel:
                             {
-                              userCreProvider.userinfo(
-                                userCreProvider.userName,
-                                userCreProvider.userToken,
-                                userCreProvider.userId,
+                              userInfoController.setUserInfo(
+                                userInfoController.userName,
+                                userInfoController.userToken,
+                                userInfoController.userId,
                                 txtUserInputControlloer.text,
-                                userCreProvider.userEmail,
+                                userInfoController.userEmail,
+                                userInfoController.userDebit,
+                                userInfoController.userCredit,
                               );
                             }
                             break;
                           case SelectMeth.usermail:
                             {
-                              userCreProvider.userinfo(
-                                userCreProvider.userName,
-                                userCreProvider.userToken,
-                                userCreProvider.userId,
-                                userCreProvider.userPhone,
+                              userInfoController.setUserInfo(
+                                userInfoController.userName,
+                                userInfoController.userToken,
+                                userInfoController.userId,
+                                userInfoController.userPhone,
                                 txtUserInputControlloer.text,
+                                userInfoController.userDebit,
+                                userInfoController.userCredit,
                               );
                             }
                             break;

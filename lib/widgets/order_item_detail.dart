@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:onestore/providers/order_provider.dart';
-import 'package:provider/provider.dart';
+import 'package:onestore/getxcontroller/order_controller.dart';
+import 'package:get/get.dart';
 
 class OrderItemDetail extends StatelessWidget {
   const OrderItemDetail({
@@ -10,11 +10,13 @@ class OrderItemDetail extends StatelessWidget {
   final orderId;
   @override
   Widget build(BuildContext context) {
-    final orderDetail =
-        Provider.of<OrderProvider>(context).orderItemId(orderId);
+    final oderController = Get.put(OrderController());
+    final orderDetail = oderController.orderItemId(orderId);
     return Column(
       children: [
-        Divider(),
+        const Divider(
+          height: 1,
+        ),
         Expanded(
           child: ListView.builder(
             itemBuilder: (ctx, id) => ListTile(

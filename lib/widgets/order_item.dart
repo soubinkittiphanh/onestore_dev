@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import 'package:onestore/getxcontroller/order_controller.dart';
+import 'package:onestore/helper/print_check.dart';
 import 'package:onestore/models/order.dart';
-import 'package:onestore/providers/order_provider.dart';
-import 'package:provider/provider.dart';
+import 'package:get/get.dart';
 
 import 'order_item_detail.dart';
 
@@ -19,10 +21,10 @@ class OrderItem extends StatefulWidget {
 
 class _OrderItemState extends State<OrderItem> {
   bool isexpand = false;
-
+  final f = NumberFormat("#,###");
   @override
   Widget build(BuildContext context) {
-    final orderProvider = Provider.of<OrderProvider>(context);
+    final orderProvider = Get.put(OrderController());
     return Column(
       children: [
         ListTile(
@@ -42,8 +44,18 @@ class _OrderItemState extends State<OrderItem> {
           subtitle: Column(
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
-              Text(
-                "ລາຄາລວມ: ${orderProvider.orderTotalPriceById(widget.loadOrder.orderId)}",
+              Row(
+                children: [
+                  IconButton(
+                      onPressed: () async {
+                        await PrintCheck.prints(
+                            widget.loadOrder.orderId, context);
+                      },
+                      icon: const Icon(Icons.print)),
+                  Text(
+                    "ລາຄາລວມ: ${orderProvider.orderTotalPriceById(widget.loadOrder.orderId)}",
+                  ),
+                ],
               ),
             ],
           ),

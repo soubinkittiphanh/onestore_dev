@@ -21,8 +21,12 @@ class CartProvider extends ChangeNotifier {
         notifyListeners();
         print("Not empty and not exist");
       } else {
-        CartItem updateProduct = CartItem(pro.proId, existProduct.qty + 1,
-            existProduct.price, pro.proPrice * (existProduct.qty + 1));
+        CartItem updateProduct = CartItem(
+          pro.proId,
+          existProduct.qty + 1,
+          existProduct.price,
+          pro.proPrice * (existProduct.qty + 1),
+        );
         _cartItem
             .removeWhere((element) => element.proId == updateProduct.proId);
         _cartItem.add(updateProduct);
@@ -32,6 +36,30 @@ class CartProvider extends ChangeNotifier {
       }
     }
     print("Add...");
+  }
+
+  void removeOneCart(Product pro) {
+    CartItem existProduct = _cartItem.firstWhere(
+        (element) => element.proId == pro.proId,
+        orElse: () => CartItem(0, 0, 0.00, 0.00));
+    print(
+      "exist product id: " +
+          existProduct.proId.toString() +
+          " price " +
+          existProduct.price.toString(),
+    );
+
+    CartItem updateProduct = CartItem(
+      pro.proId,
+      existProduct.qty - 1,
+      existProduct.price,
+      pro.proPrice * (existProduct.qty - 1),
+    );
+    _cartItem.removeWhere((element) => element.proId == updateProduct.proId);
+    _cartItem.add(updateProduct);
+
+    notifyListeners();
+    print("Not empty and exist");
   }
 
   void removeCart(int id) {

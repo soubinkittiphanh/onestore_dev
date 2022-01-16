@@ -1,7 +1,4 @@
 import 'dart:convert' as convert;
-import 'dart:developer';
-import 'dart:math';
-
 import 'package:http/http.dart' as http;
 import 'package:onestore/config/host_con.dart';
 import 'package:onestore/models/inbox_message.dart';
@@ -24,7 +21,10 @@ class UserInboxService {
           orderId: el["card_order_id"].toString(),
           messageBody: el["card_code"].toString(),
           date: el["processing_date"].toString(),
+          price: double.parse(el["price"].toString()),
           isRead: el["mark_readed"] == 1 ? true : false,
+          qrCode: el["qrcode"],
+          category: el["pro_category"].toString(),
         );
       }).toList();
       print("Message len: " + _message.length.toString());

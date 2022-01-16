@@ -1,39 +1,37 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:onestore/getxcontroller/product_controller.dart';
 
 class Category extends StatefulWidget {
-  const Category({Key? key}) : super(key: key);
+  final Function catChange;
+  const Category({Key? key, required this.catChange}) : super(key: key);
 
   @override
   _CategoryState createState() => _CategoryState();
 }
 
 class _CategoryState extends State<Category> {
-  List<String> categoryItem = [
-    'Pubg',
-    'Freefire',
-    'Mobile legen',
-    'Long hed',
-    'Call of duty',
-    'Footbal',
-    'Canadian',
-    'Electronic'
-  ];
+  final proCategory = Get.put(ProductController());
   int _selectedIndex = 0;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       height: 50,
-      child: ListView.builder(
-        scrollDirection: Axis.horizontal,
-        itemCount: categoryItem.length,
-        itemBuilder: (context, idx) => buildCategoryItem(idx),
-      ),
+      child: GetBuilder<ProductController>(builder: (ctr) {
+        return ListView.builder(
+          scrollDirection: Axis.horizontal,
+          itemCount:
+              proCategory.productCategory.length, //    categoryItem.length,
+          itemBuilder: (context, idx) => buildCategoryItem(idx),
+        );
+      }),
     );
   }
 
   Widget buildCategoryItem(int idx) {
     return GestureDetector(
       onTap: () {
+        widget.catChange(proCategory.productCategory[idx].catCode);
         setState(() {
           _selectedIndex = idx;
         });
@@ -41,9 +39,9 @@ class _CategoryState extends State<Category> {
       child: Padding(
         padding: const EdgeInsets.all(10),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Text(categoryItem[idx]),
+            Text(proCategory.productCategory[idx].catName),
             Container(
               margin: EdgeInsets.only(top: 10 / 4),
               height: 2,

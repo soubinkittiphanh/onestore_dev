@@ -1,17 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:onestore/getxcontroller/cart_controller.dart';
 import 'package:onestore/models/product.dart';
-import 'package:onestore/providers/cart_provider.dart';
-import 'package:provider/provider.dart';
 
 class CartItemComp extends StatelessWidget {
   final Product product;
   const CartItemComp({Key? key, required this.product}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    final cartProvider = Get.put(CartController());
     final f = NumberFormat("#,###");
-    final cartProvider = Provider.of<CartProvider>(context);
     final cartItem = cartProvider.cartItemId(product.proId);
+    _addOne() {
+      cartProvider.addCart(product, 1);
+    }
+
+    _removeOne() {
+      if (cartItem.qty == 1) return cartProvider.removeCart(cartItem.proId);
+      cartProvider.removeOneCart(product);
+    }
+
     return Card(
       child: Dismissible(
         key: Key(product.proId.toString()),
@@ -40,18 +49,20 @@ class CartItemComp extends StatelessWidget {
             ),
             backgroundColor: Colors.red,
           ),
-          title: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text("ຊື່ສິນຄ້າ: ${product.proName}",
-                  style: Theme.of(context).textTheme.bodyText2),
-              Text("ລາຄາ: ${f.format(cartItem.price)}",
-                  style: Theme.of(context).textTheme.bodyText2),
-            ],
+          title: FittedBox(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text("ຊື່ສິນຄ້າ: ${product.proName}",
+                    style: Theme.of(context).textTheme.bodyText2),
+                Text(" ${f.format(cartItem.price)}",
+                    style: Theme.of(context).textTheme.bodyText2),
+              ],
+            ),
           ),
           subtitle: Row(
+            mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              Spacer(),
               Text(
                 "${f.format(cartItem.priceTotal)} ກີບ",
                 style: const TextStyle(
@@ -59,6 +70,15 @@ class CartItemComp extends StatelessWidget {
                   color: Colors.black,
                 ),
               ),
+              IconButton(
+                onPressed: _addOne,
+                icon: Icon(Icons.add),
+              ),
+              Text(" | "),
+              IconButton(
+                onPressed: _removeOne,
+                icon: Icon(Icons.remove),
+              )
             ],
           ),
           isThreeLine: true,
