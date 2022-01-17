@@ -21,7 +21,7 @@ class InvoiceFooterGarena extends StatelessWidget {
               showValue: true,
               symbology: QRCode(),
               textSpacing: 10,
-              textStyle: TextStyle(fontSize: 7),
+              textStyle: const TextStyle(fontSize: 7),
             ),
           ),
           // Container(

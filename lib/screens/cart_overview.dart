@@ -145,7 +145,7 @@ class _CartOverviewState extends State<CartOverview> {
     }
 
     void placeOrder() async {
-      print("object");
+      log("object");
       // sendOrder(cartItem);
       context.loaderOverlay.show();
       // chack user balance and order price

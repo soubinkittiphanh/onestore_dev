@@ -43,7 +43,7 @@ class _CategoryState extends State<Category> {
           children: [
             Text(proCategory.productCategory[idx].catName),
             Container(
-              margin: EdgeInsets.only(top: 10 / 4),
+              margin: const EdgeInsets.only(top: 10 / 4),
               height: 2,
               width: 30,
               color:

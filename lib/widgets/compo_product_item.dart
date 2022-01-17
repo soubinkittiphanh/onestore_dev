@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -28,8 +30,10 @@ class CompProductItem extends StatelessWidget {
                         imageUrl: pro.proImagePath,
                         placeholder: (context, url) =>
                             const CircularProgressIndicator(),
-                        errorWidget: (context, url, error) =>
-                            const Icon(Icons.error),
+                        errorWidget: (context, url, error) {
+                          log("IMAGE ER: " + error.toString());
+                          return const Icon(Icons.error);
+                        },
                       ),
               ),
               decoration: BoxDecoration(
