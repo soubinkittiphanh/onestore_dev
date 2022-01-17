@@ -6,7 +6,7 @@ import 'dart:convert' as convert;
 
 class UserInfService {
   static Future<String> username(id, name) async {
-    final url = Uri.parse(Hostname + "username_e");
+    final url = Uri.parse(hostname + "username_e");
     final response = await http.post(url,
         body: jsonEncode({"user_id": id, "user_name": name}),
         headers: {
@@ -23,7 +23,7 @@ class UserInfService {
   }
 
   static Future<String> usertel(id, tel) async {
-    final url = Uri.parse(Hostname + "usertel_e");
+    final url = Uri.parse(hostname + "usertel_e");
     final response = await http.post(url,
         body: jsonEncode({"user_id": id, "user_phone": tel}),
         headers: {
@@ -39,7 +39,7 @@ class UserInfService {
   }
 
   static Future<String> userpass(id, pass) async {
-    final url = Uri.parse(Hostname + "userpass_e");
+    final url = Uri.parse(hostname + "userpass_e");
     final response = await http.post(url,
         body: jsonEncode({"user_id": id, "user_password": pass}),
         headers: {
@@ -55,7 +55,7 @@ class UserInfService {
   }
 
   static Future<String> useremail(id, mail) async {
-    final url = Uri.parse(Hostname + "useremail_e");
+    final url = Uri.parse(hostname + "useremail_e");
     final response = await http.post(url,
         body: jsonEncode({"user_id": id, "user_email": mail}),
         headers: {
@@ -71,7 +71,7 @@ class UserInfService {
   }
 
   static Future<dynamic> userbalance(id) async {
-    final url = Uri.parse(Hostname + "userbalance_f");
+    final url = Uri.parse(hostname + "userbalance_f");
     final response =
         await http.post(url, body: jsonEncode({"user_id": id}), headers: {
       "accept": "application/json",
@@ -94,7 +94,7 @@ class UserInfService {
 
   static Future<int> resetPasswordByPhoneNumber(
       phoneNumber, String password) async {
-    final url = Uri.parse(Hostname + "resetpassword_e");
+    final url = Uri.parse(hostname + "resetpassword_e");
     final response = await http.post(url,
         body: jsonEncode({"user_phone": phoneNumber, "password": password}),
         headers: {

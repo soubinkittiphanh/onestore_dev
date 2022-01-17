@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:onestore/config/host_con.dart';
 import 'dart:convert' as convert;
 import 'package:http/http.dart' as http;
@@ -8,7 +6,7 @@ import 'package:onestore/models/product.dart';
 class ProductHelper {
   static List<Product> _loadProduct = [];
   static Future<List<Product>> fetchProcuctAPI() async {
-    var url = Uri.parse(Hostname + 'product_f');
+    var url = Uri.parse(hostname + 'product_f');
 
     // Await the http get response, then decode the json-formatted response.
     print("Loading...");
@@ -20,7 +18,7 @@ class ProductHelper {
         print("XXXXXX: " + el["img_name"].toString());
         //Check if image is null then so app not crash
         String imageName = el["img_name"].toString();
-        var imagePath = Hostname + 'uploads/${el["img_name"]}';
+        var imagePath = hostname + 'uploads/${el["img_name"]}';
         if (imageName.contains('No image')) {
           imagePath = 'No image';
         }

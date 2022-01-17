@@ -31,9 +31,16 @@ class _WalletScreenState extends State<WalletScreen> {
       });
     }
 
+    void _bottomBarChange(idx) {
+      setState(() {
+        _pageController.animateToPage(idx,
+            duration: const Duration(milliseconds: 200), curve: Curves.ease);
+      });
+    }
+
     return Scaffold(
       appBar: AppBar(
-        title: Text("Wallet"),
+        title: const Text("Wallet"),
       ),
       body: Center(
         // padding: EdgeInsets.all(8),
@@ -42,12 +49,12 @@ class _WalletScreenState extends State<WalletScreen> {
             SizedBox(
               child: Column(
                 children: [
-                  Icon(Icons.account_balance_wallet_rounded),
-                  Text("ຍອດເຫລືອ"),
+                  const Icon(Icons.account_balance_wallet_rounded),
+                  const Text("ຍອດເຫລືອ"),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text("Balance: "),
+                      const Text("Balance: "),
                       Text(
                           f.format(walletTxnController.totalCR -
                               walletTxnController.totalDR),
@@ -57,67 +64,62 @@ class _WalletScreenState extends State<WalletScreen> {
                 ],
               ),
             ),
-            Divider(
+            const Divider(
               thickness: 1,
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                Column(
-                  children: [
-                    Row(
-                      children: [
-                        IconButton(
-                            onPressed: () {
-                              setState(() {
-                                _selectedPage = 0;
-                              });
-                            },
-                            icon:
-                                Icon(Icons.arrow_forward, color: Colors.green)),
-                        Icon(Icons.account_balance_wallet_outlined),
-                      ],
-                    ),
-                    const Text("ເຕີມ"),
-                    Text(
-                      f.format(
-                        walletTxnController.totalCR,
+            GestureDetector(
+              onTap: () {
+                _bottomBarChange(0);
+              },
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Column(
+                    children: [
+                      Row(
+                        children: [
+                          const Icon(Icons.arrow_forward, color: Colors.green),
+                          const Icon(Icons.account_balance_wallet_outlined),
+                        ],
                       ),
-                      style: TextStyle(color: Colors.green),
-                    ),
-                  ],
-                ),
-                const SizedBox(
-                  width: 10,
-                  height: 40,
-                  child: const VerticalDivider(
-                    // width: 10,
-                    thickness: 1,
-                    // color: Colors.red,
+                      const Text("ເຕີມ"),
+                      Text(
+                        f.format(
+                          walletTxnController.totalCR,
+                        ),
+                        style: const TextStyle(color: Colors.green),
+                      ),
+                    ],
                   ),
-                ),
-                Column(
-                  children: [
-                    Row(
+                  const SizedBox(
+                    // width: 2,
+                    height: 40,
+                    child: VerticalDivider(
+                      thickness: 1,
+                    ),
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      _bottomBarChange(1);
+                    },
+                    child: Column(
                       children: [
-                        IconButton(
-                            onPressed: () {
-                              setState(() {
-                                _selectedPage = 1;
-                              });
-                            },
-                            icon: Icon(Icons.arrow_back, color: Colors.red)),
-                        Icon(Icons.account_balance_wallet_outlined),
+                        Row(
+                          children: [
+                            const Icon(Icons.arrow_back, color: Colors.red),
+                            const Icon(Icons.account_balance_wallet_outlined),
+                          ],
+                        ),
+                        const Text("ຖອນ / ຊື້"),
+                        Text(f.format(walletTxnController.totalDR),
+                            style: const TextStyle(color: Colors.red)),
                       ],
                     ),
-                    Text("ຖອນ / ຊື້"),
-                    Text(f.format(walletTxnController.totalDR),
-                        style: TextStyle(color: Colors.red)),
-                  ],
-                ),
-              ],
+                  ),
+                ],
+              ),
             ),
-            Divider(
+            const Divider(
               thickness: 1,
             ),
             Expanded(

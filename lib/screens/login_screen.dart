@@ -94,7 +94,7 @@ class _LoginScreenState extends State<LoginScreen> {
               _txtUserController.text.substring(
                 _txtUserController.text.length - 8,
               );
-      var uri = Uri.parse(Hostname + "cus_auth");
+      var uri = Uri.parse(hostname + "cus_auth");
       print("id: " +
           _txtUserController.text +
           " pass: " +

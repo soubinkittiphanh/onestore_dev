@@ -9,7 +9,7 @@ import 'dart:convert' as convert;
 class OrderHelper {
   static List<Order> _orderItem = [];
   static Future<String> sendOrder(List<CartItem> cart, userId) async {
-    final url = Uri.parse(Hostname + "order_i");
+    final url = Uri.parse(hostname + "order_i");
     log("cart: ${cart}");
     var response = await http.post(
       url,
@@ -37,14 +37,14 @@ class OrderHelper {
   }
 
   static Future<List<Order>> fetchOrder(userId) async {
-    var request = Uri.parse(Hostname + "order_f").resolveUri(
+    var request = Uri.parse(hostname + "order_f").resolveUri(
       Uri(
         queryParameters: {
           "mem_id": userId,
         },
       ),
     );
-    // final url = Uri.parse(Hostname + '/order_f/?mem_id=1000');
+    // final url = Uri.parse(hostname+ '/order_f/?mem_id=1000');
     var response = await http.get(request);
     if (response.statusCode == 200) {
       log("Transaction completed");

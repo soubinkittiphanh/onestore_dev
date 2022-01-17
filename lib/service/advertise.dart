@@ -12,7 +12,7 @@ class Ad {
   static String imgName = '';
   static int isActive = 0;
   static Future loadAd() async {
-    var uri = Uri.parse(Hostname + "ad_f");
+    var uri = Uri.parse(hostname + "ad_f");
     final response = await http.get(
       uri,
       // body: jsonEncode({"cus_id": loginId, "cus_pwd": _txtPassController.text}),
@@ -24,7 +24,7 @@ class Ad {
     if (response.statusCode == 200) {
       var responseJson = convert.jsonDecode(response.body);
       isActive = responseJson[0]['isactive'];
-      imgPath = Hostname + responseJson[0]['img_path'];
+      imgPath = hostname + responseJson[0]['img_path'];
       // imgPath = Hostname +
       //     "uploads/1641548893177b92b6534-cb5f-4cab-8182-c89ab72ad149.jpg";
       imgName = responseJson[0]['img_name'];

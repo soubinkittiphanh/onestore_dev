@@ -77,7 +77,7 @@ class InvoiceItem extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Text(
-                    " ${NumFormater.format(message.price)} ກີບ",
+                    " ${numFormater.format(message.price)} ກີບ",
                   ),
                 ],
               ),
@@ -164,7 +164,7 @@ class InvoiceItem extends StatelessWidget {
 //                 mainAxisAlignment: MainAxisAlignment.start,
 //                 children: [
 //                   Text(
-//                     " ${NumFormater.format(message.price)} ກີບ",
+//                     " ${numFormater.format(message.price)} ກີບ",
 //                   ),
 //                 ],
 //               ),

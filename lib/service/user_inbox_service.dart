@@ -9,7 +9,7 @@ class UserInboxService {
   static Future<List<InboxMessage>> getInbox(
     String id,
   ) async {
-    final url = Uri.parse(Hostname + "user_inbox_f")
+    final url = Uri.parse(hostname + "user_inbox_f")
         .resolveUri(Uri(queryParameters: {"cust_id": id}));
     final response = await http.get(url);
     if (response.statusCode == 200) {
@@ -37,7 +37,7 @@ class UserInboxService {
   }
 
   static Future<void> markReaded(card_number) async {
-    final url = Uri.parse(Hostname + "user_inbox_markreaded_u");
+    final url = Uri.parse(hostname + "user_inbox_markreaded_u");
     final response = await http.post(
       url,
       body: convert.json.encode({

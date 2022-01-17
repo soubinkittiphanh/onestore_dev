@@ -13,7 +13,7 @@ class WalletTxnService {
   static final walletTxnController = Get.put(WalletTxnController());
   final userInfoController = Get.put(UserInfoController());
   static Future<void> loadTxn(String userId) async {
-    final url = Uri.parse(Hostname + "wallettxn_crndr_f")
+    final url = Uri.parse(hostname + "wallettxn_crndr_f")
         .resolveUri(Uri(queryParameters: {"user_id": userId}));
     final response = await http.get(
       url,
@@ -45,7 +45,7 @@ class WalletTxnService {
   }
 
   static Future<void> loadTxnFromOrders(String userId) async {
-    final url = Uri.parse(Hostname + "wallettxn_order_f")
+    final url = Uri.parse(hostname + "wallettxn_order_f")
         .resolveUri(Uri(queryParameters: {"user_id": userId}));
     final response = await http.get(
       url,

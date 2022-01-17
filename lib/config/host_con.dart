@@ -1,4 +1,4 @@
 import 'package:intl/intl.dart';
 
-const String Hostname = "https://sitapionlinestore.herokuapp.com/";
-var NumFormater = NumberFormat("#,###.##");
+const String hostname = "https://sitapionlinestore.herokuapp.com/";
+var numFormater = NumberFormat("#,###.##");

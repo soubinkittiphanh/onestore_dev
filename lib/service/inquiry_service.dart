@@ -10,7 +10,7 @@ class InquiryService {
   // final ;
   Future<void> submitChat(String chatType, String message, String userId,
       Function notifyUser, Function whatsappOpen) async {
-    var url = Uri.parse(Hostname + 'chat_c');
+    var url = Uri.parse(hostname + 'chat_c');
     var response = await http.post(
       url,
       body: convert.json.encode({
@@ -44,7 +44,7 @@ class InquiryService {
   }
 
   Future<void> loadChatByID(String userId) async {
-    var url = Uri.parse(Hostname + 'chat_f');
+    var url = Uri.parse(hostname + 'chat_f');
 
     // Await the http get response, then decode the json-formatted response.
     print("Loading...");

@@ -11,7 +11,7 @@ import 'package:onestore/models/chat_type_model.dart';
 class InquiryTypeService {
   static final chattypeController = Get.put(ChatTypeController());
   static Future<void> initChatType() async {
-    final url = Uri.parse(Hostname + "chattype_f");
+    final url = Uri.parse(hostname + "chattype_f");
     final response = await http.get(url);
     if (response.statusCode == 200) {
       //Connection good

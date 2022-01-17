@@ -15,15 +15,12 @@ class PrintCheck {
   static final messageController = Get.put(MessageController());
   static final controller = ScreenshotController();
   static Future garena(List<InboxMessage> message) async {
-    // final image = await controller
-    //     .captureFromWidget(InvoiceGarenaWidget(message: message));
     await controller
         .captureFromWidget(Invoice().genGarena(message))
         .then((value) {
       log("Running then");
       PrintHelper.printTicket2(value);
     });
-    // PrintHelper.printTicket2(image);
   }
 
   static Future other(List<InboxMessage> message) async {
@@ -37,9 +34,6 @@ class PrintCheck {
   static Future prints(String orderId, BuildContext context) async {
     final messageData = messageController.messageByOrderID(orderId);
     log("Message sized: " + messageData.length.toString());
-    // messageData.forEach((element) {
-    //   log("message cat: " + element.category);
-    // });
     final garenaItem =
         messageData.where((element) => element.category == "1001");
     final unitelItem =

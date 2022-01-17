@@ -11,7 +11,7 @@ class RegisterService {
   final fireService = FirebaseService();
   final fireAuth = FirebaseAuth.instance;
   Future registerCustomer(RegisterData cus) async {
-    final url = Uri.parse(Hostname + "register_i");
+    final url = Uri.parse(hostname + "register_i");
     final respones = await http.post(url,
         body: convert.json.encode({
           "cust_name": cus.custName,

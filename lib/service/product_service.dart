@@ -11,7 +11,7 @@ class ProductService {
   List<Product> _loadProduct = [];
   List<ProductCatetory> _loadCategory = [];
   Future<void> loadProduct() async {
-    var url = Uri.parse(Hostname + 'product_f');
+    var url = Uri.parse(hostname + 'product_f');
 
     // Await the http get response, then decode the json-formatted response.
     print("Loading...");
@@ -23,7 +23,7 @@ class ProductService {
         print("XXXXXX: " + el["img_name"].toString());
         //Check if image is null then so app not crash
         String imageName = el["img_name"].toString();
-        var imagePath = Hostname + 'uploads/${el["img_name"]}';
+        var imagePath = hostname + 'uploads/${el["img_name"]}';
         if (imageName.contains('No image')) {
           imagePath = 'No image';
         }
@@ -51,7 +51,7 @@ class ProductService {
 
   // List<Product> _loadProductCategory = [];
   Future<void> loadProductCategory() async {
-    var url = Uri.parse(Hostname + 'category_f');
+    var url = Uri.parse(hostname + 'category_f');
 
     // Await the http get response, then decode the json-formatted response.
     print("Loading...");

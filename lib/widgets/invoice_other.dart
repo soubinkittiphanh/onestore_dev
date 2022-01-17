@@ -52,7 +52,7 @@ class _InvoiceOtherState extends State<InvoiceOther> {
                           ),
                         ],
                       ),
-                      Text('ລາຄາ: ${NumFormater.format(widget.message.price)}'),
+                      Text('ລາຄາ: ${numFormater.format(widget.message.price)}'),
                       Text(widget.message.messageBody),
                       InvoiceFooterGarena(
                         qrCode: widget.message.qrCode,
