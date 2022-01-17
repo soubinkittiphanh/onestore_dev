@@ -17,7 +17,7 @@ class WalletTxnController extends GetxController {
   }
 
   void addWalletTxnItem(List<WalletTxnModel> item) {
-    item.forEach((el) {
+    for (var el in item) {
       walletTxnItem.add(WalletTxnModel(
           code: el.code,
           sign: el.sign,
@@ -25,7 +25,7 @@ class WalletTxnController extends GetxController {
           amount: el.amount,
           date: el.date));
       update();
-    });
+    }
     log("WALLET TXN AFTER: " + walletTxnItem.length.toString());
   }
 
@@ -45,17 +45,17 @@ class WalletTxnController extends GetxController {
 
   double get totalDR {
     double total = 0;
-    loadWalletTxnDR.forEach((element) {
+    for (var element in loadWalletTxnDR) {
       total += element.amount;
-    });
+    }
     return total;
   }
 
   double get totalCR {
     double total = 0;
-    loadWalletTxnCR.forEach((element) {
+    for (var element in loadWalletTxnCR) {
       total += element.amount;
-    });
+    }
     return total;
   }
 }

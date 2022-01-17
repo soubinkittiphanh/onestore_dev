@@ -19,7 +19,7 @@ class CompInquiryForm extends StatefulWidget {
 
 class _CompInquiryFormState extends State<CompInquiryForm> {
   launchWhatsApp() async {
-    final link = WhatsAppUnilink(
+    const link = WhatsAppUnilink(
       phoneNumber: '+8562097489646',
       text: "ສະບາຍດີແອັດມິນ \n",
     );

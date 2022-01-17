@@ -31,13 +31,13 @@ class TopupComp extends StatelessWidget {
                 ),
                 Text(
                   ctr.loadWalletTxnCR[id].txn,
-                  style: TextStyle(fontFamily: "noto san lao"),
+                  style: const TextStyle(fontFamily: "noto san lao"),
                 ),
               ],
             ),
             subtitle: Text(
               f.format(ctr.loadWalletTxnCR[id].amount),
-              style: TextStyle(color: Colors.green),
+              style: const TextStyle(color: Colors.green),
             ),
           ),
           itemCount: walletTxnController.loadWalletTxnCR.length,

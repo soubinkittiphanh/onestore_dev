@@ -22,7 +22,7 @@ class VerificationScreen extends StatefulWidget {
 }
 
 class _VerificationScreenState extends State<VerificationScreen> {
-  final GlobalKey<ScaffoldState> _scaffoldkey = GlobalKey<ScaffoldState>();
+  // final GlobalKey<ScaffoldState> _scaffoldkey = GlobalKey<ScaffoldState>();
   final fireAuth = FirebaseAuth.instance;
   String errorMessage = '';
   String _secretOTP = '';
@@ -44,7 +44,7 @@ class _VerificationScreenState extends State<VerificationScreen> {
       phoneNumber: "+856${widget.phoneNumberOrMail}",
       verificationCompleted: (phoneAuthCredential) {
         log("====>Completed");
-        log('${phoneAuthCredential}');
+        log('$phoneAuthCredential');
         context.loaderOverlay.hide();
         // _loginUser();
       },
@@ -69,10 +69,10 @@ class _VerificationScreenState extends State<VerificationScreen> {
           SnackBar(
             elevation: 20,
             content: Text(
-              "${errorMessage}",
-              style: TextStyle(fontFamily: "Noto San Lao"),
+              errorMessage,
+              style: const TextStyle(fontFamily: "Noto San Lao"),
             ),
-            duration: Duration(
+            duration: const Duration(
               seconds: 20,
             ),
           ),
@@ -93,7 +93,7 @@ class _VerificationScreenState extends State<VerificationScreen> {
         _secretOTP = timeOutOTP;
         // context.loaderOverlay.hide();
       },
-      timeout: Duration(
+      timeout: const Duration(
         seconds: 60,
       ),
     );
@@ -138,10 +138,10 @@ class _VerificationScreenState extends State<VerificationScreen> {
         SnackBar(
           elevation: 20,
           content: Text(
-            "${e}",
-            style: TextStyle(fontFamily: "Noto San Lao"),
+            "$e",
+            style: const TextStyle(fontFamily: "Noto San Lao"),
           ),
-          duration: Duration(
+          duration: const Duration(
             seconds: 20,
           ),
         ),
@@ -181,7 +181,7 @@ class _VerificationScreenState extends State<VerificationScreen> {
                         : errorMessage.isEmpty
                             ? Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
+                                children: const [
                                   Text(
                                     "ກຳລັງສົ່ງ OTP ....",
                                     style:
@@ -194,7 +194,7 @@ class _VerificationScreenState extends State<VerificationScreen> {
                               )
                             : Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
+                                children: const [
                                   Text(
                                     "ເກີດຂໍ້ຜິດພາດ",
                                     style:

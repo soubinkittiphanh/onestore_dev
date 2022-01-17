@@ -17,7 +17,7 @@ class ProductOverview extends StatefulWidget {
       required this.pageChange,
       required this.catChange})
       : super(key: key);
-  final pageChange;
+  final Function pageChange;
   final Function catChange;
   @override
   State<ProductOverview> createState() => _ProductOverviewState();

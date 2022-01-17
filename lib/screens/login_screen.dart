@@ -95,10 +95,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 _txtUserController.text.length - 8,
               );
       var uri = Uri.parse(hostname + "cus_auth");
-      print("id: " +
-          _txtUserController.text +
-          " pass: " +
-          _txtPassController.text);
+
       final response = await http.post(
         uri,
         body:
@@ -264,11 +261,11 @@ class _LoginScreenState extends State<LoginScreen> {
                     // SizedBox(
                     //   width: 10,
                     // ), //SizedBox
-                    Text(
+                    const Text(
                       'ຈື່ລະຫັດຜ່ານ ຂອງຂ້ອຍ?',
                       style: TextStyle(fontSize: 17.0),
                     ), //Text
-                    SizedBox(width: 10), //SizedBox
+                    const SizedBox(width: 10), //SizedBox
                     /** Checkbox Widget **/
                     Checkbox(
                       value: rememberMe,
@@ -350,9 +347,9 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 }
 
-class _SecItem {
-  _SecItem(this.key, this.value);
+// class _SecItem {
+//   _SecItem(this.key, this.value);
 
-  final String key;
-  final String value;
-}
+//   final String key;
+//   final String value;
+// }

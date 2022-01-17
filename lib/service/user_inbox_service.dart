@@ -1,4 +1,5 @@
 import 'dart:convert' as convert;
+import 'dart:developer';
 import 'package:http/http.dart' as http;
 import 'package:onestore/config/host_con.dart';
 import 'package:onestore/models/inbox_message.dart';
@@ -13,7 +14,6 @@ class UserInboxService {
         .resolveUri(Uri(queryParameters: {"cust_id": id}));
     final response = await http.get(url);
     if (response.statusCode == 200) {
-      print("REPONES 200");
       var jsonResponse = convert.jsonDecode(response.body) as List;
       _message = jsonResponse.map((el) {
         isRead = !isRead;
@@ -27,11 +27,11 @@ class UserInboxService {
           category: el["pro_category"].toString(),
         );
       }).toList();
-      print("Message len: " + _message.length.toString());
+      log("Message len: " + _message.length.toString());
 
       return _message;
     } else {
-      print("ERROR: ====> " + response.body);
+      log("ERROR: ====> " + response.body);
       return _message;
     }
   }
@@ -49,9 +49,6 @@ class UserInboxService {
       },
     );
     if (response.statusCode == 200) {
-      print(response.body);
-    } else {
-      print("Fail: " + response.body);
-    }
+    } else {}
   }
 }

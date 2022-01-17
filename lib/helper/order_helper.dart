@@ -10,7 +10,7 @@ class OrderHelper {
   static List<Order> _orderItem = [];
   static Future<String> sendOrder(List<CartItem> cart, userId) async {
     final url = Uri.parse(hostname + "order_i");
-    log("cart: ${cart}");
+    log("cart: $cart");
     var response = await http.post(
       url,
       body: json.encode({
@@ -22,7 +22,7 @@ class OrderHelper {
         "content-type": "application/json",
       },
     );
-    print("response: ${response.statusCode}");
+    log("response: ${response.statusCode}");
     if (response.statusCode == 200) {
       //connection succeed
       log("Transaction completed");

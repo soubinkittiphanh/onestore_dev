@@ -130,9 +130,9 @@ class _ProductDetailCompState extends State<ProductDetailComp> {
                                   const Text("ລາຍລະອຽດສິນຄ້າ: ",
                                       style: TextStyle(fontSize: 22)),
                                   Text(widget.product.proDesc),
-                                  Container(
+                                  const SizedBox(
                                     width: 200,
-                                    child: const Divider(
+                                    child: Divider(
                                       // thickness: 10,
                                       color: Colors.red,
                                     ),

@@ -4,7 +4,7 @@ class SecureStore {
   static const _keyLogId = "log_id";
   static const _keyLogPass = "log_pass";
   static const _keyLogRemember = "log_remember";
-  static final _storage = FlutterSecureStorage();
+  static const _storage = FlutterSecureStorage();
   static Future setLoginId(String userId) async {
     await _storage.write(key: _keyLogId, value: userId);
   }

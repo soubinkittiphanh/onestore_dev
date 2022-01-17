@@ -1,4 +1,5 @@
 import 'dart:convert' as convert;
+import 'dart:developer';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:http/http.dart' as http;
@@ -31,7 +32,7 @@ class RegisterService {
         return 200;
       } else {
         //Transaction fail
-        print("Server error: " + respones.body);
+        log("Server error: " + respones.body);
         return 503;
       }
     } else {

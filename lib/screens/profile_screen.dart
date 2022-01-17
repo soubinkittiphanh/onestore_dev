@@ -37,11 +37,11 @@ class ProfileScreen extends StatelessWidget {
             children: [
               GestureDetector(
                 child: ListTile(
-                  leading: Icon(
+                  leading: const Icon(
                     Icons.person,
                   ),
-                  title: Text("${userInfoController.userName}"),
-                  trailing: Icon(Icons.arrow_forward_ios_rounded),
+                  title: Text(userInfoController.userName),
+                  trailing: const Icon(Icons.arrow_forward_ios_rounded),
                 ),
                 onTap: () {
                   _updateInfo("name", userInfoController.userName);
@@ -52,18 +52,18 @@ class ProfileScreen extends StatelessWidget {
                   _updateInfo("tel", userInfoController.userPhone);
                 },
                 child: ListTile(
-                  leading: Icon(
+                  leading: const Icon(
                     Icons.phone_android,
                   ),
-                  title: Text("${userInfoController.userPhone}"),
-                  trailing: Icon(Icons.arrow_forward_ios_rounded),
+                  title: Text(userInfoController.userPhone),
+                  trailing: const Icon(Icons.arrow_forward_ios_rounded),
                 ),
               ),
               GestureDetector(
                 onTap: () {
                   _updateInfo("pass", '');
                 },
-                child: ListTile(
+                child: const ListTile(
                   leading: Icon(
                     Icons.security,
                   ),
@@ -76,11 +76,11 @@ class ProfileScreen extends StatelessWidget {
                   _updateInfo("mail", userInfoController.userEmail);
                 },
                 child: ListTile(
-                  leading: Icon(
+                  leading: const Icon(
                     Icons.email_outlined,
                   ),
-                  title: Text("${userInfoController.userEmail}"),
-                  trailing: Icon(Icons.arrow_forward_ios_rounded),
+                  title: Text(userInfoController.userEmail),
+                  trailing: const Icon(Icons.arrow_forward_ios_rounded),
                 ),
               ),
               GestureDetector(
@@ -93,12 +93,12 @@ class ProfileScreen extends StatelessWidget {
                   context.loaderOverlay.hide();
                 },
                 child: ListTile(
-                  leading: Icon(
+                  leading: const Icon(
                     Icons.account_balance_wallet_outlined,
                   ),
                   title: Text(
                     "ຍອດເງິນ: ${f.format(userInfoController.userCredit - userInfoController.userDebit)}",
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontFamily: 'noto san lao',
                     ),
                   ),
@@ -111,7 +111,7 @@ class ProfileScreen extends StatelessWidget {
                       userInfoController.setUserBalance(balance);
                       context.loaderOverlay.hide();
                     },
-                    icon: Icon(Icons.refresh),
+                    icon: const Icon(Icons.refresh),
                   ),
                 ),
               ),
@@ -119,7 +119,7 @@ class ProfileScreen extends StatelessWidget {
                 onPressed: () {
                   Navigator.of(context).pushReplacement(
                     MaterialPageRoute(
-                      builder: (ctx) => LoginScreen(),
+                      builder: (ctx) => const LoginScreen(),
                     ),
                   );
                 },

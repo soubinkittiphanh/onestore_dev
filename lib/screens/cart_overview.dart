@@ -161,9 +161,9 @@ class _CartOverviewState extends State<CartOverview> {
         res = 'ຂໍອາໄພ ຍອດເງິນບໍ່ພຽງພໍ';
       } else {
         res = await OrderHelper.sendOrder(cartItem, userInfoController.userId);
-        print("RESPONSE: " + res);
+        log("RESPONSE: " + res);
         if (res.endsWith("completed")) {
-          print("completed case");
+          log("completed case");
           final loadOrder = await OrderHelper.fetchOrder(
               userInfoController.userId); // update order list in order screen
           orderController.setOrderItem(loadOrder);
@@ -232,7 +232,7 @@ class _CartOverviewState extends State<CartOverview> {
               pageChange: widget.pageChange,
               placeOrder: placeOrder,
             ),
-            SizedBox(
+            const SizedBox(
               height: 25,
             )
           ],

@@ -47,19 +47,20 @@ class InquiryService {
     var url = Uri.parse(hostname + 'chat_f');
 
     // Await the http get response, then decode the json-formatted response.
-    print("Loading...");
+    log("Loading...");
     var response = await http.get(url);
     if (response.statusCode == 200) {
       var jsonResponse = convert.jsonDecode(response.body) as List;
       InquiryModel inqModel = InquiryModel(
-          bankCode: jsonResponse[0]['categ_id'],
-          bankAcID: "bankAcID",
-          bankAcName: "bankAcName");
+        bankCode: jsonResponse[0]['categ_id'],
+        bankAcID: "bankAcID",
+        bankAcName: "bankAcName",
+      );
 
-      print(jsonResponse);
+      log(jsonResponse.toString());
       // productContr.addProductCategory(_loadCategory);
     } else {
-      print('Request failed with status: ${response.statusCode}.');
+      log('Request failed with status: ${response.statusCode}.');
     }
     // return _loadProduct;
   }

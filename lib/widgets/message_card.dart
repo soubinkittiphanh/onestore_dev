@@ -3,10 +3,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:onestore/getxcontroller/message_controller.dart';
-import 'package:onestore/helper/print_check.dart';
 import 'package:onestore/models/inbox_message.dart';
-import 'package:onestore/widgets/invoice_garena.dart';
-import 'package:onestore/widgets/invoice_other.dart';
 
 import 'message_item_detail.dart';
 
@@ -14,7 +11,7 @@ class MessageCard extends StatelessWidget {
   const MessageCard({Key? key, required this.messageData, required this.idx})
       : super(key: key);
   final InboxMessage messageData;
-  final idx;
+  final int idx;
   @override
   Widget build(BuildContext context) {
     final messageController = Get.put(MessageController());

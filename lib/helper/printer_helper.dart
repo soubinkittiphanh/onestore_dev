@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:typed_data';
 
 import 'package:bluetooth_thermal_printer/bluetooth_thermal_printer.dart';
@@ -21,7 +22,7 @@ class PrintHelper {
     if (isConnected == "true") {
       List<int> ticket = await getTicket(barcode);
       final result = await BluetoothThermalPrinter.writeBytes(ticket);
-      print("Print $result");
+      log("Print $result");
       // List<int> bytes = [];
 
     } else {
@@ -41,7 +42,7 @@ class PrintHelper {
       bytes += generator.setGlobalCodeTable('CP1250');
       bytes += generator.image(image!);
       final result = await BluetoothThermalPrinter.writeBytes(bytes);
-      print("Print $result");
+      log("Print $result");
       // List<int> bytes = [];
 
     } else {
@@ -60,8 +61,8 @@ class PrintHelper {
     bytes += generator.setGlobalCodeTable('CP1250');
     bytes += generator.image(image!);
     final List<int> barData = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 4];
-    print('barData: ' + barData.toString());
-    print('barcod: ' + barcode.toString());
+    log('barData: ' + barData.toString());
+    log('barcod: ' + barcode.toString());
     bytes += generator.barcode(Barcode.upcA(barcode));
     bytes += generator.feed(2);
     return bytes;
@@ -72,7 +73,7 @@ class PrintHelper {
     if (isConnected == "true") {
       List<int> ticket = await testTicket();
       final result = await BluetoothThermalPrinter.writeBytes(ticket);
-      print("Print $result");
+      log("Print $result");
     } else {
       //Hadnle Not Connected Senario
     }
@@ -112,18 +113,18 @@ class PrintHelper {
     await page.close();
   }
 
-  static _genImage2() async {
-    final dir = await getExternalStorageDirectory();
-    final document =
-        await nativePdf.PdfDocument.openFile('${dir!.path}/receipt.pdf');
-    final page = await document.getPage(1);
-    final pageImage = await page.render(
-      width: page.width,
-      height: page.height,
-      format: nativePdf.PdfPageFormat.PNG,
-    );
-    final bytes = pageImage!.bytes;
-    imageBytes = bytes;
-    await page.close();
-  }
+  // static _genImage2() async {
+  //   final dir = await getExternalStorageDirectory();
+  //   final document =
+  //       await nativePdf.PdfDocument.openFile('${dir!.path}/receipt.pdf');
+  //   final page = await document.getPage(1);
+  //   final pageImage = await page.render(
+  //     width: page.width,
+  //     height: page.height,
+  //     format: nativePdf.PdfPageFormat.PNG,
+  //   );
+  //   final bytes = pageImage!.bytes;
+  //   imageBytes = bytes;
+  //   await page.close();
+  // }
 }

@@ -38,7 +38,7 @@ class _TopupFormState extends State<TopupForm> {
                 controller: txtControllerBankName,
                 cursorColor: Colors.purple,
                 // style: const TextStyle(fontFamily: "noto san lao"),
-                style: TextTheme().bodyText1,
+                style: const TextTheme().bodyText1,
                 validator: (val) {
                   if (val!.isEmpty) {
                     return "ກະລຸນາ ໃສ່ຊື່ທະນາຄານ";
@@ -51,33 +51,33 @@ class _TopupFormState extends State<TopupForm> {
                   fillColor: Colors.white,
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(25.0),
-                    borderSide: BorderSide(
+                    borderSide: const BorderSide(
                       color: Colors.purple,
                     ),
                   ),
                   focusedErrorBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(25.0),
-                    borderSide: BorderSide(
+                    borderSide: const BorderSide(
                       color: Colors.purple,
                     ),
                   ),
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(25.0),
-                    borderSide: BorderSide(
+                    borderSide: const BorderSide(
                       color: Colors.red,
                       width: 0.5,
                     ),
                   ),
                   errorBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(25.0),
-                    borderSide: BorderSide(
+                    borderSide: const BorderSide(
                       color: Colors.red,
                       width: 0.5,
                     ),
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               TextFormField(
@@ -89,7 +89,7 @@ class _TopupFormState extends State<TopupForm> {
                 keyboardType: TextInputType.number,
 
                 // style: const TextStyle(fontFamily: "noto san lao"),
-                style: TextTheme().bodyText1,
+                style: const TextTheme().bodyText1,
                 validator: (val) {
                   if (val!.isEmpty) {
                     return "ກະລຸນາ ໃສ່ເລກບັນຊີ";
@@ -97,38 +97,38 @@ class _TopupFormState extends State<TopupForm> {
                   return null;
                 },
                 decoration: InputDecoration(
-                  hintStyle: TextStyle(fontFamily: "noto san lao"),
+                  hintStyle: const TextStyle(fontFamily: "noto san lao"),
                   hintText: 'ເລກບັນຊີ',
                   fillColor: Colors.white,
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(25.0),
-                    borderSide: BorderSide(
+                    borderSide: const BorderSide(
                       color: Colors.purple,
                     ),
                   ),
                   focusedErrorBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(25.0),
-                    borderSide: BorderSide(
+                    borderSide: const BorderSide(
                       color: Colors.purple,
                     ),
                   ),
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(25.0),
-                    borderSide: BorderSide(
+                    borderSide: const BorderSide(
                       color: Colors.red,
                       width: 0.5,
                     ),
                   ),
                   errorBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(25.0),
-                    borderSide: BorderSide(
+                    borderSide: const BorderSide(
                       color: Colors.red,
                       width: 0.5,
                     ),
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               TextFormField(
@@ -138,7 +138,7 @@ class _TopupFormState extends State<TopupForm> {
                 controller: txtControllerBankAccountName,
                 cursorColor: Colors.purple,
                 // style: const TextStyle(fontFamily: "noto san lao"),
-                style: TextTheme().bodyText1,
+                style: const TextTheme().bodyText1,
                 validator: (val) {
                   if (val!.isEmpty) {
                     return "ກະລຸນາ ໃສ່ຊື່ບັນຊີ";
@@ -146,38 +146,38 @@ class _TopupFormState extends State<TopupForm> {
                   return null;
                 },
                 decoration: InputDecoration(
-                  hintStyle: TextStyle(fontFamily: "noto san lao"),
+                  hintStyle: const TextStyle(fontFamily: "noto san lao"),
                   hintText: 'ຊື່ບັນຊີ',
                   fillColor: Colors.white,
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(25.0),
-                    borderSide: BorderSide(
+                    borderSide: const BorderSide(
                       color: Colors.purple,
                     ),
                   ),
                   focusedErrorBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(25.0),
-                    borderSide: BorderSide(
+                    borderSide: const BorderSide(
                       color: Colors.purple,
                     ),
                   ),
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(25.0),
-                    borderSide: BorderSide(
+                    borderSide: const BorderSide(
                       color: Colors.red,
                       width: 0.5,
                     ),
                   ),
                   errorBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(25.0),
-                    borderSide: BorderSide(
+                    borderSide: const BorderSide(
                       color: Colors.red,
                       width: 0.5,
                     ),
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               TextFormField(
@@ -188,7 +188,7 @@ class _TopupFormState extends State<TopupForm> {
                 controller: txtControllerAmount,
                 cursorColor: Colors.purple,
                 // style: const TextStyle(fontFamily: "noto san lao"),
-                style: TextTheme().bodyText1,
+                style: const TextTheme().bodyText1,
                 validator: (val) {
                   if (val!.isEmpty) {
                     return "ກະລຸນາ ໃສ່ຈຳນວນເງິນ";
@@ -196,38 +196,38 @@ class _TopupFormState extends State<TopupForm> {
                   return null;
                 },
                 decoration: InputDecoration(
-                  hintStyle: TextStyle(fontFamily: "noto san lao"),
+                  hintStyle: const TextStyle(fontFamily: "noto san lao"),
                   hintText: 'ຈຳນວນເງິນ',
                   fillColor: Colors.white,
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(25.0),
-                    borderSide: BorderSide(
+                    borderSide: const BorderSide(
                       color: Colors.purple,
                     ),
                   ),
                   focusedErrorBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(25.0),
-                    borderSide: BorderSide(
+                    borderSide: const BorderSide(
                       color: Colors.purple,
                     ),
                   ),
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(25.0),
-                    borderSide: BorderSide(
+                    borderSide: const BorderSide(
                       color: Colors.red,
                       width: 0.5,
                     ),
                   ),
                   errorBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(25.0),
-                    borderSide: BorderSide(
+                    borderSide: const BorderSide(
                       color: Colors.red,
                       width: 0.5,
                     ),
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               TextFormField(
@@ -237,7 +237,7 @@ class _TopupFormState extends State<TopupForm> {
                 controller: txtControllerRef,
                 cursorColor: Colors.purple,
                 // style: const TextStyle(fontFamily: "noto san lao"),
-                style: TextTheme().bodyText1,
+                style: const TextTheme().bodyText1,
                 validator: (val) {
                   return null;
                 },
@@ -247,33 +247,33 @@ class _TopupFormState extends State<TopupForm> {
                   fillColor: Colors.white,
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(25.0),
-                    borderSide: BorderSide(
+                    borderSide: const BorderSide(
                       color: Colors.purple,
                     ),
                   ),
                   focusedErrorBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(25.0),
-                    borderSide: BorderSide(
+                    borderSide: const BorderSide(
                       color: Colors.purple,
                     ),
                   ),
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(25.0),
-                    borderSide: BorderSide(
+                    borderSide: const BorderSide(
                       color: Colors.red,
                       width: 0.5,
                     ),
                   ),
                   errorBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(25.0),
-                    borderSide: BorderSide(
+                    borderSide: const BorderSide(
                       color: Colors.red,
                       width: 0.5,
                     ),
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               ConstDesign.myButton(context, postData, "ສົ່ງຂໍ້ຄວາມ")
@@ -331,7 +331,7 @@ class _TopupFormState extends State<TopupForm> {
           children: [
             Text(
               message,
-              style: TextStyle(
+              style: const TextStyle(
                 fontFamily: 'noto san lao',
                 color: Colors.white,
               ),

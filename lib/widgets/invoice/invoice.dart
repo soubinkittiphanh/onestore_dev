@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:onestore/config/host_con.dart';
 import 'package:onestore/models/inbox_message.dart';
@@ -10,7 +8,6 @@ import '../invoice_garena_header.dart';
 
 class Invoice {
   Widget genGarena(List<InboxMessage> message) {
-    print("Garena ->");
     return Column(
       children: [
         const InvoiceHeaderGarena(),
@@ -30,7 +27,6 @@ class Invoice {
   }
 
   Widget genOther(List<InboxMessage> message) {
-    print("Other -> " + message[0].category);
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
@@ -64,7 +60,7 @@ class InvoiceItem extends StatelessWidget {
     Key? key,
     required this.message,
   }) : super(key: key);
-  final message;
+  final dynamic message;
   @override
   Widget build(BuildContext context) {
     return Card(

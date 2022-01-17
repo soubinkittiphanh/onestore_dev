@@ -38,33 +38,33 @@ class ResetPassScreen extends StatelessWidget {
                       fillColor: Colors.white,
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(25.0),
-                        borderSide: BorderSide(
+                        borderSide: const BorderSide(
                           color: Colors.purple,
                         ),
                       ),
                       focusedErrorBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(25.0),
-                        borderSide: BorderSide(
+                        borderSide: const BorderSide(
                           color: Colors.purple,
                         ),
                       ),
                       enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(25.0),
-                        borderSide: BorderSide(
+                        borderSide: const BorderSide(
                           color: Colors.red,
                           width: 0.5,
                         ),
                       ),
                       errorBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(25.0),
-                        borderSide: BorderSide(
+                        borderSide: const BorderSide(
                           color: Colors.red,
                           width: 0.5,
                         ),
                       ),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                   RaisedButton(

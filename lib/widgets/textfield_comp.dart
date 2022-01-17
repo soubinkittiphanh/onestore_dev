@@ -7,8 +7,8 @@ class TextFieldComp extends StatelessWidget {
     required this.hintlable,
     required this.icon,
   }) : super(key: key);
-  final lable;
-  final hintlable;
+  final String lable;
+  final String hintlable;
   final Widget icon;
   @override
   Widget build(BuildContext context) {

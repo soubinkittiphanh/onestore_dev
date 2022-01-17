@@ -24,7 +24,7 @@ class ConstDesign {
           child: Text(
             btnText,
             textAlign: TextAlign.center,
-            style: TextStyle(
+            style: const TextStyle(
               color: Colors.white,
               fontSize: 15,
               fontFamily: "noto san lao",

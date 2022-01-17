@@ -1,6 +1,5 @@
 import 'dart:developer';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 import 'package:onestore/getxcontroller/order_controller.dart';
 import 'package:onestore/getxcontroller/user_info_controller.dart';
@@ -22,7 +21,7 @@ class _OrderOverviewScreenState extends State<OrderOverviewScreen> {
   Widget build(BuildContext context) {
     RefreshController _refreshController =
         RefreshController(initialRefresh: false);
-    final f = NumberFormat("#,###");
+    // final f = NumberFormat("#,###");
     final orderController = Get.put(OrderController());
     // final userCredProvider = Provider.of<UserCredentialProvider>(context);
     final userInfoController = Get.put(UserInfoController());

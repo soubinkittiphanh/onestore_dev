@@ -63,7 +63,7 @@ class _CompoActionBarModelState extends State<CompoActionBarModel> {
               onPressed: _addToCard,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: [
+                children: const [
                   Icon(Icons.shopping_cart),
                   Text(
                     'ເພີ່ມໄປຍັງກະຕ່າສິນຄ້າ',
@@ -77,7 +77,7 @@ class _CompoActionBarModelState extends State<CompoActionBarModel> {
               ),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             width: 20,
           ),
           Expanded(
@@ -91,7 +91,7 @@ class _CompoActionBarModelState extends State<CompoActionBarModel> {
               },
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: [
+                children: const [
                   // Icon(Icons.shopping_cart),
                   Text(
                     'ຊື້ສິນຄ້າ',

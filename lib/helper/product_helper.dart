@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:onestore/config/host_con.dart';
 import 'dart:convert' as convert;
 import 'package:http/http.dart' as http;
@@ -9,13 +11,13 @@ class ProductHelper {
     var url = Uri.parse(hostname + 'product_f');
 
     // Await the http get response, then decode the json-formatted response.
-    print("Loading...");
+    log("Loading...");
     var response = await http.get(url);
     if (response.statusCode == 200) {
       var jsonResponse = convert.jsonDecode(response.body) as List;
 
       _loadProduct = jsonResponse.map((el) {
-        print("XXXXXX: " + el["img_name"].toString());
+        log("XXXXXX: " + el["img_name"].toString());
         //Check if image is null then so app not crash
         String imageName = el["img_name"].toString();
         var imagePath = hostname + 'uploads/${el["img_name"]}';
@@ -36,9 +38,9 @@ class ProductHelper {
           saleCount: el["sale_count"],
         );
       }).toList();
-      print(jsonResponse);
+      log(jsonResponse.toString());
     } else {
-      print('Request failed with status: ${response.statusCode}.');
+      log('Request failed with status: ${response.statusCode}.');
     }
     return _loadProduct;
   }

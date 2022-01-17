@@ -54,40 +54,40 @@ class RegisterFormScreen extends StatelessWidget {
                     fillColor: Colors.white,
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(25.0),
-                      borderSide: BorderSide(
+                      borderSide: const BorderSide(
                         color: Colors.purple,
                       ),
                     ),
                     focusedErrorBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(25.0),
-                      borderSide: BorderSide(
+                      borderSide: const BorderSide(
                         color: Colors.purple,
                       ),
                     ),
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(25.0),
-                      borderSide: BorderSide(
+                      borderSide: const BorderSide(
                         color: Colors.red,
                         width: 0.5,
                       ),
                     ),
                     errorBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(25.0),
-                      borderSide: BorderSide(
+                      borderSide: const BorderSide(
                         color: Colors.red,
                         width: 0.5,
                       ),
                     ),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 if (phone.isNotEmpty)
                   TextFormField(
                     controller: txtControllerPhone,
                     cursorColor: Colors.purple,
-                    style: TextStyle(fontFamily: "noto san lao"),
+                    style: const TextStyle(fontFamily: "noto san lao"),
                     enabled: false,
                     decoration: InputDecoration(
                       hintText: 'ເບີໂທ',
@@ -95,33 +95,33 @@ class RegisterFormScreen extends StatelessWidget {
                       fillColor: Colors.white,
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(25.0),
-                        borderSide: BorderSide(
+                        borderSide: const BorderSide(
                           color: Colors.purple,
                         ),
                       ),
                       focusedErrorBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(25.0),
-                        borderSide: BorderSide(
+                        borderSide: const BorderSide(
                           color: Colors.purple,
                         ),
                       ),
                       enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(25.0),
-                        borderSide: BorderSide(
+                        borderSide: const BorderSide(
                           color: Colors.red,
                           width: 0.5,
                         ),
                       ),
                       errorBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(25.0),
-                        borderSide: BorderSide(
+                        borderSide: const BorderSide(
                           color: Colors.red,
                           width: 0.5,
                         ),
                       ),
                     ),
                   ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 if (phone.isEmpty)
@@ -152,48 +152,48 @@ class RegisterFormScreen extends StatelessWidget {
                       ),
                       focusedErrorBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(25.0),
-                        borderSide: BorderSide(
+                        borderSide: const BorderSide(
                           color: Colors.purple,
                         ),
                       ),
                       enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(25.0),
-                        borderSide: BorderSide(
+                        borderSide: const BorderSide(
                           color: Colors.red,
                           width: 0.5,
                         ),
                       ),
                       errorBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(25.0),
-                        borderSide: BorderSide(
+                        borderSide: const BorderSide(
                           color: Colors.red,
                           width: 0.5,
                         ),
                       ),
                     ),
                   ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 if (email.isNotEmpty)
                   TextFormField(
                     controller: txtControllerEmail,
                     cursorColor: Colors.purple,
-                    style: TextStyle(fontFamily: "noto san lao"),
+                    style: const TextStyle(fontFamily: "noto san lao"),
                     enabled: false,
                     decoration: InputDecoration(
                       hintText: 'Email',
-                      label: Text('login id'),
+                      label: const Text('login id'),
                       fillColor: Colors.white,
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(25.0),
-                        borderSide: BorderSide(
+                        borderSide: const BorderSide(
                           color: Colors.purple,
                         ),
                       ),
                       focusedErrorBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(25.0),
-                        borderSide: BorderSide(
+                        borderSide: const BorderSide(
                           color: Colors.purple,
                         ),
                       ),
@@ -274,33 +274,33 @@ class RegisterFormScreen extends StatelessWidget {
                     fillColor: Colors.white,
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(25.0),
-                      borderSide: BorderSide(
+                      borderSide: const BorderSide(
                         color: Colors.purple,
                       ),
                     ),
                     focusedErrorBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(25.0),
-                      borderSide: BorderSide(
+                      borderSide: const BorderSide(
                         color: Colors.purple,
                       ),
                     ),
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(25.0),
-                      borderSide: BorderSide(
+                      borderSide: const BorderSide(
                         color: Colors.red,
                         width: 0.5,
                       ),
                     ),
                     errorBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(25.0),
-                      borderSide: BorderSide(
+                      borderSide: const BorderSide(
                         color: Colors.red,
                         width: 0.5,
                       ),
                     ),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 TextFormField(
@@ -310,7 +310,7 @@ class RegisterFormScreen extends StatelessWidget {
                   controller: txtControllerPasswordConfirm,
                   cursorColor: Colors.purple,
                   // style: const TextStyle(fontFamily: "noto san lao"),
-                  style: TextTheme().bodyText1,
+                  style: const TextTheme().bodyText1,
                   validator: (val) {
                     if (val!.isEmpty) {
                       return "ກະລຸນາຢືນຢັນລະຫັດຜ່ານ";
@@ -324,33 +324,33 @@ class RegisterFormScreen extends StatelessWidget {
                     fillColor: Colors.white,
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(25.0),
-                      borderSide: BorderSide(
+                      borderSide: const BorderSide(
                         color: Colors.purple,
                       ),
                     ),
                     focusedErrorBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(25.0),
-                      borderSide: BorderSide(
+                      borderSide: const BorderSide(
                         color: Colors.purple,
                       ),
                     ),
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(25.0),
-                      borderSide: BorderSide(
+                      borderSide: const BorderSide(
                         color: Colors.red,
                         width: 0.5,
                       ),
                     ),
                     errorBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(25.0),
-                      borderSide: BorderSide(
+                      borderSide: const BorderSide(
                         color: Colors.red,
                         width: 0.5,
                       ),
                     ),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 RaisedButton(
@@ -379,7 +379,7 @@ class RegisterFormScreen extends StatelessWidget {
 
                         Navigator.of(context).pushReplacement(
                           MaterialPageRoute(
-                            builder: (ctx) => LoginScreen(),
+                            builder: (ctx) => const LoginScreen(),
                           ),
                         );
                       } else if (response == 503) {

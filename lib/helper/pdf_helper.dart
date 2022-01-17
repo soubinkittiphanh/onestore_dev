@@ -23,8 +23,8 @@ class PDFHelper {
     final txn = inboxController.messageByOrderID(orderId);
     final font = await rootBundle.load("asset/font/Phetsarath_OT.ttf");
     final fontNumber = await rootBundle.load("asset/font/GillSansNova.ttf");
-    final ByteData bytes = await rootBundle.load('assets/logo.jpg');
-    final Uint8List listAbcd = bytes.buffer.asUint8List();
+    // final ByteData bytes = await rootBundle.load('assets/logo.jpg');
+    // final Uint8List listAbcd = bytes.buffer.asUint8List();
 
     final ttf = pw.Font.ttf(font);
     var customDate = date.substring(0, 10);
@@ -37,9 +37,9 @@ class PDFHelper {
       customDate.length - 2,
     );
 
-    print('date: ' + day + ' month: ' + month + ' year: ' + year);
+    log('date: ' + day + ' month: ' + month + ' year: ' + year);
     final newDate = day + '-' + month + '-' + year;
-    print('newDate: ' + newDate);
+    log('newDate: ' + newDate);
     final ttfNumber = pw.Font.ttf(fontNumber);
     // var total = 0;
     final pdf = pw.Document();
@@ -205,9 +205,9 @@ class PDFHelper {
       final dir = await getExternalStorageDirectory();
       final file = File('${dir!.path}/receipt.pdf');
       await file.writeAsBytes(await pdf.save());
-      print('file save');
+      log('file save');
     } catch (e) {
-      print('error: ' + e.toString());
+      log('error: ' + e.toString());
     }
   }
 

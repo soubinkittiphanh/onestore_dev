@@ -24,11 +24,11 @@ class _MainDrawerState extends State<MainDrawer> {
             title: Text(userInfoController.userName),
           ),
           ListTile(
-            leading: Icon(
+            leading: const Icon(
               Icons.home,
               color: Colors.red,
             ),
-            title: Text(
+            title: const Text(
               "ສິນຄ້າ",
               style: TextStyle(fontFamily: 'noto san lao'),
             ),
@@ -44,14 +44,14 @@ class _MainDrawerState extends State<MainDrawer> {
             ),
           ),
           ListTile(
-            leading: Icon(
+            leading: const Icon(
               Icons.shopping_bag_sharp,
               color: Colors.red,
             ),
             onTap: () {
               widget.fuctionOntap[1](1);
             },
-            title: Text("ກະຕ່າສິນຄ້າ",
+            title: const Text("ກະຕ່າສິນຄ້າ",
                 style: TextStyle(fontFamily: 'noto san lao')),
           ),
           SizedBox(
@@ -62,14 +62,14 @@ class _MainDrawerState extends State<MainDrawer> {
             ),
           ),
           ListTile(
-            leading: Icon(
+            leading: const Icon(
               Icons.calendar_today,
               color: Colors.red,
             ),
             onTap: () {
               widget.fuctionOntap[2](2);
             },
-            title: Text("ລາຍການສັ່ງຊື້",
+            title: const Text("ລາຍການສັ່ງຊື້",
                 style: TextStyle(fontFamily: 'noto san lao')),
           ),
           SizedBox(
@@ -80,14 +80,14 @@ class _MainDrawerState extends State<MainDrawer> {
             ),
           ),
           ListTile(
-            leading: Icon(
+            leading: const Icon(
               Icons.favorite,
               color: Colors.red,
             ),
             onTap: () {
               widget.fuctionOntap[3](3);
             },
-            title: Text("ລາຍການທີ່ມັກ",
+            title: const Text("ລາຍການທີ່ມັກ",
                 style: TextStyle(fontFamily: 'noto san lao')),
           ),
           SizedBox(
@@ -98,14 +98,14 @@ class _MainDrawerState extends State<MainDrawer> {
             ),
           ),
           ListTile(
-            leading: Icon(
+            leading: const Icon(
               Icons.mail,
               color: Colors.red,
             ),
             onTap: () {
               widget.fuctionOntap[3](4);
             },
-            title: Text("ກ່ອງຂໍ້ຄວາມ",
+            title: const Text("ກ່ອງຂໍ້ຄວາມ",
                 style: TextStyle(fontFamily: 'noto san lao')),
           ),
           SizedBox(
@@ -116,7 +116,7 @@ class _MainDrawerState extends State<MainDrawer> {
             ),
           ),
           ListTile(
-            leading: Icon(
+            leading: const Icon(
               Icons.person,
               color: Colors.red,
             ),
@@ -124,22 +124,23 @@ class _MainDrawerState extends State<MainDrawer> {
               log("RUNNING");
               widget.fuctionOntap[4](5);
             },
-            title: Text("ຂໍ້ມູນສ່ວນຕົວ",
+            title: const Text("ຂໍ້ມູນສ່ວນຕົວ",
                 style: TextStyle(fontFamily: 'noto san lao')),
           ),
           ListTile(
-            leading: Icon(
+            leading: const Icon(
               Icons.account_balance_wallet,
               color: Colors.red,
             ),
             onTap: () {
-              Navigator.of(context)
-                  .push(MaterialPageRoute(builder: (ctx) => WalletScreen()));
+              Navigator.of(context).push(
+                  MaterialPageRoute(builder: (ctx) => const WalletScreen()));
             },
-            title: Text("Wallet", style: TextStyle(fontFamily: 'noto san lao')),
+            title: const Text("Wallet",
+                style: TextStyle(fontFamily: 'noto san lao')),
           ),
           ListTile(
-            leading: Icon(
+            leading: const Icon(
               Icons.print,
               color: Colors.red,
             ),
@@ -147,8 +148,8 @@ class _MainDrawerState extends State<MainDrawer> {
               Navigator.of(context)
                   .push(MaterialPageRoute(builder: (ctx) => PrinterSetting()));
             },
-            title:
-                Text("Printer", style: TextStyle(fontFamily: 'noto san lao')),
+            title: const Text("Printer",
+                style: TextStyle(fontFamily: 'noto san lao')),
           ),
         ],
       ),

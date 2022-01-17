@@ -7,7 +7,7 @@ class OrderItemDetail extends StatelessWidget {
     Key? key,
     required this.orderId,
   }) : super(key: key);
-  final orderId;
+  final String orderId;
   @override
   Widget build(BuildContext context) {
     final oderController = Get.put(OrderController());

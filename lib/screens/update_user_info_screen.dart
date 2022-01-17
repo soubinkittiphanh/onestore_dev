@@ -16,8 +16,8 @@ class UpdateUserScreen extends StatelessWidget {
   const UpdateUserScreen(
       {Key? key, required this.fieldUpdate, this.defaultValue = ''})
       : super(key: key);
-  final fieldUpdate;
-  final defaultValue;
+  final dynamic fieldUpdate;
+  final dynamic defaultValue;
 
   @override
   Widget build(BuildContext context) {
@@ -76,7 +76,7 @@ class UpdateUserScreen extends StatelessWidget {
         overlayOpacity: 1,
         child: Container(
           // color: Colors.yellow,
-          margin: EdgeInsets.all(20),
+          margin: const EdgeInsets.all(20),
           child: Form(
             child: Column(
               children: [
@@ -107,7 +107,7 @@ class UpdateUserScreen extends StatelessWidget {
                     onPressed: () async {
                       context.loaderOverlay.show();
                       String respones = '';
-                      var selectMeth;
+                      dynamic selectMeth;
                       switch (fieldUpdate) {
                         case "name":
                           {

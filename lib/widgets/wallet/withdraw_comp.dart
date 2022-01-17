@@ -14,7 +14,7 @@ class WithdrawComp extends StatelessWidget {
       child: GetBuilder<WalletTxnController>(builder: (ctr) {
         return ListView.builder(
           itemBuilder: (ctx, id) => ListTile(
-            leading: CircleAvatar(
+            leading: const CircleAvatar(
               backgroundColor: Colors.redAccent,
               child: Icon(Icons.arrow_back_rounded, color: Colors.white),
             ),
@@ -29,13 +29,13 @@ class WithdrawComp extends StatelessWidget {
                         .substring(0, 8)),
                 Text(
                   ctr.loadWalletTxnDR[id].txn,
-                  style: TextStyle(fontFamily: "noto san lao"),
+                  style: const TextStyle(fontFamily: "noto san lao"),
                 ),
               ],
             ),
             subtitle: Text(
               f.format(ctr.loadWalletTxnDR[id].amount),
-              style: TextStyle(color: Colors.red),
+              style: const TextStyle(color: Colors.red),
             ),
           ),
           itemCount: walletTxnController.loadWalletTxnDR.length,

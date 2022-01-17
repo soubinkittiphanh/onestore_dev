@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:onestore/screens/login_screen.dart';
 import 'package:onestore/screens/register_email.dart';
-import 'package:provider/provider.dart';
 
 void main() {
   runApp(const MyApp());
@@ -54,7 +53,7 @@ class MyApp extends StatelessWidget {
       ),
       home: const LoginScreen(),
       routes: {
-        RegistEmailScreen.routerName: (ctx) => RegistEmailScreen(),
+        RegistEmailScreen.routerName: (ctx) => const RegistEmailScreen(),
       },
     );
   }

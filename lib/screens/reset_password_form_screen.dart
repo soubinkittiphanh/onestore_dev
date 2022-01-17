@@ -25,7 +25,7 @@ class _ResetPasswordFormScreenState extends State<ResetPasswordFormScreen> {
     return Scaffold(
       body: LoaderOverlay(
         child: Padding(
-          padding: EdgeInsets.all(20),
+          padding: const EdgeInsets.all(20),
           child: Center(
             child: Form(
                 key: _formKey,
@@ -182,7 +182,7 @@ class _ResetPasswordFormScreenState extends State<ResetPasswordFormScreen> {
                         ),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 30,
                     ),
                     Text(
@@ -203,7 +203,7 @@ class _ResetPasswordFormScreenState extends State<ResetPasswordFormScreen> {
                             ),
                           ),
                         },
-                        child: Text(
+                        child: const Text(
                           "Login",
                           style: TextStyle(
                             fontFamily: 'noto san lao',

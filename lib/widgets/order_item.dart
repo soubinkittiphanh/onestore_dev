@@ -74,7 +74,7 @@ class _OrderItemState extends State<OrderItem> {
         ),
         AnimatedCrossFade(
           duration: const Duration(milliseconds: 300),
-          firstChild: Container(
+          firstChild: SizedBox(
             child: OrderItemDetail(orderId: widget.loadOrder.orderId),
             height: 160,
             width: double.infinity,

@@ -16,7 +16,7 @@ class _ContactUsState extends State<ContactUs> {
   @override
   Widget build(BuildContext context) {
     final chatTypeContr = Get.put(ChatTypeController());
-    final deviceSize = MediaQuery.of(context).size;
+    // final deviceSize = MediaQuery.of(context).size;
 
     return Padding(
       padding: const EdgeInsets.all(8.0),
@@ -33,15 +33,15 @@ class _ContactUsState extends State<ContactUs> {
             ),
           ),
           Column(
-            children: [
-              const Text("ຄຳແນະນຳ"),
+            children: const [
+              Text("ຄຳແນະນຳ"),
               Divider(
                 thickness: 0.5,
                 color: Colors.red,
               ),
-              const Text(
+              Text(
                   "ທ່ານ ສາມາດກົດ ແຈ້ງ ເຕີມ ຫລື ແຈ້ງ ຖອນ ເພື່ອ ແຈ້ງໃຫ້ແອັດມິນຊາບ ໃນການຮ້ອງຂໍ ລະບົບຈະສົ່ງຫາແອັດມິນໃຫ້ຮັບຮູ້ ອັດຕະໂນມັດໃນການຮ້ອງຂໍຂອງທ່ານ  "),
-              const Text(
+              Text(
                   "ຖ້າຫາກທ່ານ ມີຄວາມຈຳເປັນຕ້ອງ ສົ່ງເອກສານ ຫລັກຖານຕ່າງໆ ເຊັ່ນ ໃບໂອນເງິນ ທ່ານສາມາດ ກົດປຸ່ມ 'ສົ່ງຂໍ້ຄວາມຫາແອັດມິນ' ໄດ້ໂດຍຕົງ"),
             ],
           ),

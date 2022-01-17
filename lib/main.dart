@@ -54,9 +54,9 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
-      home: LoginScreen(),
+      home: const LoginScreen(),
       routes: {
-        RegistEmailScreen.routerName: (ctx) => RegistEmailScreen(),
+        RegistEmailScreen.routerName: (ctx) => const RegistEmailScreen(),
       },
     );
   }

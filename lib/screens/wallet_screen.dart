@@ -58,7 +58,7 @@ class _WalletScreenState extends State<WalletScreen> {
                       Text(
                           f.format(walletTxnController.totalCR -
                               walletTxnController.totalDR),
-                          style: TextStyle(color: Colors.green))
+                          style: const TextStyle(color: Colors.green))
                     ],
                   )
                 ],
@@ -77,9 +77,9 @@ class _WalletScreenState extends State<WalletScreen> {
                   Column(
                     children: [
                       Row(
-                        children: [
-                          const Icon(Icons.arrow_forward, color: Colors.green),
-                          const Icon(Icons.account_balance_wallet_outlined),
+                        children: const [
+                          Icon(Icons.arrow_forward, color: Colors.green),
+                          Icon(Icons.account_balance_wallet_outlined),
                         ],
                       ),
                       const Text("ເຕີມ"),
@@ -105,9 +105,9 @@ class _WalletScreenState extends State<WalletScreen> {
                     child: Column(
                       children: [
                         Row(
-                          children: [
-                            const Icon(Icons.arrow_back, color: Colors.red),
-                            const Icon(Icons.account_balance_wallet_outlined),
+                          children: const [
+                            Icon(Icons.arrow_back, color: Colors.red),
+                            Icon(Icons.account_balance_wallet_outlined),
                           ],
                         ),
                         const Text("ຖອນ / ຊື້"),
@@ -126,7 +126,7 @@ class _WalletScreenState extends State<WalletScreen> {
               child: PageView(
                 controller: _pageController,
                 onPageChanged: _pageChange,
-                children: [
+                children: const [
                   TopupComp(),
                   WithdrawComp(),
                 ],

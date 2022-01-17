@@ -25,14 +25,14 @@ class _CompAdjustQtyState extends State<CompAdjustQty> {
           onPressed: () {
             widget.addOne();
           },
-          icon: Icon(Icons.add),
+          icon: const Icon(Icons.add),
         ),
         Text(widget.orderQty.toString()),
         IconButton(
           onPressed: () {
             widget.removeOne();
           },
-          icon: Icon(Icons.remove),
+          icon: const Icon(Icons.remove),
         ),
       ],
     );

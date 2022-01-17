@@ -17,7 +17,7 @@ class MessageItemDetail extends StatelessWidget {
     }
     return Scaffold(
       appBar: (AppBar(
-        actions: [],
+        actions: const [],
       )),
       body: Container(
         color: Colors.white,
@@ -33,19 +33,19 @@ class MessageItemDetail extends StatelessWidget {
                       controller: idController,
                       decoration: InputDecoration(
                         labelText: "ໄອດິ",
-                        labelStyle: TextStyle(fontFamily: "noto san lao"),
-                        icon: Icon(
+                        labelStyle: const TextStyle(fontFamily: "noto san lao"),
+                        icon: const Icon(
                           Icons.person,
                         ),
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(25.0),
-                          borderSide: BorderSide(
+                          borderSide: const BorderSide(
                             color: Colors.blue,
                           ),
                         ),
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(25.0),
-                          borderSide: BorderSide(
+                          borderSide: const BorderSide(
                             color: Colors.red,
                             width: 0.3,
                           ),
@@ -53,50 +53,50 @@ class MessageItemDetail extends StatelessWidget {
                       ),
                       cursorColor: Colors.blue,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
                     TextFormField(
                       controller: pasController,
                       decoration: InputDecoration(
                         labelText: "ລະຫັດຜ່ານ",
-                        labelStyle: TextStyle(fontFamily: "noto san lao"),
-                        icon: Icon(Icons.security),
+                        labelStyle: const TextStyle(fontFamily: "noto san lao"),
+                        icon: const Icon(Icons.security),
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(25.0),
-                          borderSide: BorderSide(
+                          borderSide: const BorderSide(
                             color: Colors.blue,
                           ),
                         ),
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(25.0),
-                          borderSide: BorderSide(
+                          borderSide: const BorderSide(
                             color: Colors.red,
                             width: 0.3,
                           ),
                         ),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
                     TextFormField(
                       controller: balController,
                       decoration: InputDecoration(
                         labelText: "ຍອດເງິນ",
-                        labelStyle: TextStyle(fontFamily: "noto san lao"),
-                        icon: Icon(
+                        labelStyle: const TextStyle(fontFamily: "noto san lao"),
+                        icon: const Icon(
                           Icons.account_balance_wallet_sharp,
                         ),
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(25.0),
-                          borderSide: BorderSide(
+                          borderSide: const BorderSide(
                             color: Colors.blue,
                           ),
                         ),
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(25.0),
-                          borderSide: BorderSide(
+                          borderSide: const BorderSide(
                             color: Colors.red,
                             width: 0.3,
                           ),

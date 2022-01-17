@@ -30,7 +30,6 @@ class CartItemComp extends StatelessWidget {
         ),
         direction: DismissDirection.endToStart,
         onDismissed: (direction) {
-          print("$direction");
           cartProvider.removeCart(cartItem.proId);
         },
         child: ListTile(
@@ -72,12 +71,12 @@ class CartItemComp extends StatelessWidget {
               ),
               IconButton(
                 onPressed: _addOne,
-                icon: Icon(Icons.add),
+                icon: const Icon(Icons.add),
               ),
-              Text(" | "),
+              const Text(" | "),
               IconButton(
                 onPressed: _removeOne,
-                icon: Icon(Icons.remove),
+                icon: const Icon(Icons.remove),
               )
             ],
           ),

@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:onestore/models/cart.dart';
 import 'package:onestore/models/product.dart';
@@ -8,18 +10,18 @@ class CartProvider extends ChangeNotifier {
     if (_cartItem.isEmpty) {
       _cartItem.add(CartItem(pro.proId, 1, pro.proPrice, pro.proPrice));
       notifyListeners();
-      print("Empty");
+      log("Empty");
     } else {
-      print("product id: " + pro.proId.toString());
+      log("product id: " + pro.proId.toString());
       CartItem existProduct = _cartItem.firstWhere(
           (element) => element.proId == pro.proId,
           orElse: () => CartItem(0, 0, 0.00, 0.00));
-      print("exist product id: " + existProduct.proId.toString());
+      log("exist product id: " + existProduct.proId.toString());
       if (existProduct.proId <= 0) {
         //there is not exist product in the cart
         _cartItem.add(CartItem(pro.proId, 1, pro.proPrice, pro.proPrice));
         notifyListeners();
-        print("Not empty and not exist");
+        log("Not empty and not exist");
       } else {
         CartItem updateProduct = CartItem(
           pro.proId,
@@ -32,17 +34,17 @@ class CartProvider extends ChangeNotifier {
         _cartItem.add(updateProduct);
 
         notifyListeners();
-        print("Not empty and exist");
+        log("Not empty and exist");
       }
     }
-    print("Add...");
+    log("Add...");
   }
 
   void removeOneCart(Product pro) {
     CartItem existProduct = _cartItem.firstWhere(
         (element) => element.proId == pro.proId,
         orElse: () => CartItem(0, 0, 0.00, 0.00));
-    print(
+    log(
       "exist product id: " +
           existProduct.proId.toString() +
           " price " +
@@ -59,12 +61,12 @@ class CartProvider extends ChangeNotifier {
     _cartItem.add(updateProduct);
 
     notifyListeners();
-    print("Not empty and exist");
+    log("Not empty and exist");
   }
 
   void removeCart(int id) {
     _cartItem.removeWhere((element) => element.proId == id);
-    print("remove... ");
+    log("remove... ");
     notifyListeners();
   }
 
@@ -87,9 +89,9 @@ class CartProvider extends ChangeNotifier {
 
   double get cartCost {
     double total = 0;
-    _cartItem.forEach((element) {
+    for (var element in _cartItem) {
       total += element.priceTotal;
-    });
+    }
     return total;
   }
 }

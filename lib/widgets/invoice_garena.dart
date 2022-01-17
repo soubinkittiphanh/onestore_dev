@@ -72,7 +72,6 @@ class _InvoiceGarenaState extends State<InvoiceGarena> {
                     child: FittedBox(
                       child: Column(
                         children: widget.groupMessage.map((e) {
-                          print("Mapping: =>" + e[0].category);
                           return e[0].category.contains("1001")
                               ? Invoice().genGarena(e)
                               : Invoice().genOther(e);

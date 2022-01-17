@@ -8,7 +8,7 @@ class FavouriteSreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     launchWhatsApp() async {
-      final link = WhatsAppUnilink(
+      const link = WhatsAppUnilink(
         phoneNumber: '+8562077150008',
         text: "Hey! I'm inquiring about the apartment listing",
       );
@@ -23,7 +23,7 @@ class FavouriteSreen extends StatelessWidget {
       children: [
         RaisedButton(
           onPressed: launchWhatsApp,
-          child: Text("Whatsapp"),
+          child: const Text("Whatsapp"),
         )
       ],
     )

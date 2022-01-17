@@ -38,12 +38,12 @@ class FirebaseService {
         // final isvalidEmail = currentUser.emailVerified;
         // log("Isvalid: " + isvalidEmail.toString());
         if (userCredentail.user!.emailVerified) {
-          print("Verified email " + userCredentail.user!.email.toString());
+          log("Verified email " + userCredentail.user!.email.toString());
           final result =
               RegisterMessage(statusCode: 200, message: "Eamil is verified");
           return result;
         } else {
-          print("Un verified email");
+          log("Un verified email");
           final result = RegisterMessage(
               statusCode: 503, message: "Eamil is not verified");
           // print(result.)
@@ -69,13 +69,13 @@ class FirebaseService {
       // ignore: unnecessary_null_comparison
       // firebaseAuth.verifyPasswordResetCode('code');
       if (userCredential.user!.uid != null) {
-        print("Loin succeed with email: " +
+        log("Loin succeed with email: " +
             userCredential.user!.email.toString());
       } else {
-        print("Fail loin");
+        log("Fail loin");
       }
     } catch (e) {
-      print("==> Login fail" + e.toString());
+      log("==> Login fail" + e.toString());
     }
   }
 }

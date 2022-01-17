@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 
 class CartOverviewAction extends StatelessWidget {
@@ -19,7 +17,6 @@ class CartOverviewAction extends StatelessWidget {
         child: Row(children: [
           RaisedButton(
             onPressed: () {
-              print("PageChange");
               pageChange(0);
             },
             shape: RoundedRectangleBorder(
@@ -52,7 +49,6 @@ class CartOverviewAction extends StatelessWidget {
           ),
           RaisedButton(
             onPressed: () {
-              print("PageChange");
               placeOrder();
             },
             shape: RoundedRectangleBorder(
