@@ -38,28 +38,6 @@ class MessageCard extends StatelessWidget {
             );
           },
           child: ListTile(
-            // leading: IconButton(
-            //   onPressed: () async {
-            //     // log("Before file generateing");
-            //     // await PDFHelper.generatePdf(
-            //     //   messageData.orderId,
-            //     //   messageData.date,
-            //     // );
-            //     // PrintCheck.prints(messageData.orderId, context);
-            //     // Navigator.of(context).push(
-            //     //   MaterialPageRoute(
-            //     //     builder: (ctx) => InvoiceGarena(
-            //     //       message: messageData,
-            //     //     ),
-            //     //     // builder: (ctx) => InvoiceOther(
-            //     //     //   message: messageData,
-            //     //     // ),
-            //     //   ),
-            //     // );
-            //     log("After file generateing");
-            //   },
-            //   icon: Icon(Icons.print),
-            // ),
             title: Text(
               'ວັນທີ: ' +
                   messageData.date.toString().substring(0, 10) +

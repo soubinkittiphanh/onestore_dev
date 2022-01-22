@@ -6,12 +6,13 @@ import 'package:onestore/getxcontroller/message_controller.dart';
 import 'package:onestore/helper/printer_helper.dart';
 import 'package:onestore/helper/util_helper.dart';
 import 'package:onestore/models/inbox_message.dart';
+import 'package:onestore/widgets/invoice/invoice_single.dart';
 import 'package:onestore/widgets/widget_to_image.dart';
-import 'invoice/invoice.dart';
 
 class InvoiceGarena extends StatefulWidget {
-  const InvoiceGarena({Key? key, required this.groupMessage}) : super(key: key);
-  final List<List<InboxMessage>> groupMessage;
+  const InvoiceGarena({Key? key, required this.orderId}) : super(key: key);
+  // final List<List<InboxMessage>> groupMessage;
+  final List<InboxMessage> orderId;
 
   @override
   _InvoiceGarenaState createState() => _InvoiceGarenaState();
@@ -27,21 +28,21 @@ class _InvoiceGarenaState extends State<InvoiceGarena> {
       appBar: AppBar(
         title: const Text("Capture"),
         actions: [
-          // IconButton(
-          //   onPressed: () async {
-          //     final data = await UtilHelper.capture(key1);
-          //     setState(() {
-          //       bytes1 = data;
-          //     });
-          //   },
-          //   icon: const Icon(Icons.cabin),
-          // ),
           IconButton(
             onPressed: () async {
               final data = await UtilHelper.capture(key1);
               setState(() {
                 bytes1 = data;
               });
+            },
+            icon: const Icon(Icons.camera_alt),
+          ),
+          IconButton(
+            onPressed: () async {
+              // final data = await UtilHelper.capture(key1);
+              // setState(() {
+              //   bytes1 = data;
+              // });
               await PrintHelper.printTicket2(bytes1);
             },
             icon: const Icon(Icons.print),
@@ -69,13 +70,22 @@ class _InvoiceGarenaState extends State<InvoiceGarena> {
                         ),
                       ),
                     ),
+                    // child: FittedBox(
+                    //   child: Column(
+                    //     children: widget.groupMessage.map((e) {
+                    //       return e[0].category.contains("1001")
+                    //           ? Invoice().genGarena(e)
+                    //           : Invoice().genOther(e);
+                    //     }).toList(),
+                    //   ),
+                    // ),
                     child: FittedBox(
                       child: Column(
-                        children: widget.groupMessage.map((e) {
-                          return e[0].category.contains("1001")
-                              ? Invoice().genGarena(e)
-                              : Invoice().genOther(e);
-                        }).toList(),
+                        children: widget.orderId
+                            .map((e) => e.category.contains("1001")
+                                ? InvoiceSingle().genGarena(e)
+                                : InvoiceSingle().genOther(e))
+                            .toList(),
                       ),
                     ),
                   );

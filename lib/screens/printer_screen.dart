@@ -6,6 +6,8 @@ import 'package:onestore/helper/printer_helper.dart';
 
 class PrinterSetting extends StatefulWidget {
   static const routeName = "/printer-setting";
+
+  const PrinterSetting({Key? key}) : super(key: key);
   @override
   _PrinterSettingState createState() => _PrinterSettingState();
 }

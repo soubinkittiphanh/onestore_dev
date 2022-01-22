@@ -36,12 +36,12 @@ class UserInboxService {
     }
   }
 
-  static Future<void> markReaded(card_number) async {
+  static Future<void> markReaded(cardNumber) async {
     final url = Uri.parse(hostname + "user_inbox_markreaded_u");
     final response = await http.post(
       url,
       body: convert.json.encode({
-        "card_number": card_number,
+        "card_number": cardNumber,
       }),
       headers: {
         "accept": "application/json",

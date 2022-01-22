@@ -145,8 +145,8 @@ class _MainDrawerState extends State<MainDrawer> {
               color: Colors.red,
             ),
             onTap: () {
-              Navigator.of(context)
-                  .push(MaterialPageRoute(builder: (ctx) => PrinterSetting()));
+              Navigator.of(context).push(
+                  MaterialPageRoute(builder: (ctx) => const PrinterSetting()));
             },
             title: const Text("Printer",
                 style: TextStyle(fontFamily: 'noto san lao')),

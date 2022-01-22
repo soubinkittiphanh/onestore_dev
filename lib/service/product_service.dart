@@ -41,6 +41,7 @@ class ProductService {
           proCategory: el["categ_name"],
           stock: el["card_count"],
           saleCount: el["sale_count"],
+          retailPrice: el["retail_cost_percent"].toDouble(),
         );
       }).toList();
       productContr.addProduct(_loadProduct);

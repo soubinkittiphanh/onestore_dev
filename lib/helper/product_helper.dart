@@ -32,6 +32,7 @@ class ProductHelper {
           proPrice: (el["pro_price"]).toDouble(),
           proDesc: el["pro_desc"],
           proStatus: el["pro_status"],
+          retailPrice: el["retail_cost_percent"].toDouble(),
           proImagePath: imagePath,
           proCategory: el["categ_name"],
           stock: el["card_count"],

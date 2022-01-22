@@ -56,13 +56,30 @@ class _CartOverviewState extends State<CartOverview> {
                 "ລາຍງານ",
                 style: TextStyle(fontFamily: 'noto san lao'),
               ),
-              content: Text(
-                info,
-                style: const TextStyle(fontFamily: 'noto san lao'),
+              content: FittedBox(
+                child: Column(
+                  children: [
+                    Text(
+                      info,
+                      style: const TextStyle(fontFamily: 'noto san lao'),
+                    ),
+                    info.contains("complete")
+                        ? const Icon(
+                            Icons.check_circle_outline,
+                            color: Colors.green,
+                            size: 50,
+                          )
+                        : const Icon(
+                            Icons.error_outline,
+                            color: Colors.red,
+                            size: 50,
+                          )
+                  ],
+                ),
               ),
               actions: [
                 CupertinoDialogAction(
-                    child: TextButton(
+                    child: RaisedButton(
                   child: const Text("Ok"),
                   onPressed: () {
                     Navigator.of(context).pop();
@@ -70,7 +87,7 @@ class _CartOverviewState extends State<CartOverview> {
                 )),
                 if (info.contains("complete"))
                   CupertinoDialogAction(
-                      child: TextButton(
+                      child: RaisedButton(
                     child: const Text("ພິມບິນ"),
                     onPressed: () async {
                       // Load order list
@@ -99,19 +116,36 @@ class _CartOverviewState extends State<CartOverview> {
                 "ລາຍງານ",
                 style: TextStyle(fontFamily: 'noto san lao'),
               ),
-              content: Text(
-                info,
-                style: const TextStyle(fontFamily: 'noto san lao'),
+              content: FittedBox(
+                child: Column(
+                  children: [
+                    Text(
+                      info,
+                      style: const TextStyle(fontFamily: 'noto san lao'),
+                    ),
+                    info.contains("complete")
+                        ? const Icon(
+                            Icons.check_circle_outline,
+                            color: Colors.green,
+                            size: 50,
+                          )
+                        : const Icon(
+                            Icons.error_outline,
+                            color: Colors.red,
+                            size: 50,
+                          )
+                  ],
+                ),
               ),
               actions: [
-                TextButton(
+                RaisedButton(
                   onPressed: () {
                     Navigator.of(context).pop();
                   },
                   child: const Text("Ok"),
                 ),
                 if (info.contains("complete"))
-                  TextButton(
+                  RaisedButton(
                     onPressed: () async {
                       context.loaderOverlay.show();
                       await _loadExternaleData();

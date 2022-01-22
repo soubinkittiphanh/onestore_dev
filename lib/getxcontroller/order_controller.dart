@@ -34,9 +34,9 @@ class OrderController extends GetxController {
 
   List<Order> get orderItemNotDuplicate {
     List<Order> _orderItemNotDuplicate = [];
-    var i = 0;
+    // var i = 0;
     for (var element in _orderItem) {
-      i++;
+      // i++;
       // log("message" + i.toString());
       if (_orderItemNotDuplicate
               .indexWhere((el) => el.orderId == element.orderId) >=

@@ -4,8 +4,6 @@ import 'package:onestore/config/host_con.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert' as convert;
 
-import 'package:onestore/models/inquiry_model.dart';
-
 class InquiryService {
   // final ;
   Future<void> submitChat(String chatType, String message, String userId,
@@ -51,11 +49,11 @@ class InquiryService {
     var response = await http.get(url);
     if (response.statusCode == 200) {
       var jsonResponse = convert.jsonDecode(response.body) as List;
-      InquiryModel inqModel = InquiryModel(
-        bankCode: jsonResponse[0]['categ_id'],
-        bankAcID: "bankAcID",
-        bankAcName: "bankAcName",
-      );
+      // InquiryModel inqModel = InquiryModel(
+      //   bankCode: jsonResponse[0]['categ_id'],
+      //   bankAcID: "bankAcID",
+      //   bankAcName: "bankAcName",
+      // );
 
       log(jsonResponse.toString());
       // productContr.addProductCategory(_loadCategory);

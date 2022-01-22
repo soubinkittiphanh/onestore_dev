@@ -63,16 +63,19 @@ class _ProductDetailCompState extends State<ProductDetailComp> {
               Navigator.of(context).pop();
               widget.pageChange(1);
             },
-            icon: Column(
-              children: [
-                GetBuilder<CartController>(builder: (ctr) {
-                  return Text(ctr.cartCount.toString());
-                }),
-                const Icon(
-                  Icons.shopping_cart_outlined,
-                  color: Colors.white,
-                ),
-              ],
+            icon: FittedBox(
+              fit: BoxFit.fitHeight,
+              child: Column(
+                children: [
+                  GetBuilder<CartController>(builder: (ctr) {
+                    return Text(ctr.cartCount.toString());
+                  }),
+                  const Icon(
+                    Icons.shopping_cart_outlined,
+                    color: Colors.white,
+                  ),
+                ],
+              ),
             ),
           )
         ],
@@ -103,7 +106,22 @@ class _ProductDetailCompState extends State<ProductDetailComp> {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text("ຈຳນວນຂາຍແລ້ວ: ${widget.product.saleCount}"),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text("ຈຳນວນຂາຍແລ້ວ: ${widget.product.saleCount}"),
+                              Card(
+                                color: Colors.red,
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Text(
+                                    "ສ່ວນລົດ: ${widget.product.retailPrice} %",
+                                    style: const TextStyle(color: Colors.white),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
@@ -137,8 +155,16 @@ class _ProductDetailCompState extends State<ProductDetailComp> {
                                       color: Colors.red,
                                     ),
                                   ),
+                                  if (widget.product.retailPrice > 0)
+                                    Text(
+                                      f.format(widget.product.proPrice),
+                                      style: const TextStyle(
+                                          color: Colors.red,
+                                          decoration:
+                                              TextDecoration.lineThrough),
+                                    ),
                                   Text(
-                                      "ລາຄາ: ${f.format(widget.product.proPrice)}"),
+                                      "ລາຄາ: ${f.format(widget.product.proPrice - (widget.product.proPrice * widget.product.retailPrice / 100))}"),
                                 ],
                               )
                             ],

@@ -10,6 +10,7 @@ class Product {
   final String categName;
   final int stock;
   final int saleCount;
+  final double retailPrice;
 
   Product({
     required this.proId,
@@ -23,5 +24,6 @@ class Product {
     required this.categName,
     required this.stock,
     required this.saleCount,
+    required this.retailPrice,
   });
 }

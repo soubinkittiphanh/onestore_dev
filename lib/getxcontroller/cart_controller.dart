@@ -8,26 +8,41 @@ class CartController extends GetxController {
   final List<CartItem> _cartItem = [];
   void addCart(Product pro, int qty) {
     if (_cartItem.isEmpty) {
-      _cartItem.add(CartItem(pro.proId, qty, pro.proPrice, pro.proPrice));
+      _cartItem.add(CartItem(
+        proId: pro.proId,
+        qty: qty,
+        price: pro.proPrice,
+        priceTotal: pro.proPrice,
+        priceRetail: pro.proPrice - (pro.proPrice * pro.retailPrice / 100),
+      ));
       update();
       log("Empty");
     } else {
       log("product id: " + pro.proId.toString());
       CartItem existProduct = _cartItem.firstWhere(
-          (element) => element.proId == pro.proId,
-          orElse: () => CartItem(0, 0, 0.00, 0.00));
+        (element) => element.proId == pro.proId,
+        orElse: () => CartItem(
+            proId: 0, qty: 0, price: 0.00, priceTotal: 0.00, priceRetail: 0.00),
+      );
       log("exist product id: " + existProduct.proId.toString());
       if (existProduct.proId <= 0) {
         //there is not exist product in the cart
-        _cartItem.add(CartItem(pro.proId, qty, pro.proPrice, pro.proPrice));
+        _cartItem.add(CartItem(
+            proId: pro.proId,
+            qty: qty,
+            price: pro.proPrice,
+            priceTotal: pro.proPrice,
+            priceRetail:
+                pro.proPrice - (pro.proPrice * pro.retailPrice / 100)));
         update();
         log("Not empty and not exist");
       } else {
         CartItem updateProduct = CartItem(
-          pro.proId,
-          existProduct.qty + qty,
-          existProduct.price,
-          pro.proPrice * (existProduct.qty + qty),
+          proId: pro.proId,
+          qty: existProduct.qty + qty,
+          price: existProduct.price,
+          priceTotal: pro.proPrice * (existProduct.qty + qty),
+          priceRetail: existProduct.priceRetail,
         );
         _cartItem
             .removeWhere((element) => element.proId == updateProduct.proId);
@@ -41,9 +56,15 @@ class CartController extends GetxController {
   }
 
   void removeOneCart(Product pro) {
-    CartItem existProduct = _cartItem.firstWhere(
-        (element) => element.proId == pro.proId,
-        orElse: () => CartItem(0, 0, 0.00, 0.00));
+    CartItem existProduct =
+        _cartItem.firstWhere((element) => element.proId == pro.proId,
+            orElse: () => CartItem(
+                  proId: 0,
+                  qty: 0,
+                  price: 0.00,
+                  priceTotal: 0.00,
+                  priceRetail: 0.00,
+                ));
     log(
       "exist product id: " +
           existProduct.proId.toString() +
@@ -52,10 +73,11 @@ class CartController extends GetxController {
     );
 
     CartItem updateProduct = CartItem(
-      pro.proId,
-      existProduct.qty - 1,
-      existProduct.price,
-      pro.proPrice * (existProduct.qty - 1),
+      proId: pro.proId,
+      qty: existProduct.qty - 1,
+      price: existProduct.price,
+      priceTotal: pro.proPrice * (existProduct.qty - 1),
+      priceRetail: existProduct.priceRetail,
     );
     _cartItem.removeWhere((element) => element.proId == updateProduct.proId);
     _cartItem.add(updateProduct);

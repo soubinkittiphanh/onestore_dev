@@ -58,7 +58,12 @@ class CompProductItem extends StatelessWidget {
             ),
           ),
         ),
-        Text('ລາຄາ: ${f.format(pro.proPrice)}')
+        Text(
+            'ລາຄາ: ${f.format(pro.proPrice - (pro.proPrice * pro.retailPrice / 100))}'),
+        Text(
+          "ສ່ວນລົດ: ${pro.retailPrice} %",
+          style: const TextStyle(color: Colors.red),
+        )
       ],
     );
   }

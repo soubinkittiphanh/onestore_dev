@@ -60,7 +60,7 @@ class PrintCheck {
             log("Size: " + garenaItem.length.toString());
             if (garenaItem.isNotEmpty) {
               allGroupMessageData.add([...garenaItem]);
-              await garena([...garenaItem]);
+              // await garena([...garenaItem]);
             }
           }
           break;
@@ -68,7 +68,7 @@ class PrintCheck {
           {
             if (unitelItem.isNotEmpty) {
               allGroupMessageData.add([...unitelItem]);
-              await other([...unitelItem]);
+              // await other([...unitelItem]);
             }
           }
           break;
@@ -76,7 +76,7 @@ class PrintCheck {
           {
             if (ltcItem.isNotEmpty) {
               allGroupMessageData.add([...ltcItem]);
-              await other([...ltcItem]);
+              // await other([...ltcItem]);
             }
           }
           break;
@@ -84,7 +84,7 @@ class PrintCheck {
           {
             if (trueItem.isNotEmpty) {
               allGroupMessageData.add([...trueItem]);
-              await other([...trueItem]);
+              // await other([...trueItem]);
             }
           }
           break;
@@ -92,7 +92,7 @@ class PrintCheck {
           {
             if (loyalItem.isNotEmpty) {
               allGroupMessageData.add([...loyalItem]);
-              await other([...loyalItem]);
+              // await other([...loyalItem]);
             }
           }
           break;
@@ -100,7 +100,7 @@ class PrintCheck {
           {
             if (etlItem.isNotEmpty) {
               allGroupMessageData.add([...etlItem]);
-              await other([...etlItem]);
+              // await other([...etlItem]);
             }
           }
           break;
@@ -108,7 +108,7 @@ class PrintCheck {
           {
             if (beelineItem.isNotEmpty) {
               allGroupMessageData.add([...beelineItem]);
-              await other([...beelineItem]);
+              // await other([...beelineItem]);
             }
           }
           break;
@@ -116,6 +116,7 @@ class PrintCheck {
       }
     }
     Navigator.of(context).push(MaterialPageRoute(
-        builder: (ctx) => InvoiceGarena(groupMessage: allGroupMessageData)));
+        // builder: (ctx) => InvoiceGarena(groupMessage: allGroupMessageData)));
+        builder: (ctx) => InvoiceGarena(orderId: messageData)));
   }
 }
