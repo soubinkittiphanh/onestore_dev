@@ -20,14 +20,27 @@ class RegisterService {
           "cust_phone": cus.custTel,
           "cust_email": cus.custEmail,
           "cust_gameId": cus.custGameId,
+          "cust_village": cus.custVillage,
+          "cust_district": cus.custDistrict,
+          "cust_province": cus.custProvince,
         }),
         headers: {
           "accept": "application/json",
           "content-type": "application/json",
+          // 'Content-Type': 'multipart/form-data' ,
         });
     if (respones.statusCode == 200) {
       if (respones.body.contains("completed")) {
         //Transaction complete
+        //         Map<String, String> body = {
+        //     'remark': "FILE FROM USER PROFILE PHOTO",
+        //     'ref': cus.custEmail.isEmpty?cus.custTel:cus.custEmail,
+        //     'app_id': "IMG_PROFILE",
+        //   };
+        //   log("Image path: " + _selImage.path);
+        //   ImageUploadService.uploadImage2(
+        //       body, _selImage.path, _selImage);
+        // };
 
         return 200;
       } else {
@@ -40,4 +53,11 @@ class RegisterService {
       return 404;
     }
   }
+
+  // Future uploadProfilePhoto(image) async {
+  //   var url = Uri.parse(hostname + "uploadProfile");
+  //   var response = await http.post(url, headers: {
+  //     'Content-Type': 'multipart/form-data',
+  //   });
+  // }
 }

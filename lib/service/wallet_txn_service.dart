@@ -13,6 +13,7 @@ class WalletTxnService {
   static final walletTxnController = Get.put(WalletTxnController());
   final userInfoController = Get.put(UserInfoController());
   static Future<void> loadTxn(String userId) async {
+    log("Loading Txn ===>");
     final url = Uri.parse(hostname + "wallettxn_crndr_f")
         .resolveUri(Uri(queryParameters: {"user_id": userId}));
     final response = await http.get(
@@ -36,6 +37,7 @@ class WalletTxnService {
             ),
           )
           .toList();
+      log("======> WALLET TXN LEN: " + walletTxnItem.length.toString());
       walletTxnController.setWalletTxnItem(walletTxnItem);
       loadTxnFromOrders(userId);
     } else {

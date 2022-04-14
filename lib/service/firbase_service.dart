@@ -62,20 +62,20 @@ class FirebaseService {
     }
   }
 
-  Future loginWithEmail(email, password) async {
-    try {
-      final userCredential = await firebaseAuth.signInWithEmailAndPassword(
-          email: email, password: password);
-      // ignore: unnecessary_null_comparison
-      // firebaseAuth.verifyPasswordResetCode('code');
-      if (userCredential.user!.uid != null) {
-        log("Loin succeed with email: " +
-            userCredential.user!.email.toString());
-      } else {
-        log("Fail loin");
-      }
-    } catch (e) {
-      log("==> Login fail" + e.toString());
-    }
-  }
+  // Future loginWithEmail(email, password) async {
+  //   try {
+  //     final userCredential = await firebaseAuth.signInWithEmailAndPassword(
+  //         email: email, password: password);
+  //     // ignore: unnecessary_null_comparison
+  //     // firebaseAuth.verifyPasswordResetCode('code');
+  //     if (userCredential.user!.uid != null) {
+  //       log("Loin succeed with email: " +
+  //           userCredential.user!.email.toString());
+  //     } else {
+  //       log("Fail loin");
+  //     }
+  //   } catch (e) {
+  //     log("==> Login fail" + e.toString());
+  //   }
+  // }
 }

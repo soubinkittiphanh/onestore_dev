@@ -1,10 +1,14 @@
 import 'dart:convert';
 import 'dart:developer';
 import 'dart:convert' as convert;
+import 'dart:io';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:loader_overlay/loader_overlay.dart';
+import 'package:onestore/api/alert_smart.dart';
 import 'package:onestore/config/host_con.dart';
 import 'package:onestore/getxcontroller/user_info_controller.dart';
 import 'package:onestore/screens/home.dart';
@@ -23,6 +27,7 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   final _txtUserController = TextEditingController();
   final _txtPassController = TextEditingController();
+  File? image;
   bool rememberMe = false;
   @override
   void initState() {
@@ -43,30 +48,32 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   Future<void> _showInfoDialog(String info) async {
-    return showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            title: const Text("Material"),
-            content: Text(
-              info,
-              style: const TextStyle(fontFamily: "Noto san lao"),
-            ),
-            actions: [
-              TextButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-                child: const Text(
-                  "ຕົກລົງ",
-                  style: TextStyle(
-                    fontFamily: 'noto san lao',
-                  ),
-                ),
-              ),
-            ],
-          );
-        });
+    return AlertSmart.errorDialog(context, info);
+
+    // return showDialog(
+    //     context: context,
+    //     builder: (BuildContext context) {
+    //       return AlertDialog(
+    //         title: const Text("Material"),
+    //         content: Text(
+    //           info,
+    //           style: const TextStyle(fontFamily: "Noto san lao"),
+    //         ),
+    //         actions: [
+    //           TextButton(
+    //             onPressed: () {
+    //               Navigator.of(context).pop();
+    //             },
+    //             child: const Text(
+    //               "ຕົກລົງ",
+    //               style: TextStyle(
+    //                 fontFamily: 'noto san lao',
+    //               ),
+    //             ),
+    //           ),
+    //         ],
+    //       );
+    //     });
   }
 
   @override
@@ -98,8 +105,11 @@ class _LoginScreenState extends State<LoginScreen> {
 
       final response = await http.post(
         uri,
-        body:
-            jsonEncode({"cus_id": loginId, "cus_pwd": _txtPassController.text}),
+        body: jsonEncode({
+          "cus_id": loginId,
+          "cus_pwd": _txtPassController.text,
+          "version": release,
+        }),
         headers: {
           "accept": "application/json",
           "content-type": "application/json",
@@ -107,22 +117,39 @@ class _LoginScreenState extends State<LoginScreen> {
       );
       if (response.statusCode == 200) {
         log("response: => " + response.body);
-        var responseJson = convert.jsonDecode(response.body);
-        String token = responseJson["accessToken"];
-        if (token.isEmpty) {
+        if (response.body.contains("Error")) {
+          log("Body contain error");
           context.loaderOverlay.hide();
-          await _showInfoDialog("ລະຫັດຜ່ານ ຫລື ໄອດີບໍ່ຖືກຕ້ອງ");
+          await _showInfoDialog(
+              "Server Error: " + response.body.split(":").last);
         } else {
+          var responseJson = convert.jsonDecode(response.body);
+
+          String token = responseJson["accessToken"];
+          if (token.isEmpty) {
+            context.loaderOverlay.hide();
+            return await _showInfoDialog("ລະຫັດຜ່ານ ຫລື ໄອດີບໍ່ຖືກຕ້ອງ");
+          }
           String name = responseJson["userName"];
           String id = responseJson["userId"].toString();
           String phone = responseJson["userPhone"].toString();
           String email = responseJson["userEmail"].toString();
           double debit = double.parse(responseJson["userDebit"].toString());
           double credit = double.parse(responseJson["userCredit"].toString());
-          log(responseJson["accessToken"]);
-          log(responseJson["userName"]);
+          String profileImage = responseJson["img_path"].toString();
+          log("IMAGE: " + profileImage);
+          log('Token: ' + responseJson["accessToken"]);
+          log('User name: ' + responseJson["userName"]);
           userInfoContoller.setUserInfo(
-              name, token, id, phone, email, debit, credit);
+            name,
+            token,
+            id,
+            phone,
+            email,
+            debit,
+            credit,
+            profileImage,
+          );
           //Credential remember
           rememberMe ? await _setCredentail() : await _clearCredentail();
           await Ad.loadAd();
@@ -152,6 +179,17 @@ class _LoginScreenState extends State<LoginScreen> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                const Text(
+                  "JFILL ONLINE",
+                  style: TextStyle(
+                    fontSize: 24,
+                    fontStyle: FontStyle.italic,
+                    color: Colors.pink,
+                  ),
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
                 const Text("Login"),
                 const SizedBox(
                   height: 20,
@@ -317,6 +355,11 @@ class _LoginScreenState extends State<LoginScreen> {
                       onPressed: () => {
                         Navigator.of(context)
                             .pushNamed(RegistEmailScreen.routerName)
+                        // Navigator.of(context).push(
+                        //   MaterialPageRoute(
+                        //     builder: (ctx) => const RegisterFormScreen(),
+                        //   ),
+                        // )
                       },
                       child: Text(
                         "ລົງທະບຽນ?",
@@ -344,6 +387,15 @@ class _LoginScreenState extends State<LoginScreen> {
         ]),
       ),
     );
+  }
+}
+
+Future pickImage() async {
+  try {
+    final image = await ImagePicker().pickImage(source: ImageSource.camera);
+    if (image == null) return;
+  } on PlatformException catch (e) {
+    log("Error: " + e.message.toString());
   }
 }
 

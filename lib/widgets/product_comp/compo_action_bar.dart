@@ -48,7 +48,7 @@ class _CompoActionBarState extends State<CompoActionBar> {
   @override
   Widget build(BuildContext context) {
     return Align(
-      alignment: Alignment.bottomRight,
+      alignment: Alignment.bottomCenter,
       child: ClipRRect(
         borderRadius: BorderRadius.circular(12),
         child: Container(

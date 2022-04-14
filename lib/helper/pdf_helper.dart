@@ -24,7 +24,7 @@ class PDFHelper {
     final fontNumber = await rootBundle.load("asset/font/GillSansNova.ttf");
     // final ByteData bytes = await rootBundle.load('assets/logo.jpg');
     // final Uint8List listAbcd = bytes.buffer.asUint8List();
-
+    // final document = Document();
     final ttf = pw.Font.ttf(font);
     var customDate = date.substring(0, 10);
     var year = customDate.substring(0, 4);

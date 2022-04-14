@@ -7,6 +7,7 @@ class Order {
   final double price;
   final double total;
   final String proName;
+  final double proDiscount;
   Order(
     this.orderId,
     this.orderDate,
@@ -16,5 +17,6 @@ class Order {
     this.price,
     this.total,
     this.proName,
+    this.proDiscount,
   );
 }

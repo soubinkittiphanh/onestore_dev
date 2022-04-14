@@ -2,6 +2,8 @@ import 'dart:developer';
 
 import 'package:bluetooth_thermal_printer/bluetooth_thermal_printer.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:onestore/getxcontroller/printer_check_constroller.dart';
 import 'package:onestore/helper/printer_helper.dart';
 
 class PrinterSetting extends StatefulWidget {
@@ -19,6 +21,7 @@ class _PrinterSettingState extends State<PrinterSetting> {
     super.initState();
   }
 
+  final printerConCheckContrx = Get.put(PrinterConnectionCheck());
   bool connected = false;
   List<dynamic> availableBluetoothDevices = []; // = new List();
 
@@ -64,6 +67,7 @@ class _PrinterSettingState extends State<PrinterSetting> {
 
   @override
   Widget build(BuildContext context) {
+    bool printerConnectionCheck = printerConCheckContrx.disablePrinterCheck;
     return Scaffold(
       appBar: AppBar(
         title: const Text('ຕັ້ງຄ່າການເຊື່ອມຕໍ່ເຄື່ອງພິມ'),
@@ -75,12 +79,38 @@ class _PrinterSettingState extends State<PrinterSetting> {
           crossAxisAlignment: CrossAxisAlignment.start,
           // mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
+            GetBuilder<PrinterConnectionCheck>(builder: (ctx) {
+              return Container(
+                decoration: BoxDecoration(
+                    border: Border.all(width: 0.3),
+                    borderRadius: const BorderRadius.all(Radius.circular(5))),
+                child: SwitchListTile(
+                  value: printerConnectionCheck,
+                  onChanged: (val) {
+                    log("Disable: " + val.toString());
+                    setState(() {
+                      printerConnectionCheck = !printerConnectionCheck;
+                      ctx.setPrinterCheckStatus(printerConnectionCheck);
+                    });
+                    // printerConCheckContrx.setPrinterCheckStatus(val);
+                  },
+                  title: const Text(
+                    "ປິດ-ເປີດ ການກວດປິນເຕີ ກ່ອນພິມ ແລະ ສັ່ງ",
+                    style: TextStyle(fontFamily: 'noto san lao'),
+                  ),
+                ),
+              );
+            }),
+            const SizedBox(height: 20),
             const Text("ຄົ້ນຫາເຄື່ອງພິມທີ່ເຄີຍເຊື່ອມຕໍ່ແລ້ວ"),
-            OutlineButton(
+            ElevatedButton(
               onPressed: () {
                 getBluetooth();
               },
-              child: const Text("ຄົ້ນຫາ"),
+              child: const Text(
+                "ຄົ້ນຫາ",
+                style: TextStyle(fontFamily: 'noto san lao'),
+              ),
             ),
             Expanded(
               child: ListView.builder(
@@ -107,17 +137,23 @@ class _PrinterSettingState extends State<PrinterSetting> {
             const SizedBox(
               height: 30,
             ),
-            OutlineButton(
+            ElevatedButton(
               onPressed: () async {
                 if (connected) await PrintHelper.printGraphics();
               },
-              child: const Text("ທົດລອງພິມ"),
+              child: const Text(
+                "ທົດລອງພິມ",
+                style: TextStyle(fontFamily: 'noto san lao'),
+              ),
             ),
-            OutlineButton(
+            ElevatedButton(
               onPressed: () async {
                 await _initPrinterState();
               },
-              child: const Text("ເຊັກສະຖານະການເຊື່ອມຕໍ່"),
+              child: const Text(
+                "ເຊັກສະຖານະການເຊື່ອມຕໍ່",
+                style: TextStyle(fontFamily: 'noto san lao'),
+              ),
             ),
             const Divider(),
             Container(

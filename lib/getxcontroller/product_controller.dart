@@ -29,6 +29,7 @@ class ProductController extends GetxController {
   Product productId(id) {
     log("Product id: " + id.toString());
     final product = _product.firstWhere((el) => el.proId == id);
+    log("Product len: => " + product.categName);
     return product;
   }
 }

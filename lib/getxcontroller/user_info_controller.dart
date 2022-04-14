@@ -11,17 +11,20 @@ class UserInfoController extends GetxController {
     email: "",
     debit: 0.00,
     credit: 0.00,
+    profileImage: '',
   );
   void setUserInfo(String user, String token, String id, String phone,
-      String email, double debit, double credit) {
+      String email, double debit, double credit, String profileImage) {
     userCredentail = UserInfo(
-        userName: user,
-        token: token,
-        userId: id,
-        phone: phone,
-        email: email,
-        debit: debit,
-        credit: credit);
+      userName: user,
+      token: token,
+      userId: id,
+      phone: phone,
+      email: email,
+      debit: debit,
+      credit: credit,
+      profileImage: profileImage,
+    );
     log("Done user info");
     update();
   }
@@ -54,6 +57,10 @@ class UserInfoController extends GetxController {
     return userCredentail.debit;
   }
 
+  String get userImage {
+    return userCredentail.profileImage;
+  }
+
   void setUserBalance(dynamic bal) {
     log("updateing");
     log("bal credit" + bal[0].toString());
@@ -66,6 +73,7 @@ class UserInfoController extends GetxController {
       email: userCredentail.email,
       credit: double.parse(bal[0].toString()),
       debit: double.parse(bal[1].toString()),
+      profileImage: userCredentail.profileImage,
     );
     log("update completed");
     update();

@@ -24,17 +24,6 @@ class InvoiceFooterGarena extends StatelessWidget {
               textStyle: const TextStyle(fontSize: 7),
             ),
           ),
-          // Container(
-          //   height: 80,
-          //   width: 10,
-          //   child: SfBarcodeGenerator(
-          //     value: qrCode,
-          //     // showValue: true,
-          //     // symbology: ,
-          //     // textSpacing: 10,
-          //     // textStyle: TextStyle(fontSize: 7),
-          //   ),
-          // ),
 
           const Text('ADMIN: 020 9748 9646'),
           Text('ເວລາພິມ: ${formater.format(today)}'),

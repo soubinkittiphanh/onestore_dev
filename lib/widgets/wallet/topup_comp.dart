@@ -40,7 +40,10 @@ class TopupComp extends StatelessWidget {
               style: const TextStyle(color: Colors.green),
             ),
           ),
-          itemCount: walletTxnController.loadWalletTxnCR.length,
+          itemCount: walletTxnController.loadWalletTxnCR.length > 30
+              ? (walletTxnController.loadWalletTxnCR.length + 20) -
+                  walletTxnController.loadWalletTxnCR.length
+              : walletTxnController.loadWalletTxnCR.length,
         );
       }),
     );

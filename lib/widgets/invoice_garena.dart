@@ -1,11 +1,15 @@
+import 'dart:async';
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
-import 'package:flutter/painting.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
+import 'package:loader_overlay/loader_overlay.dart';
 import 'package:onestore/getxcontroller/message_controller.dart';
 import 'package:onestore/helper/printer_helper.dart';
 import 'package:onestore/helper/util_helper.dart';
 import 'package:onestore/models/inbox_message.dart';
+import 'package:onestore/screens/printer_screen.dart';
 import 'package:onestore/widgets/invoice/invoice_single.dart';
 import 'package:onestore/widgets/widget_to_image.dart';
 
@@ -24,78 +28,76 @@ class _InvoiceGarenaState extends State<InvoiceGarena> {
   final messageController = Get.put(MessageController());
   @override
   Widget build(BuildContext context) {
+    Future<bool> _isPrintCon() async {
+      final isconnect = await PrintHelper.checkPrinter();
+      return isconnect;
+    }
+
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Capture"),
-        actions: [
-          IconButton(
-            onPressed: () async {
-              final data = await UtilHelper.capture(key1);
-              setState(() {
-                bytes1 = data;
-              });
-            },
-            icon: const Icon(Icons.camera_alt),
-          ),
-          IconButton(
-            onPressed: () async {
-              // final data = await UtilHelper.capture(key1);
-              // setState(() {
-              //   bytes1 = data;
-              // });
-              await PrintHelper.printTicket2(bytes1);
-            },
-            icon: const Icon(Icons.print),
-          )
-        ],
+        title: const Text("ພິມບິນ"),
       ),
-      body: Center(
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              WidgetToImage(
-                builder: (key) {
-                  key1 = key;
-                  return Container(
-                    width: 130,
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        width: 0.5,
-                        color: Colors.red,
-                      ),
-                      borderRadius: const BorderRadius.all(
-                        Radius.circular(
-                          10,
+      body: LoaderOverlay(
+        child: Center(
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                WidgetToImage(
+                  builder: (key) {
+                    key1 = key;
+                    return SizedBox(
+                      width: 130,
+                      child: FittedBox(
+                        child: Column(
+                          children: widget.orderId
+                              .map(
+                                (e) => e.category.contains("1001")
+                                    ? InvoiceSingle().genGarena(e)
+                                    : InvoiceSingle().genOther(e),
+                              )
+                              .toList(),
                         ),
                       ),
-                    ),
-                    // child: FittedBox(
-                    //   child: Column(
-                    //     children: widget.groupMessage.map((e) {
-                    //       return e[0].category.contains("1001")
-                    //           ? Invoice().genGarena(e)
-                    //           : Invoice().genOther(e);
-                    //     }).toList(),
-                    //   ),
-                    // ),
-                    child: FittedBox(
-                      child: Column(
-                        children: widget.orderId
-                            .map((e) => e.category.contains("1001")
-                                ? InvoiceSingle().genGarena(e)
-                                : InvoiceSingle().genOther(e))
-                            .toList(),
-                      ),
-                    ),
-                  );
-                },
-              ),
-              buildImage(bytes1),
-            ],
+                    );
+                  },
+                ),
+                buildImage(bytes1),
+              ],
+            ),
           ),
         ),
       ),
+      floatingActionButton: SizedBox(
+        width: 80,
+        height: 80,
+        child: FloatingActionButton(
+          onPressed: () async {
+            context.loaderOverlay.show();
+
+            if (!await _isPrintCon()) {
+              context.loaderOverlay.hide();
+              Navigator.of(context).push(
+                  MaterialPageRoute(builder: (ctx) => const PrinterSetting()));
+              return;
+              // return _alert('ກະລຸນາເຊື່ອມຕໍ່ເຄື່ອງພິມ');
+            }
+            final data = await UtilHelper.capture(key1);
+            context.loaderOverlay.hide();
+            setState(() {
+              bytes1 = data;
+            });
+            log("bbbb" + bytes1);
+
+            await PrintHelper.printTicket2(bytes1);
+          },
+          child: const Icon(
+            Icons.print,
+            size: 50,
+          ),
+        ),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );
   }
 

@@ -16,11 +16,11 @@ class ProductService {
     var url = Uri.parse(hostname + 'product_f');
 
     // Await the http get response, then decode the json-formatted response.
-    log("Loading...");
+    log("======> Loading product... " + DateTime.now().toString());
     var response = await http.get(url);
     if (response.statusCode == 200) {
       var jsonResponse = convert.jsonDecode(response.body) as List;
-
+      log("======> Loading product... completed " + DateTime.now().toString());
       _loadProduct = jsonResponse.map((el) {
         log("XXXXXX: " + el["img_name"].toString());
         //Check if image is null then so app not crash
@@ -69,11 +69,14 @@ class ProductService {
           catDesc: el["categ_desc"],
         );
       }).toList();
-      _loadCategory.add(ProductCatetory(
-        catCode: 'all',
-        catName: "ທັງຫມົດ",
-        catDesc: "ທັງຫົມດ",
-      ));
+
+      _loadCategory.insert(
+          0,
+          ProductCatetory(
+            catCode: 'all',
+            catName: "ທັງຫມົດ",
+            catDesc: "ທັງຫົມດ",
+          ));
       log(jsonResponse.toString());
       productContr.addProductCategory(_loadCategory);
     } else {

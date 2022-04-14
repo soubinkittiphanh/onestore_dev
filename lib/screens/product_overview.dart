@@ -1,13 +1,12 @@
 import 'dart:async';
 import 'dart:developer';
-import 'dart:io';
-
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:onestore/models/product.dart';
 import 'package:onestore/service/advertise.dart';
 import 'package:onestore/widgets/category.dart';
 import 'package:onestore/widgets/compo_product_item.dart';
-import 'package:onestore/widgets/product_comp/compo_product_detail.dart';
+import 'package:onestore/screens/compo_product_detail.dart';
 
 class ProductOverview extends StatefulWidget {
   final List<Product> demoProducts;
@@ -26,22 +25,16 @@ class ProductOverview extends StatefulWidget {
 class _ProductOverviewState extends State<ProductOverview> {
   @override
   void initState() {
-    // TODO: implement initState
-
     super.initState();
-    // simply use this
     Timer.run(() {
       log("ad: " + Ad.isActive.toString());
       if (Ad.isactive == 1) {
         Ad.disableAd();
-
         showDialog(
           context: context,
-          builder: (_) {
-            return Platform.isIOS
-                ? Ad.showInfoDialogIos(context)
-                : Ad.showInfoDialogAndroid(context);
-          },
+          builder: (_) => Ad.showInfoDialogIos(
+            context,
+          ),
         );
       }
     });

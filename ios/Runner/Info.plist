@@ -11,7 +11,7 @@
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
-	<string>onestore</string>
+	<string>JFILL ONLINE</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
@@ -57,5 +57,11 @@
 	<string>https</string>
 	<string>http</string>
 	</array>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>To take your image</string>
+	<key>NSCameraUsageDescription</key>
+	<string>To chose your profile image</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>To capture audio for image picker plugin</string>
 </dict>
 </plist>

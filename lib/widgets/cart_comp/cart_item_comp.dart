@@ -12,16 +12,9 @@ class CartItemComp extends StatelessWidget {
     final cartProvider = Get.put(CartController());
     final f = NumberFormat("#,###");
     final cartItem = cartProvider.cartItemId(product.proId);
-    _addOne() {
-      cartProvider.addCart(product, 1);
-    }
-
-    _removeOne() {
-      if (cartItem.qty == 1) return cartProvider.removeCart(cartItem.proId);
-      cartProvider.removeOneCart(product);
-    }
 
     return Card(
+      key: key,
       child: Dismissible(
         key: Key(product.proId.toString()),
         background: Container(
@@ -30,7 +23,7 @@ class CartItemComp extends StatelessWidget {
         ),
         direction: DismissDirection.endToStart,
         onDismissed: (direction) {
-          cartProvider.removeCart(cartItem.proId);
+          // cartProvider.removeCart(cartItem.proId);
         },
         child: ListTile(
           leading: CircleAvatar(
@@ -53,44 +46,44 @@ class CartItemComp extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text("ຊື່ສິນຄ້າ: ${product.proName}",
-                    style: Theme.of(context).textTheme.bodyText2),
+                    style: Theme.of(context).textTheme.headline6),
                 Text(" ${f.format(cartItem.price)}",
-                    style: Theme.of(context).textTheme.bodyText2),
+                    style: Theme.of(context).textTheme.headline6),
               ],
             ),
           ),
-          subtitle: Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              Text(
-                "${f.format(cartItem.priceTotal)} ກີບ",
-                style: const TextStyle(
-                  decoration: TextDecoration.underline,
-                  color: Colors.black,
-                ),
-              ),
-              IconButton(
-                onPressed: _addOne,
-                icon: const Icon(Icons.add),
-              ),
-              const Text(" | "),
-              IconButton(
-                onPressed: _removeOne,
-                icon: const Icon(Icons.remove),
-              )
-            ],
-          ),
-          isThreeLine: true,
-          trailing: IconButton(
-            // color: Colors.white,
-            icon: const Icon(
-              Icons.delete_forever,
-              color: Colors.red,
-            ),
-            onPressed: () {
-              cartProvider.removeCart(cartItem.proId);
-            },
-          ),
+          // subtitle: Row(
+          //   mainAxisAlignment: MainAxisAlignment.end,
+          //   children: [
+          // Text(
+          //   "${f.format(cartItem.priceTotal)} ກີບ",
+          //   style: const TextStyle(
+          //     decoration: TextDecoration.underline,
+          //     color: Colors.black,
+          //   ),
+          // ),
+          // IconButton(
+          //   onPressed: _addOne,
+          //   icon: const Icon(Icons.add),
+          // ),
+          // const Text(" | "),
+          // IconButton(
+          //   onPressed: _removeOne,
+          //   icon: const Icon(Icons.remove),
+          // )
+          //   ],
+          // ),
+          // isThreeLine: true,
+          // trailing: IconButton(
+          //   // color: Colors.white,
+          //   icon: const Icon(
+          //     Icons.delete_forever,
+          //     color: Colors.red,
+          //   ),
+          //   onPressed: () {
+          //     cartProvider.removeCart(cartItem.proId);
+          //   },
+          // ),
         ),
       ),
     );

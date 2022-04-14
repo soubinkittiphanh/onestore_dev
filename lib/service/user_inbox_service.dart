@@ -9,6 +9,7 @@ class UserInboxService {
   static bool isRead = false;
   static Future<List<InboxMessage>> getInbox(
     String id,
+    String userName,
   ) async {
     final url = Uri.parse(hostname + "user_inbox_f")
         .resolveUri(Uri(queryParameters: {"cust_id": id}));
@@ -25,6 +26,7 @@ class UserInboxService {
           isRead: el["mark_readed"] == 1 ? true : false,
           qrCode: el["qrcode"],
           category: el["pro_category"].toString(),
+          sellerName: userName,
         );
       }).toList();
       log("Message len: " + _message.length.toString());

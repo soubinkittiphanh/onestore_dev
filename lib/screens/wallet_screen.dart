@@ -18,6 +18,13 @@ class _WalletScreenState extends State<WalletScreen> {
   final f = NumberFormat("#,###.##");
   final walletTxnController = Get.put(WalletTxnController());
   int _selectedPage = 0;
+  String maskNumber(double price) {
+    String maskNum = "";
+    for (var i = 0; i < price.toString().length; i++) {
+      maskNum += "";
+    }
+    return maskNum;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -83,12 +90,16 @@ class _WalletScreenState extends State<WalletScreen> {
                         ],
                       ),
                       const Text("ເຕີມ"),
-                      Text(
-                        f.format(
-                          walletTxnController.totalCR,
-                        ),
-                        style: const TextStyle(color: Colors.green),
+                      const Text(
+                        "****.00",
+                        style: TextStyle(color: Colors.green),
                       ),
+                      // Text(
+                      //   f.format(
+                      //     walletTxnController.totalCR,
+                      //   ),
+                      //   style: const TextStyle(color: Colors.green),
+                      // ),
                     ],
                   ),
                   const SizedBox(
@@ -111,8 +122,14 @@ class _WalletScreenState extends State<WalletScreen> {
                           ],
                         ),
                         const Text("ຖອນ / ຊື້"),
-                        Text(f.format(walletTxnController.totalDR),
-                            style: const TextStyle(color: Colors.red)),
+                        const Text(
+                          "****.00",
+                          style: TextStyle(color: Colors.red),
+                        ),
+                        // Text(
+                        //   f.format(walletTxnController.totalDR),
+                        //   style: const TextStyle(color: Colors.red),
+                        // ),
                       ],
                     ),
                   ),

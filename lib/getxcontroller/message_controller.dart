@@ -30,7 +30,7 @@ class MessageController extends GetxController {
     return unlreadInbox.length;
   }
 
-  List<InboxMessage> messageByOrderID(orderId) {
+  List<InboxMessage> messageByOrderID(String orderId) {
     final outwardMessage =
         _loadMessage.where((element) => element.orderId == orderId);
 

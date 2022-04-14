@@ -25,8 +25,8 @@ class _InboxOverivewScreenState extends State<InboxOverivewScreen> {
     final userInfoController = Get.put(UserInfoController());
     Future<void> messageFetch() async {
       // context.loaderOverlay.show();
-      messageController.setloadMessage(
-          await UserInboxService.getInbox(userInfoController.userId));
+      messageController.setloadMessage(await UserInboxService.getInbox(
+          userInfoController.userId, userInfoController.userName));
       // context.loaderOverlay.hide();
     }
 

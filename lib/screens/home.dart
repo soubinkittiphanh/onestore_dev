@@ -4,21 +4,25 @@ import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/utils.dart';
 import 'package:loader_overlay/loader_overlay.dart';
-import 'package:onestore/getxcontroller/cart_controller.dart';
+import 'package:onestore/config/host_con.dart';
 import 'package:onestore/getxcontroller/message_controller.dart';
+import 'package:onestore/getxcontroller/order_controller.dart';
 import 'package:onestore/getxcontroller/product_controller.dart';
 import 'package:onestore/getxcontroller/user_info_controller.dart';
+import 'package:onestore/getxcontroller/wallet_txn_controller.dart';
 import 'package:onestore/models/product.dart';
 import 'package:onestore/screens/contact_us.dart';
 import 'package:onestore/screens/message_overview_screen.dart';
 import 'package:onestore/screens/product_overview.dart';
 import 'package:onestore/screens/profile_screen.dart';
+import 'package:onestore/service/bank_service.dart';
 import 'package:onestore/service/inquiry_type_service.dart';
+import 'package:onestore/service/message_service.dart';
+import 'package:onestore/service/order_service.dart';
 import 'package:onestore/service/product_service.dart';
 import 'package:onestore/service/wallet_txn_service.dart';
 import 'package:onestore/widgets/main_drawer.dart';
 import 'package:get/get.dart';
-import 'cart_overview.dart';
 import 'order_overview.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -30,22 +34,26 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  String category = "";
   final productContr = Get.put(ProductController());
   final userInfoController = Get.put(UserInfoController());
   final productService = ProductService();
+  final messageController = Get.put(MessageController());
+  final orderController = Get.put(OrderController());
+
   int _selectedPage = 0;
-  String category = "";
   @override
   void initState() {
-    // TODO: implement initState
-    super.initState();
-    log("init state...");
     productService.loadProduct();
     productService.loadProductCategory();
     InquiryTypeService.initChatType();
     WalletTxnService.loadTxn(userInfoController.userId);
+    OrderService.loadOrder(userInfoController.userId);
+    MessageService.loadMessage(
+        userInfoController.userId, userInfoController.userName);
+    BankService.loadBank();
 
-    log("leng cagetory: " + productContr.productCategory.length.toString());
+    super.initState();
   }
 
   List<Product> _filterProductByCategory() {
@@ -58,24 +66,26 @@ class _MyHomePageState extends State<MyHomePage> {
           }).toList();
   }
 
+  _categoryChange(String cat) {
+    setState(() {
+      category = cat;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     // final userCreProvider = Provider.of<UserCredentialProvider>(context);
-    final cartProvider = Get.put(CartController());
-    final messageController = Get.put(MessageController());
+    final walletController = Get.put(WalletTxnController());
+
+    // List<Order> loadOrder = orderController.orderItemNotDuplicate;
     final PageController _pageController = PageController(
       initialPage: _selectedPage,
     );
+
     void _bottomBarChange(idx) {
       setState(() {
         _pageController.animateToPage(idx,
             duration: const Duration(milliseconds: 200), curve: Curves.ease);
-      });
-    }
-
-    _categoryChange(String cat) {
-      setState(() {
-        category = cat;
       });
     }
 
@@ -97,10 +107,31 @@ class _MyHomePageState extends State<MyHomePage> {
     return LoaderOverlay(
       child: Scaffold(
         appBar: AppBar(
-            // actions: [
-            //   Text("${cartProvider.cartItem.length}"),
-            // ],
+          actions: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                const Icon(Icons.account_balance_wallet),
+                const SizedBox(
+                  width: 10,
+                ),
+                GetBuilder<WalletTxnController>(builder: (ctr) {
+                  return Text(
+                    numFormater.format(ctr.totalCR - walletController.totalDR),
+                  );
+                }),
+                const SizedBox(
+                  width: 10,
+                ),
+                IconButton(
+                    onPressed: () {
+                      WalletTxnService.loadTxn(userInfoController.userId);
+                    },
+                    icon: const Icon(Icons.refresh))
+              ],
             ),
+          ],
+        ),
         drawer: MainDrawer(
           fuctionOntap: [
             _bottomBarChange,
@@ -109,6 +140,7 @@ class _MyHomePageState extends State<MyHomePage> {
             _bottomBarChange,
             _bottomBarChange
           ],
+          catChange: _categoryChange,
         ),
         body: PageView(
           controller: _pageController,
@@ -121,9 +153,9 @@ class _MyHomePageState extends State<MyHomePage> {
                 catChange: _categoryChange,
               );
             }),
-            CartOverview(
-              pageChange: _pageChangeModel,
-            ),
+            // CartOverview(
+            //   pageChange: _pageChangeModel,
+            // ),
             const OrderOverviewScreen(),
             // const FavouriteSreen(),
             const ContactUs(),
@@ -136,36 +168,36 @@ class _MyHomePageState extends State<MyHomePage> {
           backgroundColor: Colors.transparent,
           animationCurve: Curves.bounceInOut,
           animationDuration: const Duration(milliseconds: 200),
-          height: 50,
+          height: 60,
           items: <Widget>[
             const Icon(
               Icons.shopping_bag,
               size: 20,
               color: Colors.white,
             ),
-            Column(
-              children: [
-                GetBuilder<CartController>(builder: (ctr) {
-                  return CircleAvatar(
-                    child: Text('${cartProvider.cartItem.length}'),
-                    backgroundColor: Colors.white,
-                    // backgroundColor: _selectedPage == 1 ? Colors.white : null,
-                  );
-                }),
-                const Icon(
-                  Icons.shopping_cart,
-                  color: Colors.white,
-                  size: 20,
-                ),
-              ],
-            ),
+            // Column(
+            //   children: [
+            //     GetBuilder<CartController>(builder: (ctr) {
+            //       return CircleAvatar(
+            //         child: Text('${cartProvider.cartItem.length}'),
+            //         backgroundColor: Colors.white,
+            //         // backgroundColor: _selectedPage == 1 ? Colors.white : null,
+            //       );
+            //     }),
+            //     const Icon(
+            //       Icons.shopping_cart,
+            //       color: Colors.white,
+            //       size: 20,
+            //     ),
+            //   ],
+            // ),
             const Icon(
               Icons.calendar_today,
               size: 20,
               color: Colors.white,
             ),
             const Icon(
-              Icons.favorite,
+              Icons.attach_money_outlined,
               size: 20,
               color: Colors.white,
             ),

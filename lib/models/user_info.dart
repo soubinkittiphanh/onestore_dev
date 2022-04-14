@@ -7,13 +7,16 @@ class UserInfo {
   final String email;
   final double debit;
   final double credit;
-  UserInfo(
-      {required this.userName,
-      required this.token,
-      this.balance = 0.0,
-      required this.userId,
-      required this.phone,
-      required this.email,
-      required this.debit,
-      required this.credit});
+  final String profileImage;
+  UserInfo({
+    required this.userName,
+    required this.token,
+    this.balance = 0.0,
+    required this.userId,
+    required this.phone,
+    required this.email,
+    required this.debit,
+    required this.credit,
+    required this.profileImage,
+  });
 }

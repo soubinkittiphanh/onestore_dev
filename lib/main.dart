@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: "OneStore",
+      title: "JFILL STORE",
       theme: ThemeData(
         primarySwatch: Colors.red,
         textTheme: const TextTheme(

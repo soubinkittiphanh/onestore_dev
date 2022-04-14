@@ -168,6 +168,7 @@ class UpdateUserScreen extends StatelessWidget {
                                 userInfoController.userEmail,
                                 userInfoController.userDebit,
                                 userInfoController.userCredit,
+                                userInfoController.userImage,
                               );
                             }
                             break;
@@ -181,6 +182,7 @@ class UpdateUserScreen extends StatelessWidget {
                                 userInfoController.userEmail,
                                 userInfoController.userDebit,
                                 userInfoController.userCredit,
+                                userInfoController.userImage,
                               );
                             }
                             break;
@@ -194,6 +196,7 @@ class UpdateUserScreen extends StatelessWidget {
                                 txtUserInputControlloer.text,
                                 userInfoController.userDebit,
                                 userInfoController.userCredit,
+                                userInfoController.userImage,
                               );
                             }
                             break;

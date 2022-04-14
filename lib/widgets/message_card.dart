@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:onestore/getxcontroller/message_controller.dart';
@@ -29,7 +27,6 @@ class MessageCard extends StatelessWidget {
         ),
         child: GestureDetector(
           onTap: () {
-            log("PRESING");
             messageController.setMessageAsRead(idx);
             Navigator.of(context).push(
               MaterialPageRoute(

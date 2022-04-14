@@ -1,13 +1,9 @@
 class InvoiceInfo {
-  static String logoUnitel =
-      "https://play-lh.googleusercontent.com/EXT04dzrRZ0fGyAjyy-MQ3_9snTY226gZOm_JwhOxCjpX0OvBJD9AT4CnezCAwp18U3J";
-  static String logoTruemoney =
-      "https://ifranchise.ph/wp-content/uploads/2019/03/truemoney-franchise-512x303.png";
-  static String logoLaotel = "https://pbs.twimg.com/media/ErBX5jNVkAA5lUg.jpg";
-  static String logoETL =
-      "https://internetlaos.com/wp-content/uploads/2012/05/etl_logo.png";
-  static String logoBeeline =
-      "https://img.favpng.com/24/17/1/beeline-ojsc-vimpelcom-kaspiytelekom-mts-logo-png-favpng-RJY1Ptz7TuM1Z4thMEmvMNQRQ.jpg";
+  static String logoUnitel = "asset/images/ticket_logo/unitel.jpeg";
+  static String logoTruemoney = "asset/images/ticket_logo/true.jpeg";
+  static String logoLaotel = "asset/images/ticket_logo/ltc.jpeg";
+  static String logoETL = "asset/images/ticket_logo/etl.jpeg";
+  static String logoBeeline = "asset/images/ticket_logo/beeline.jpg";
   static String headerUnitel = "Unitel";
   static String headerTruemoney = "True Money";
   static String headerLaotel = "Lao telecom";
@@ -26,7 +22,7 @@ class InvoiceInfo {
     } else if (code == "1006") {
       hd = headerBeeline;
     } else {
-      hd = "Unknow";
+      hd = "Royal online";
     }
     return hd;
   }
@@ -44,7 +40,7 @@ class InvoiceInfo {
     } else if (code == "1006") {
       lg = logoBeeline;
     } else {
-      lg = "Unknow";
+      lg = "Royal online";
     }
     return lg;
   }

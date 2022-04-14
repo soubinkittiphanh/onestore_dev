@@ -24,6 +24,27 @@ class OrderController extends GetxController {
     return f.format(total);
   }
 
+  String orderTotalPriceByIdOringinal(id) {
+    double total = 0;
+    for (var el in orderItemId(id)) {
+      total += ((100 * el.total) / (100 - el.proDiscount));
+    }
+    // return total.toString();
+    return f.format(total);
+  }
+
+  String orderProfit(id) {
+    double totalDiscPrice = 0;
+    for (var el in orderItemId(id)) {
+      totalDiscPrice += el.total;
+    }
+    double totalOriginalPrice = 0;
+    for (var el in orderItemId(id)) {
+      totalOriginalPrice += ((100 * el.total) / (100 - el.proDiscount));
+    }
+    return f.format(totalOriginalPrice - totalDiscPrice);
+  }
+
   double get orderTotalPrice {
     double total = 0;
     for (var el in _orderItem) {
@@ -34,10 +55,7 @@ class OrderController extends GetxController {
 
   List<Order> get orderItemNotDuplicate {
     List<Order> _orderItemNotDuplicate = [];
-    // var i = 0;
     for (var element in _orderItem) {
-      // i++;
-      // log("message" + i.toString());
       if (_orderItemNotDuplicate
               .indexWhere((el) => el.orderId == element.orderId) >=
           0) {
@@ -52,6 +70,33 @@ class OrderController extends GetxController {
     }
     // log("not duplicate: " + _orderItemNotDuplicate.length.toString());
     return [..._orderItemNotDuplicate];
+  }
+
+  List<double> grandProfitItem() {
+    // List<Order> allOrder = _orderItem;
+    double grandDiscountPrice = 0;
+    double grandOriginalPrice = 0;
+    double profit = 0;
+    log("LEN: " + _orderItem.length.toString());
+    for (var element in _orderItem) {
+      // log("TOTAL: grandDiscountPrice: " + element.total.toString());
+      // log("TOTAL: price: " + element.price.toString());
+
+      grandDiscountPrice += element.total;
+      grandOriginalPrice += (element.total / (100 - element.proDiscount)) * 100;
+      log("Order id: " + element.orderId);
+      log("FULL PRICE: " +
+          ((element.total / (100 - element.proDiscount)) * 100).toString());
+      // grandOriginalPrice +=
+      //     ((100 * element.total) / (100 - element.proDiscount));
+    }
+    profit = grandOriginalPrice - grandDiscountPrice;
+    List<double> allFinancialReport = [
+      grandOriginalPrice,
+      grandDiscountPrice,
+      profit
+    ];
+    return allFinancialReport;
   }
 
   void setOrderItem(List<Order> order) {

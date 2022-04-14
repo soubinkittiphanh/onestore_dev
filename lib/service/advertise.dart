@@ -55,16 +55,18 @@ class Ad {
         style: TextStyle(fontFamily: 'noto san lao'),
       ),
       content: Container(
-        width: deviceSize.width * 0.9,
-        height: deviceSize.height * 0.4,
-        padding: const EdgeInsets.all(5),
+        margin: const EdgeInsets.all(0),
+        padding: const EdgeInsets.all(0.1),
+        width: deviceSize.width * 0.98,
+        height: deviceSize.height * 0.55,
         alignment: Alignment.center,
         child: ClipRRect(
           borderRadius: BorderRadius.circular(12),
           child: CachedNetworkImage(
             imageUrl: imgPath,
             placeholder: (context, url) => const CircularProgressIndicator(),
-            errorWidget: (context, url, error) => const Icon(Icons.error),
+            errorWidget: (context, url, error) =>
+                const Icon(Icons.error_outline),
           ),
         ),
         decoration: BoxDecoration(
@@ -74,12 +76,11 @@ class Ad {
       ),
       actions: [
         CupertinoDialogAction(
-            child: TextButton(
           child: const Text("Ok"),
           onPressed: () {
             Navigator.of(context).pop();
           },
-        )),
+        ),
       ],
     );
   }
@@ -91,10 +92,12 @@ class Ad {
         "ໂປໂມຊັ່ນ",
         style: TextStyle(fontFamily: 'noto san lao'),
       ),
+      // insetPadding: EdgeInsets.zero,
       content: Container(
-        padding: const EdgeInsets.all(5),
-        width: deviceSize.width * 0.8,
-        height: deviceSize.height * 0.4,
+        margin: const EdgeInsets.all(0),
+        padding: const EdgeInsets.all(0.1),
+        width: deviceSize.width * 0.98,
+        height: deviceSize.height * 0.55,
         alignment: Alignment.center,
         child: ClipRRect(
           borderRadius: BorderRadius.circular(12),
@@ -105,8 +108,8 @@ class Ad {
           ),
         ),
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(15),
-          border: Border.all(width: 1, color: Colors.red),
+          borderRadius: BorderRadius.circular(5),
+          border: Border.all(width: 0.1, color: Colors.red),
         ),
       ),
       actions: [

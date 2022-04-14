@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:onestore/config/host_con.dart';
 import 'package:onestore/models/inbox_message.dart';
 import 'package:onestore/models/invoice_info.dart';
@@ -27,11 +28,18 @@ class InvoiceSingle {
       children: [
         Row(
           children: [
-            Text(InvoiceInfo.header(message.category)),
-            Image.network(
-              InvoiceInfo.logoStr(message.category),
-              width: 20,
-              height: 20,
+            Text(
+              InvoiceInfo.header(message.category),
+              style: const TextStyle(fontWeight: FontWeight.bold),
+            ),
+            // message.category.contains("1002")
+            //     ?
+            Image.asset(
+              message.category.contains("1002")
+                  ? "asset/images/royal.jpeg"
+                  : InvoiceInfo.logoStr(message.category),
+              width: 60,
+              height: 60,
             ),
           ],
         ),
@@ -65,7 +73,7 @@ class InvoiceItem extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Text(
-                    " ${numFormater.format(message.price)} ກີບ",
+                    "ລາຄາ: ${numFormater.format(message.price)} ກີບ",
                   ),
                 ],
               ),
@@ -82,134 +90,3 @@ class InvoiceItem extends StatelessWidget {
     );
   }
 }
-
-
-
-
-
-
-
-// import 'package:flutter/material.dart';
-// import 'package:onestore/config/host_con.dart';
-// import 'package:onestore/models/inbox_message.dart';
-// import 'package:onestore/models/invoice_info.dart';
-
-// import '../invoice_garena_footer.dart';
-// import '../invoice_garena_header.dart';
-
-// class Invoice {
-//   Widget genGarena(List<InboxMessage> message) {
-//     return Container(
-//       width: 130,
-//       decoration: BoxDecoration(
-//         border: Border.all(
-//           width: 0.5,
-//           color: Colors.red,
-//         ),
-//         borderRadius: const BorderRadius.all(
-//           Radius.circular(
-//             10,
-//           ),
-//         ),
-//       ),
-//       child: FittedBox(
-//         child: Column(
-//           children: [
-//             const InvoiceHeaderGarena(),
-//             const Text("-----------------------------------"),
-
-//             // InvoiceItem(),
-//             Column(
-//               children: message
-//                   .map((e) => InvoiceItem(
-//                         message: e,
-//                       ))
-//                   .toList(),
-//             ),
-//             InvoiceFooterGarena(qrCode: message[0].qrCode)
-//           ],
-//         ),
-//       ),
-//     );
-//   }
-// }
-
-// class InvoiceItem extends StatelessWidget {
-//   const InvoiceItem({
-//     Key? key,
-//     required this.message,
-//   }) : super(key: key);
-//   final message;
-//   @override
-//   Widget build(BuildContext context) {
-//     return Card(
-//       child: Row(
-//         children: [
-//           Column(
-//             crossAxisAlignment: CrossAxisAlignment.start,
-//             children: [
-//               Row(
-//                 mainAxisAlignment: MainAxisAlignment.start,
-//                 children: [
-//                   Text(
-//                     " ${numFormater.format(message.price)} ກີບ",
-//                   ),
-//                 ],
-//               ),
-//               Text(
-//                 "ລະຫັດ: ${message.messageBody}",
-//                 style: const TextStyle(
-//                   fontWeight: FontWeight.bold,
-//                 ),
-//               ),
-//             ],
-//           )
-//         ],
-//       ),
-//     );
-//   }
-// }
-
-// Widget genOther(List<InboxMessage> message) {
-//   return Container(
-//     width: 130,
-//     decoration: BoxDecoration(
-//       border: Border.all(
-//         width: 0.5,
-//         color: Colors.red,
-//       ),
-//       borderRadius: const BorderRadius.all(
-//         Radius.circular(
-//           10,
-//         ),
-//       ),
-//     ),
-//     child: FittedBox(
-//       child: Column(
-//         mainAxisAlignment: MainAxisAlignment.start,
-//         children: [
-//           Row(
-//             children: [
-//               Text(InvoiceInfo.header(message[0].category)),
-//               Image.network(
-//                 InvoiceInfo.logoStr(message[0].category),
-//                 width: 20,
-//                 height: 20,
-//               ),
-//             ],
-//           ),
-//           Column(
-//             children: message
-//                 .map((e) => InvoiceItem(
-//                       message: e,
-//                     ))
-//                 .toList(),
-//           ),
-//           InvoiceFooterGarena(
-//             qrCode: message[0].qrCode,
-//           )
-//         ],
-//       ),
-//     ),
-//   );
-// }

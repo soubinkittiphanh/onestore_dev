@@ -4,8 +4,8 @@ import 'dart:typed_data';
 import 'package:bluetooth_thermal_printer/bluetooth_thermal_printer.dart';
 import 'package:esc_pos_utils/esc_pos_utils.dart';
 import 'package:image/image.dart';
-import 'package:path_provider/path_provider.dart';
-import 'package:native_pdf_renderer/native_pdf_renderer.dart' as nativePdf;
+// import 'package:path_provider/path_provider.dart';
+// import 'package:native_pdf_renderer/native_pdf_renderer.dart' as nativePdf;
 
 class PrintHelper {
   static late Uint8List imageBytes;
@@ -56,7 +56,7 @@ class PrintHelper {
     final profile = await CapabilityProfile.load();
     final generator = Generator(PaperSize.mm58, profile);
     List<int> bytes = [];
-    await _genImage();
+    // await _genImage();
     final image = decodeImage(imageBytes);
     bytes += generator.setGlobalCodeTable('CP1250');
     bytes += generator.image(image!);
@@ -98,20 +98,20 @@ class PrintHelper {
     return bytes;
   }
 
-  static _genImage() async {
-    final dir = await getExternalStorageDirectory();
-    final document =
-        await nativePdf.PdfDocument.openFile('${dir!.path}/receipt.pdf');
-    final page = await document.getPage(1);
-    final pageImage = await page.render(
-      width: page.width,
-      height: page.height,
-      format: nativePdf.PdfPageFormat.PNG,
-    );
-    final bytes = pageImage!.bytes;
-    imageBytes = bytes;
-    await page.close();
-  }
+  // static _genImage() async {
+  //   final dir = await getExternalStorageDirectory();
+  //   final document =
+  //       await nativePdf.PdfDocument.openFile('${dir!.path}/receipt.pdf');
+  //   final page = await document.getPage(1);
+  //   final pageImage = await page.render(
+  //     width: page.width,
+  //     height: page.height,
+  //     format: nativePdf.PdfPageFormat.PNG,
+  //   );
+  //   final bytes = pageImage!.bytes;
+  //   imageBytes = bytes;
+  //   await page.close();
+  // }
 
   // static _genImage2() async {
   //   final dir = await getExternalStorageDirectory();
