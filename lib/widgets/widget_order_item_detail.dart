@@ -1,10 +1,15 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:onestore/getxcontroller/order_controller.dart';
-import 'package:onestore/helper/print_check.dart';
+import 'package:onestore/models/inbox_message.dart';
 import 'package:onestore/models/order.dart';
 import 'package:get/get.dart';
 
+import '../api/pdf_api.dart';
+import '../getxcontroller/message_controller.dart';
+import '../getxcontroller/printer_check_constroller.dart';
 import 'order_item_detail.dart';
 
 class OrderItemDetailWidget extends StatefulWidget {
@@ -22,6 +27,8 @@ class OrderItemDetailWidget extends StatefulWidget {
 class _OrderItemDetailWidgetState extends State<OrderItemDetailWidget> {
   bool isexpand = false;
   final f = NumberFormat("#,###");
+  final inboxController = Get.put(MessageController());
+  final printerConnectionCtx = Get.put(PrinterConnectionCheck());
   @override
   Widget build(BuildContext context) {
     final orderProvider = Get.put(OrderController());
@@ -69,14 +76,20 @@ class _OrderItemDetailWidgetState extends State<OrderItemDetailWidget> {
               Row(
                 children: [
                   IconButton(
-                      onPressed: () async {
-                        await PrintCheck.prints(
-                            widget.loadOrder.orderId, context);
-                      },
-                      icon: const Icon(Icons.print)),
-                  // Text(
-                  //   "ລາຄາລວມ: ${orderProvider.orderTotalPriceById(widget.loadOrder.orderId)}",
-                  // ),
+                    onPressed: () async {
+                      late File file;
+
+                      List<InboxMessage> messageList = inboxController
+                          .messageByOrderID(widget.loadOrder.orderId);
+                      for (var item in messageList) {
+                        file = await PdfApi.generatePdf(item);
+                      }
+                      if (!printerConnectionCtx.isPrinterCheckEnable()) {
+                        PdfApi.openFile(file);
+                      }
+                    },
+                    icon: const Icon(Icons.print),
+                  ),
                 ],
               ),
             ],

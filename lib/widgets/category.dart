@@ -15,7 +15,27 @@ class _CategoryState extends State<Category> {
   int _selectedIndex = 0;
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return Container(
+      decoration: const BoxDecoration(
+        color: Colors.white,
+        boxShadow: [
+          BoxShadow(
+            color: Colors.redAccent,
+            offset: Offset(
+              5.0,
+              5.0,
+            ),
+            blurRadius: 10.0,
+            spreadRadius: 2.0,
+          ), //BoxShadow
+          BoxShadow(
+            color: Colors.white,
+            offset: Offset(0.0, 0.0),
+            blurRadius: 0.5,
+            spreadRadius: -1.0,
+          ), //BoxShadow
+        ],
+      ),
       height: 50,
       child: GetBuilder<ProductController>(builder: (ctr) {
         return ListView.builder(

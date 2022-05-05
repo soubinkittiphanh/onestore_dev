@@ -99,7 +99,9 @@ class _OrderItemState extends State<OrderItem> {
                         for (var item in messageList) {
                           file = await PdfApi.generatePdf(item);
                         }
-                        PdfApi.openFile(file);
+                        if (!printerConnectionCtx.isPrinterCheckEnable()) {
+                          PdfApi.openFile(file);
+                        }
                       },
                       icon: const Icon(Icons.print)),
                   Text(

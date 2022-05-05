@@ -76,6 +76,14 @@ class _LoginScreenState extends State<LoginScreen> {
     //     });
   }
 
+  // @override
+  // void setState(VoidCallback fn) {
+  //   // TODO: implement setState
+  //   if (mounted) {
+  //     super.setState(fn);
+  //   }
+  // }
+
   @override
   Widget build(BuildContext context) {
     // final deviceSize = MediaQuery.of(context).size;
@@ -95,6 +103,11 @@ class _LoginScreenState extends State<LoginScreen> {
 
     void _login() async {
       context.loaderOverlay.show();
+      if (_txtUserController.text.length < 7 &&
+          !_txtUserController.text.contains("@")) {
+        context.loaderOverlay.hide();
+        return;
+      }
       final loginId = _txtUserController.text.contains("@")
           ? _txtUserController.text
           : "20" +

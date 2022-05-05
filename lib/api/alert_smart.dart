@@ -15,4 +15,18 @@ class AlertSmart {
       btnOkColor: Colors.red,
     ).show();
   }
+
+  static inofDialog(BuildContext context, String message) {
+    AwesomeDialog(
+      context: context,
+      dialogType: DialogType.INFO,
+      animType: AnimType.SCALE,
+      headerAnimationLoop: true,
+      title: 'Info',
+      desc: message,
+      btnOkOnPress: () {},
+      btnOkIcon: Icons.cancel,
+      btnOkColor: Colors.red,
+    ).show();
+  }
 }

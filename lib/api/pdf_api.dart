@@ -47,7 +47,7 @@ class PdfApi {
     pdf.addPage(
       Page(
         // pageTheme: pageTheme,
-        pageFormat: PdfPageFormat.roll57,
+        pageFormat: PdfPageFormat.undefined,
         build: (conetext) => message.category.contains("1001")
             ? buildInvoiceGerena(message, laoTtf, logoImage, jewelryHeaderImage)
             : message.category.contains("1003")
@@ -95,7 +95,7 @@ class PdfApi {
         //     ),
         //   ],
         // ),
-        builGarenaHeaderItem("10,000 = 68 ເພັດ", font, headerJewelry),
+        builGarenaHeaderItem("12,000 = 68 ເພັດ", font, headerJewelry),
         // Row(
         //   mainAxisAlignment: MainAxisAlignment.center,
         //   children: [
@@ -106,7 +106,7 @@ class PdfApi {
         //     ),
         //   ],
         // ),
-        builGarenaHeaderItem("22,000 = 172 ເພັດ", font, headerJewelry),
+        builGarenaHeaderItem("25,000 = 172 ເພັດ", font, headerJewelry),
         // Row(
         //   mainAxisAlignment: MainAxisAlignment.center,
         //   children: [
@@ -117,7 +117,7 @@ class PdfApi {
         //     ),
         //   ],
         // ),
-        builGarenaHeaderItem("40,000 = 344 ເພັດ", font, headerJewelry),
+        builGarenaHeaderItem("47,000 = 344 ເພັດ", font, headerJewelry),
         // Row(
         //   mainAxisAlignment: MainAxisAlignment.center,
         //   children: [
@@ -128,7 +128,7 @@ class PdfApi {
         //     ),
         //   ],
         // ),
-        builGarenaHeaderItem("60,000 = 517 ເພັດ", font, headerJewelry),
+        builGarenaHeaderItem("75,000 = 517 ເພັດ", font, headerJewelry),
         // Row(
         //   mainAxisAlignment: MainAxisAlignment.center,
         //   children: [
@@ -139,7 +139,7 @@ class PdfApi {
         //     ),
         //   ],
         // ),
-        builGarenaHeaderItem("120,000 = 1052 ເພັດ", font, headerJewelry),
+        builGarenaHeaderItem("140,000 = 1052 ເພັດ", font, headerJewelry),
         // Row(
         //   mainAxisAlignment: MainAxisAlignment.center,
         //   children: [
@@ -150,7 +150,7 @@ class PdfApi {
         //     ),
         //   ],
         // ),
-        builGarenaHeaderItem("200,000 = 1800 ເພັດ", font, headerJewelry),
+        builGarenaHeaderItem("235,000 = 1800 ເພັດ", font, headerJewelry),
         // Row(
         //   mainAxisAlignment: MainAxisAlignment.center,
         //   children: [
@@ -161,7 +161,7 @@ class PdfApi {
         //     ),
         //   ],
         // ),
-        builGarenaHeaderItem("400,000 = 3698 ເພັດ", font, headerJewelry),
+        builGarenaHeaderItem("460,000 = 3698 ເພັດ", font, headerJewelry),
       ],
     );
   }
@@ -202,7 +202,7 @@ class PdfApi {
       "ກວດຍອດເງິນ Check balance*122#"
     ];
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+      // crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Row(mainAxisAlignment: MainAxisAlignment.center, children: [
           laoText(
@@ -333,15 +333,6 @@ class PdfApi {
                 isBold: true,
                 size: 16,
               ),
-              // SizedBox(height: 8),
-              // Container(
-              //   width: 100,
-              //   child: Divider(
-              //     thickness: 1,
-              //     // indent: 10,
-              //     // endIndent: 10,
-              //   ),
-              // ),
               laoText(
                 lable: message.messageBody.contains("|")
                     ? message.messageBody.split("|")[0] +
@@ -352,7 +343,7 @@ class PdfApi {
                     : message.messageBody,
                 font: laoTtf,
                 isBold: true,
-                size: 16.5,
+                size: 14,
               ),
             ],
           ),
@@ -388,12 +379,12 @@ class PdfApi {
         laoText(
           lable: 'Service center: 020 9748 9646',
           font: laoTtf,
-          size: 12,
+          size: 10,
         ),
         laoText(
           lable: 'ເວລາພິມ: ${formater.format(today)}',
           font: laoTtf,
-          size: 13,
+          size: 10,
         ),
         SizedBox(
           height: 10,
@@ -407,7 +398,8 @@ class PdfApi {
     final dir = await getApplicationDocumentsDirectory();
     final file = File("${dir.path}/$fileName");
     await file.writeAsBytes(bytes);
-    await ThermalApi.printTicket();
+    //*****Print ticket*****/
+    await ThermalApi.printTicketFromBlueThermal();
     return file;
   }
 
@@ -420,7 +412,7 @@ class PdfApi {
       {required String lable,
       required Font font,
       bool isBold = false,
-      double size = 14.0}) {
+      double size = 12.0}) {
     return Text(
       lable,
       style: TextStyle(

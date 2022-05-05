@@ -171,7 +171,10 @@ class _CartOviewCompState extends State<CartOviewComp> {
                       log("=====> Generate bill pdf completed " +
                           DateTime.now().toString());
                       context.loaderOverlay.hide();
-                      PdfApi.openFile(file);
+                      if (!printerConnectionCheckController
+                          .isPrinterCheckEnable()) {
+                        PdfApi.openFile(file);
+                      }
                       Navigator.of(context).pop();
                     },
                   ),
@@ -243,7 +246,10 @@ class _CartOviewCompState extends State<CartOviewComp> {
                         }
                         context.loaderOverlay.hide();
                         Navigator.pop(context);
-                        PdfApi.openFile(file);
+                        if (!printerConnectionCheckController
+                            .isPrinterCheckEnable()) {
+                          PdfApi.openFile(file);
+                        }
                       },
                       child: const Text(
                         "ພິມບິນ",

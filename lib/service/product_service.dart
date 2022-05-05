@@ -13,7 +13,7 @@ class ProductService {
   List<Product> _loadProduct = [];
   List<ProductCatetory> _loadCategory = [];
   Future<void> loadProduct() async {
-    var url = Uri.parse(hostname + 'product_f');
+    var url = Uri.parse(hostname + 'product_mobile_f');
 
     // Await the http get response, then decode the json-formatted response.
     log("======> Loading product... " + DateTime.now().toString());
