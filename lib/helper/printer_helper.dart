@@ -6,20 +6,17 @@ import 'package:esc_pos_utils/esc_pos_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:image/image.dart';
 import 'package:onestore/api/alert_smart.dart';
-// import 'package:path_provider/path_provider.dart';
-// import 'package:native_pdf_renderer/native_pdf_renderer.dart' as nativePdf;
 
 class PrintHelper {
   static late Uint8List imageBytes;
   static BlueThermalPrinter bluetooth = BlueThermalPrinter.instance;
   static Future<bool> checkPrinter() async {
+    log("Helper check connection");
     bool? isConnected =
         await bluetooth.isConnected; //BluetoothThermalPrinter.connectionStatus;
     if (isConnected == null) return false;
-    if (isConnected) {
-      return true;
-    }
-    return false;
+    log("Printer connection check: " + isConnected.toString());
+    return isConnected;
   }
 
   // static Future<void> printTicket(List<int> barcode) async {

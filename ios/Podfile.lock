@@ -338,6 +338,10 @@ PODS:
     - abseil/base/base_internal
     - abseil/base/config
     - abseil/meta/type_traits
+  - "app_settings (3.0.0+1)":
+    - Flutter
+  - blue_thermal_printer (0.0.1):
+    - Flutter
   - bluetooth_thermal_printer (0.0.1):
     - Flutter
   - BoringSSL-GRPC (0.0.7):
@@ -522,6 +526,8 @@ PODS:
     - Flutter
 
 DEPENDENCIES:
+  - app_settings (from `.symlinks/plugins/app_settings/ios`)
+  - blue_thermal_printer (from `.symlinks/plugins/blue_thermal_printer/ios`)
   - bluetooth_thermal_printer (from `.symlinks/plugins/bluetooth_thermal_printer/ios`)
   - cloud_firestore (from `.symlinks/plugins/cloud_firestore/ios`)
   - device_info (from `.symlinks/plugins/device_info/ios`)
@@ -560,6 +566,10 @@ SPEC REPOS:
     - PromisesObjC
 
 EXTERNAL SOURCES:
+  app_settings:
+    :path: ".symlinks/plugins/app_settings/ios"
+  blue_thermal_printer:
+    :path: ".symlinks/plugins/blue_thermal_printer/ios"
   bluetooth_thermal_printer:
     :path: ".symlinks/plugins/bluetooth_thermal_printer/ios"
   cloud_firestore:
@@ -591,6 +601,8 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   abseil: 6c8eb7892aefa08d929b39f9bb108e5367e3228f
+  app_settings: d103828c9f5d515c4df9ee754dabd443f7cedcf3
+  blue_thermal_printer: c83405103d2c17f8d67aaa43fcff94df5d616a66
   bluetooth_thermal_printer: 65b8304b3a1d8c67d466642a28cc2b4984409346
   BoringSSL-GRPC: 8edf627ee524575e2f8d19d56f068b448eea3879
   cloud_firestore: c4fe921497494112ca9de681464ddd44d51b17bb
