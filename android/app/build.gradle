@@ -61,11 +61,30 @@ android {
     }
 
    signingConfigs {
+    //    debug {
+    //        storeFile file('./debug.keystore')
+    //        storePassword 'ok23jsldfrpowernjsdofSsliire'
+    //        keyAlias 'androiddebugkey'
+    //        keyPassword 'ok23jsldfrpowernjsdofSsliire'
+    //    }
+    //    debug {
+    //        storeFile file('./debug.keystore')
+    //        storePassword 'storePassword'
+    //        keyAlias 'keyAlias'
+    //        keyPassword 'keyPassword'
+    //    }
+    //    release {
+    //        storeFile file('./debug.keystore')
+    //        storePassword 'storePassword'
+    //        keyAlias 'keyAlias'
+    //        keyPassword 'keyPassword'
+    //    }
+
        debug {
-           storeFile file('./debug.keystore')
-           storePassword 'ok23jsldfrpowernjsdofSsliire'
-           keyAlias 'androiddebugkey'
-           keyPassword 'ok23jsldfrpowernjsdofSsliire'
+           keyAlias keystoreProperties['keyAlias']
+           keyPassword keystoreProperties['keyPassword']
+           storeFile keystoreProperties['storeFile'] ? file(keystoreProperties['storeFile']) : null
+           storePassword keystoreProperties['storePassword']
        }
        release {
            keyAlias keystoreProperties['keyAlias']
